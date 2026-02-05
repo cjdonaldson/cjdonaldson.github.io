@@ -179,3 +179,9 @@ bus bar -> fuse -> breaker panel -> loads
 ### USB 5v
 - positive = red (pin 1)
 - negative = black (pin 4)
+
+### Starlink
+- [Dishy 12v setup](https://www.dishyminimounts.com.au/blogs/starlink-mini-guides/the-complete-guide-to-running-starlink-mini-on-12v-adapters-kits-setup)
+- Starlink Mini uses a DC5521 barrel jack—a 5.5mm outer diameter, 2.1mm pin connector.
+- 10A fuse
+- CERRXIAN DC5521 Power Pigtails Cable
