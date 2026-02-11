@@ -1,0 +1,108 @@
+body {
+    margin: 20px;
+    display: flex;
+    gap: 20px;
+}
+.planner {
+    flex: 0 0 300px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+.planner h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+.planner label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.planner select, .planner input {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+.planner button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #009879;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.planner button:hover {
+    background-color: #007d65;
+}
+.waypoint-list {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.waypoint-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+.waypoint-item button {
+    padding: 3px 8px;
+    font-size: 0.85em;
+    background-color: #dc3545;
+    margin: 0;
+}
+.grid-container {
+    flex: 1;
+    overflow-x: auto;
+}
+.distance-grid {
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+    width: 100%;
+    max-width: 100%;
+}
+.distance-grid thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.distance-grid th,
+.distance-grid td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    white-space: nowrap;
+}
+.distance-grid tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.distance-grid tbody tr:hover {
+    background-color: #f1f1f1;
+}
+.distance-grid th:first-child,
+.distance-grid td:first-child {
+    text-align: left;
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 1;
+}
+.distance-grid thead th:first-child {
+    background-color: #009879;
+}
+.distance-grid tbody tr:nth-of-type(even) td:first-child {
+    background-color: #f3f3f3;
+}
+.distance-grid tbody tr:hover td:first-child {
+    background-color: #f1f1f1;
+}
+.diagonal {
+    background-color: #e0e0e0 !important;
+    color: #999;
+}

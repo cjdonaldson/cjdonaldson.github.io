@@ -1,0 +1,1 @@
+/home/chuck/workspace/github/dotfiles/nix/home-manager/dot/ai.agent.md
