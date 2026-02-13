@@ -1,0 +1,224 @@
+{
+  "states": [
+    {
+      "name": "Florida",
+      "emoji": "🌴",
+      "open": true,
+      "campgrounds": [
+        {
+          "name": "Royal Coachman",
+          "emoji": "⛱️",
+          "url": "https://rvonthego.com/florida/royal-coachman-rv-resort/",
+          "address": "1070 Laurel Rd E, Nokomis, FL 34275",
+          "mapUrl": "https://maps.app.goo.gl/Fi6GJk4oAZ1EoKut8",
+          "phone": "877-570-2267",
+          "contactUrl": "https://rvonthego.com/about-us/contact-us",
+          "bookingUrl": "https://newbook.thousandtrails.com/royal-coachman-rv-resort/",
+          "siteMap": "./site-map/RoyalCoachman.pdf",
+          "hours": "Mon-Fri 8am-8pm | Sat-Sun 9:30am-6pm"
+        },
+        {
+          "name": "Papa Lew's",
+          "emoji": "🏡",
+          "mapUrl": "https://maps.app.goo.gl/kjcHvrb7m72eqeDa8",
+          "notes": ["Private"]
+        },
+        {
+          "name": "Flywheeler Park",
+          "emoji": "🚜",
+          "url": "https://floridaflywheelers.org/",
+          "address": "7000 Avon Park Cutoff Road, Fort Meade, FL 33841",
+          "mapUrl": "https://maps.app.goo.gl/3RQkqYJuPgcvXyay8",
+          "phone": "772-209-9112",
+          "email": "ffwcamping@gmail.com",
+          "emailName": "Tina",
+          "siteMap": "site-map/FloridaFlywheelers.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Virginia",
+      "emoji": "🏔️",
+      "open": true,
+      "campgrounds": [
+        {
+          "name": "Smith Mountain Campground",
+          "emoji": "⛰️",
+          "url": "http://smithmountaincampground.com/",
+          "address": "155 Liberty Rd, Penhook, VA 24137",
+          "mapUrl": "https://maps.app.goo.gl/3FZbsVUT2RLVwWPV9",
+          "phone": "434-927-4198",
+          "email": "info@smithmountaincampground.com",
+          "bookingUrl": "https://resnexus.com/resnexus/reservations/book",
+          "siteMap": "./site-map/SmithMountain.jpg",
+          "distance": "425 mi • 7 hrs from 18077",
+          "season": "Year round"
+        },
+        {
+          "name": "Indian Heritage RV Park",
+          "emoji": "🪶",
+          "url": "https://indianheritagervpark.net/",
+          "address": "184 Tensbury Dr, Martinsville, VA 24112",
+          "mapUrl": "https://maps.app.goo.gl/X7xWjdtvLen4oSie7",
+          "phone": "276-632-9500",
+          "email": "indianhrvp@outlook.com",
+          "bookingUrl": "https://www.campspot.com/book/indian-heritage-rv-park",
+          "siteMap": "./site-map/IndianHeritage.pdf",
+          "distance": "445 mi • 7.5 hrs from 18077",
+          "season": "Year round"
+        },
+        {
+          "name": "Hidden Acres Family Campground",
+          "emoji": "?",
+          "url": "https://campgrounds.rvlife.com/regions/virginia/milford/hidden-acres-family-campground-3024",
+          "address": "17391 Richmond Turnpike, Milford, VA 22514",
+          "mapUrl": "https://maps.app.goo.gl/Nr784GFeYGmLqHso7",
+          "phone": "804-633-7592",
+          "booking": "Call to book",
+          "distance": "296 mi • 5.0 hrs from 18077",
+          "season": "Year round"
+        },
+        {
+          "name": "South 40 Campground",
+          "emoji": "?",
+          "url": "https://www.south40camping.com/",
+          "address": "2809 Courtland Rd, Petersburg, VA 23805",
+          "mapUrl": "https://maps.app.goo.gl/X7xWjdtvLen4oSie7",
+          "phone": "804-732-8345",
+          "booking": "Call to book",
+          "siteMap": "./site-map/south40.png",
+          "distance": "331 mi • 5.4 hrs from 18077",
+          "season": "Year round"
+        },
+        {
+          "name": "Cattail Creek Campground",
+          "emoji": "?",
+          "url": "https://www.cattailcreekcampground.com/",
+          "address": "3901 Moore's Ferry Rd, Skippers, VA 23879",
+          "mapUrl": "https://maps.app.goo.gl/Mh1Dtjvjwoy2Xdgw8",
+          "phone": "252-955-1636",
+          "email": "cattailcreekcampground@gmail.com",
+          "bookingUrl": "https://www.cattailcreekcampground.com/campsites",
+          "siteMap": "./site-map/CattailCreek.pdf",
+          "distance": "394 mi • 6.6 hrs from 18077",
+          "season": "Year round",
+          "notes": ["Late arrivals are available upon request - call Farley 252-955-1636"]
+        }
+      ]
+    },
+    {
+      "name": "North Carolina",
+      "emoji": "🌲",
+      "open": true,
+      "campgrounds": [
+        {
+          "name": "Florence RV Park",
+          "emoji": "🌊",
+          "url": "https://www.florencervpark.com/",
+          "address": "1115 E. Campground Road, Florence, SC 29506",
+          "mapUrl": "https://maps.app.goo.gl/N5DevLCWijEZTWgd9",
+          "phone": "843-665-7007",
+          "booking": "call to book",
+          "siteMap": "./site-map/FlorenceRvPark.png",
+          "distance": "609 mi • 6 hrs from 18077",
+          "features": ["RV propane fill", "RV Dump Station"]
+        }
+      ]
+    },
+    {
+      "name": "Georgia",
+      "emoji": "🌳",
+      "open": false,
+      "campgrounds": [
+        {
+          "name": "Spacious Skies Campgrounds",
+          "emoji": "🌌",
+          "url": "https://spaciousskiescampgrounds.com/savannah-oaks/",
+          "address": "805 Fort Argyle Rd, Savannah, GA 31419",
+          "mapUrl": "https://maps.app.goo.gl/kTQctsDKZRvLiomn7",
+          "phone": "912-748-4000",
+          "bookingUrl": "https://camp.spaciousskiescampgrounds.com/savannah-oaks/",
+          "siteMap": "./site-map/Spacious-Skies-Savannah-Oaks.pdf",
+          "distances": [
+            "429 mi • 7 hrs from Smith Mountain",
+            "300 mi • 5 hrs to Papa Lew's"
+          ]
+        },
+        {
+          "name": "Country Oaks Campground & RV",
+          "emoji": "🌲",
+          "url": "http://www.countryoaksrv.com/",
+          "address": "2456 Scrubby Bluff Rd, Kingsland, GA 31548",
+          "mapUrl": "https://maps.app.goo.gl/EQ4GcegwBeZhHz119",
+          "phone": "+1-912-729-6212",
+          "booking": "Call to book",
+          "distances": [
+            "514 mi • 9 hrs from Smith Mountain",
+            "205 mi • 4 hrs to Papa Lew's"
+          ],
+          "season": "Year round",
+          "features": ["Good Sam Discount", "Easy I-95 access", "Propane fill available"]
+        },
+        {
+          "name": "Eagle's Roost RV Resort",
+          "emoji": "🦅",
+          "url": "https://eaglesroostrvresort.com/",
+          "address": "5465 Mill Store Rd, Lake Park, GA 31636",
+          "mapUrl": "https://maps.app.goo.gl/39ruhn4AqMYzWsJ86",
+          "phone": "229-559-5192",
+          "bookingUrl": "https://www.campspot.com/book/eaglesroostresort",
+          "distances": [
+            "603 mi • 10 hrs from Smith Mountain",
+            "107 mi • 2 hrs to Papa Lew's"
+          ],
+          "season": "Year round",
+          "features": ["Off I-75", "Propane fill available"]
+        },
+        {
+          "name": "Deep Bend Landing",
+          "emoji": "?",
+          "url": "https://www.deepbendlanding.com/",
+          "address": "164 Deep Bend Ln, Waynesville, GA 31566",
+          "mapUrl": "https://maps.app.goo.gl/Mh3rA3MvAYRfvMVi7",
+          "phone": "912-778-5607",
+          "bookingUrl": "https://www.campspot.com/book/deepbendlanding",
+          "siteMap": "./site-map/DeepBendLanding.jpg",
+          "distances": [
+            "853 mi • 14.2 hrs from 18077",
+            "506 mi • 10.0 hrs from Smith Mountain",
+            "240 mi • 4.0 hrs to Papa Lew's",
+            "282 mi • 4.7 hrs to Flywheeler Park"
+          ],
+          "season": "Year round",
+          "features": ["Propane fill available"]
+        }
+      ]
+    },
+    {
+      "name": "Pennsylvania",
+      "emoji": "🌳",
+      "open": false,
+      "campgrounds": [
+        {
+          "name": "Cabela's Hamburg",
+          "emoji": "🎣",
+          "url": "https://stores.cabelas.com/us/pa/hamburg/100-cabela-drive.html?y_source=1_Mzk4NjcxMi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+          "address": "100 Cabela Dr, Hamburg, PA 19526",
+          "mapUrl": "https://maps.app.goo.gl/Q2Gemq5wak8bygrA7",
+          "phone": "610-929-7000",
+          "hours": "Mon-Sat 9am-9pm | Sun 9am-7pm",
+          "features": ["RV Dump Station"]
+        },
+        {
+          "name": "Camping World Hamburg",
+          "emoji": "🚐",
+          "url": "https://rv.campingworld.com/dealer/hamburg-pennsylvania",
+          "address": "20 Industrial Dr, Hamburg, PA 19526",
+          "mapUrl": "https://maps.app.goo.gl/ettn8cUzkG8Nxoqg7",
+          "phone": "833-739-1030",
+          "features": ["RV propane fill", "RV Dump Station"]
+        }
+      ]
+    }
+  ]
+}
