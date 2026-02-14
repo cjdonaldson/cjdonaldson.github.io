@@ -36,5 +36,12 @@ function matchesDirection(bearing, filterDirection) {
     if (filterDirection === 'all') return true;
 
     const direction = getDirection(bearing);
-    return direction === filterDirection;
+
+    // Include adjacent compass points
+    const directions = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'];
+    const filterIndex = directions.indexOf(filterDirection);
+    const adjacentPrev = directions[(filterIndex - 1 + 8) % 8];
+    const adjacentNext = directions[(filterIndex + 1) % 8];
+
+    return direction === filterDirection || direction === adjacentPrev || direction === adjacentNext;
 }

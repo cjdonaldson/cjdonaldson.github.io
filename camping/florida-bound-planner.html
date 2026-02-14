@@ -6,39 +6,31 @@
     <title>Florida Bound - Route Planner</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="florida-bound-grid.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow-x: auto;
-        }
-        #planners-container {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-            padding: 20px;
-            min-height: 100vh;
-        }
-    </style>
+    <link rel="stylesheet" href="florida-bound-planner.css">
 </head>
 <body>
 
+<!-- <div id="map-container"> -->
+<!--     <div id="map"></div> -->
+<!-- </div> -->
+
 <div id="planners-container"></div>
 
-<div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <button onclick="addPlanner()" style="padding: 12px 20px; background-color: #009879; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+<div class="add-planner-button-container">
+    <button onclick="addPlanner()" class="add-planner-button">
         + Add Planner
     </button>
 </div>
 
-<div style="padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; margin: 20px;">
-    <p style="margin: 5px 0;"><a href="florida-bound-grid.html">View Distance Grid</a></p>
-    <p style="margin: 5px 0;"><a href="florida-bound.html">← Back to Florida Bound Destinations</a></p>
+<div class="navigation-links">
+    <p><a href="florida-bound-grid.html">View Distance Grid</a></p>
+    <p><a href="florida-bound.html">← Back to Florida Bound Destinations</a></p>
 </div>
 
-<script src="florida-bound-data.js"></script>
+<script src="florida-bound-data-loader.js"></script>
 <script src="florida-bound-utils.js"></script>
 <script src="florida-bound-grid.js"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script> -->
 
 </body>
 </html>

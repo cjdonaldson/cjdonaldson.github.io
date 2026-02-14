@@ -15,13 +15,22 @@
           "contactUrl": "https://rvonthego.com/about-us/contact-us",
           "bookingUrl": "https://newbook.thousandtrails.com/royal-coachman-rv-resort/",
           "siteMap": "./site-map/RoyalCoachman.pdf",
-          "hours": "Mon-Fri 8am-8pm | Sat-Sun 9:30am-6pm"
+          "hours": "Mon-Fri 8am-8pm | Sat-Sun 9:30am-6pm",
+          "coords": [27.1392, -82.4526],
+          "zip": "34275",
+          "city": "Nokomis",
+          "state": "FL"
         },
         {
           "name": "Papa Lew's",
           "emoji": "🏡",
           "mapUrl": "https://maps.app.goo.gl/kjcHvrb7m72eqeDa8",
-          "notes": ["Private"]
+          "notes": ["Private"],
+          "coords": [28.3345, -82.2292],
+          "zip": "34275",
+          "url": "https://maps.app.goo.gl/kjcHvrb7m72eqeDa8",
+          "city": "Nokomis",
+          "state": "FL"
         },
         {
           "name": "Flywheeler Park",
@@ -32,7 +41,11 @@
           "phone": "772-209-9112",
           "email": "ffwcamping@gmail.com",
           "emailName": "Tina",
-          "siteMap": "site-map/FloridaFlywheelers.jpg"
+          "siteMap": "site-map/FloridaFlywheelers.jpg",
+          "coords": [27.7536, -81.7787],
+          "zip": "33841",
+          "city": "Fort Meade",
+          "state": "FL"
         }
       ]
     },
@@ -41,6 +54,17 @@
       "emoji": "🏔️",
       "open": true,
       "campgrounds": [
+        {
+          "name": "Camping World Roanoke",
+          "emoji": "🚐",
+          "url": "https://rv.campingworld.com/dealer/roanoke-virginia/rv-parts-supplies",
+          "mapUrl": "https://rv.campingworld.com/dealer/roanoke-virginia/rv-parts-supplies",
+          "coords": [37.3226, -79.9745],
+          "zip": "24019",
+          "features": ["RV propane fill", "RV Dump Station"],
+          "city": "Roanoke",
+          "state": "VA"
+        },
         {
           "name": "Smith Mountain Campground",
           "emoji": "⛰️",
@@ -52,7 +76,11 @@
           "bookingUrl": "https://resnexus.com/resnexus/reservations/book",
           "siteMap": "./site-map/SmithMountain.jpg",
           "distance": "425 mi • 7 hrs from 18077",
-          "season": "Year round"
+          "season": "Year round",
+          "coords": [36.9039, -79.6389],
+          "zip": "24137",
+          "city": "Penhook",
+          "state": "VA"
         },
         {
           "name": "Indian Heritage RV Park",
@@ -65,7 +93,11 @@
           "bookingUrl": "https://www.campspot.com/book/indian-heritage-rv-park",
           "siteMap": "./site-map/IndianHeritage.pdf",
           "distance": "445 mi • 7.5 hrs from 18077",
-          "season": "Year round"
+          "season": "Year round",
+          "coords": [36.6914, -79.8725],
+          "zip": "24112",
+          "city": "Martinsville",
+          "state": "VA"
         },
         {
           "name": "Hidden Acres Family Campground",
@@ -76,7 +108,11 @@
           "phone": "804-633-7592",
           "booking": "Call to book",
           "distance": "296 mi • 5.0 hrs from 18077",
-          "season": "Year round"
+          "season": "Year round",
+          "coords": [38.0331, -77.3869],
+          "zip": "22514",
+          "city": "Milford",
+          "state": "VA"
         },
         {
           "name": "South 40 Campground",
@@ -88,7 +124,11 @@
           "booking": "Call to book",
           "siteMap": "./site-map/south40.png",
           "distance": "331 mi • 5.4 hrs from 18077",
-          "season": "Year round"
+          "season": "Year round",
+          "coords": [37.2095, -77.3975],
+          "zip": "23805",
+          "city": "Petersburg",
+          "state": "VA"
         },
         {
           "name": "Cattail Creek Campground",
@@ -102,7 +142,11 @@
           "siteMap": "./site-map/CattailCreek.pdf",
           "distance": "394 mi • 6.6 hrs from 18077",
           "season": "Year round",
-          "notes": ["Late arrivals are available upon request - call Farley 252-955-1636"]
+          "notes": ["Late arrivals are available upon request - call Farley 252-955-1636"],
+          "coords": [36.5964, -77.5850],
+          "zip": "23879",
+          "city": "Skippers",
+          "state": "VA"
         }
       ]
     },
@@ -121,7 +165,11 @@
           "booking": "call to book",
           "siteMap": "./site-map/FlorenceRvPark.png",
           "distance": "609 mi • 6 hrs from 18077",
-          "features": ["RV propane fill", "RV Dump Station"]
+          "features": ["RV propane fill", "RV Dump Station"],
+          "coords": [34.1625, -79.7089],
+          "zip": "29506",
+          "city": "Florence",
+          "state": "SC"
         }
       ]
     },
@@ -142,7 +190,11 @@
           "distances": [
             "429 mi • 7 hrs from Smith Mountain",
             "300 mi • 5 hrs to Papa Lew's"
-          ]
+          ],
+          "coords": [32.0359, -81.1564],
+          "zip": "31419",
+          "city": "Savannah",
+          "state": "GA"
         },
         {
           "name": "Country Oaks Campground & RV",
@@ -157,7 +209,11 @@
             "205 mi • 4 hrs to Papa Lew's"
           ],
           "season": "Year round",
-          "features": ["Good Sam Discount", "Easy I-95 access", "Propane fill available"]
+          "features": ["Good Sam Discount", "Easy I-95 access", "Propane fill available"],
+          "coords": [30.7997, -81.6890],
+          "zip": "31548",
+          "city": "Kingsland",
+          "state": "GA"
         },
         {
           "name": "Eagle's Roost RV Resort",
@@ -172,7 +228,11 @@
             "107 mi • 2 hrs to Papa Lew's"
           ],
           "season": "Year round",
-          "features": ["Off I-75", "Propane fill available"]
+          "features": ["Off I-75", "Propane fill available"],
+          "coords": [30.6793, -83.0918],
+          "zip": "31636",
+          "city": "Lake Park",
+          "state": "GA"
         },
         {
           "name": "Deep Bend Landing",
@@ -190,7 +250,11 @@
             "282 mi • 4.7 hrs to Flywheeler Park"
           ],
           "season": "Year round",
-          "features": ["Propane fill available"]
+          "features": ["Propane fill available"],
+          "coords": [31.4753, -81.9831],
+          "zip": "31566",
+          "city": "Waynesville",
+          "state": "GA"
         }
       ]
     },
@@ -200,6 +264,17 @@
       "open": false,
       "campgrounds": [
         {
+          "name": "Riegelsville",
+          "emoji": "🏠",
+          "url": "https://maps.app.goo.gl/",
+          "mapUrl": "https://maps.app.goo.gl/",
+          "coords": [40.5936, -75.1886],
+          "zip": "18077",
+          "defaultStart": true,
+          "city": "Riegelsville",
+          "state": "PA"
+        },
+        {
           "name": "Cabela's Hamburg",
           "emoji": "🎣",
           "url": "https://stores.cabelas.com/us/pa/hamburg/100-cabela-drive.html?y_source=1_Mzk4NjcxMi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
@@ -207,7 +282,11 @@
           "mapUrl": "https://maps.app.goo.gl/Q2Gemq5wak8bygrA7",
           "phone": "610-929-7000",
           "hours": "Mon-Sat 9am-9pm | Sun 9am-7pm",
-          "features": ["RV Dump Station"]
+          "features": ["RV Dump Station"],
+          "coords": [40.5514, -75.9386],
+          "zip": "19526",
+          "city": "Hamburg",
+          "state": "PA"
         },
         {
           "name": "Camping World Hamburg",
@@ -216,7 +295,11 @@
           "address": "20 Industrial Dr, Hamburg, PA 19526",
           "mapUrl": "https://maps.app.goo.gl/ettn8cUzkG8Nxoqg7",
           "phone": "833-739-1030",
-          "features": ["RV propane fill", "RV Dump Station"]
+          "features": ["RV propane fill", "RV Dump Station"],
+          "coords": [40.5514, -75.9386],
+          "zip": "19526",
+          "city": "Hamburg",
+          "state": "PA"
         }
       ]
     }

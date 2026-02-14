@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+}
+
+#map-container {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+#planners-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.add-planner-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.add-planner-button {
+    padding: 12px 20px;
+    background-color: #009879;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.navigation-links {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.navigation-links p {
+    margin: 5px 0;
+}
