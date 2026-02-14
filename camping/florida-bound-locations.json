@@ -255,6 +255,27 @@
           "zip": "31566",
           "city": "Waynesville",
           "state": "GA"
+        },
+        {
+          "name": "Lake Harmony RV Park",
+          "emoji": "?",
+          "coords": [
+            31.5853,
+            -81.4494
+          ],
+          "zip": "31331",
+          "city": "Townsend",
+          "state": "GA",
+          "url": "https://lakeharmonypark.com/",
+          "address": "1088 Lake Harmony Drive SW",
+          "mapUrl": "https://maps.app.goo.gl/rGGvGpxqya89rSB18",
+          "phone": "912-832-4338",
+          "bookingUrl": "https://booking.staylist.app/lakeharmony",
+          "siteMap": "./site-map/LakeHarmony.jpg",
+          "features": [
+            "Check-in time is 12pm – 6pm ***Must make prior arrangements for check-ins after 6pm***",
+            "Propane"
+          ]
         }
       ]
     },
