@@ -1,7 +1,7 @@
-async function loadAndRenderCampgrounds() {
+async function loadAndRenderLocations() {
     const response = await fetch('florida-bound-locations.json');
     const data = await response.json();
-    const container = document.getElementById('campgrounds-container');
+    const container = document.getElementById('locations-container');
 
     data.states.forEach(state => {
         const stateSection = document.createElement('details');
@@ -14,107 +14,108 @@ async function loadAndRenderCampgrounds() {
         stateSummary.textContent = `${state.emoji} ${state.name}`;
         stateSection.appendChild(stateSummary);
 
-        state.campgrounds.forEach(campground => {
-            const campDetails = document.createElement('details');
+        state.locations.forEach(location => {
+            const locationDetails = document.createElement('details');
 
-            const campSummary = document.createElement('summary');
-            campSummary.innerHTML = `${campground.emoji} `;
+            const locationSummary = document.createElement('summary');
+            locationSummary.innerHTML = `${location.emoji} `;
 
-            if (campground.url) {
+            if (location.url) {
                 const link = document.createElement('a');
-                link.href = campground.url;
-                link.textContent = campground.name;
-                campSummary.appendChild(link);
+                link.href = location.url;
+                link.textContent = location.name;
+                locationSummary.appendChild(link);
             } else {
                 const link = document.createElement('a');
-                link.href = campground.mapUrl || '#';
-                link.textContent = campground.name;
-                campSummary.appendChild(link);
+                link.href = location.mapUrl || '#';
+                link.textContent = location.name;
+                locationSummary.appendChild(link);
             }
 
-            campDetails.appendChild(campSummary);
+            locationDetails.appendChild(locationSummary);
 
             const detailsList = document.createElement('ul');
 
-            if (campground.notes && campground.notes.length === 1 && campground.notes[0] === 'Private') {
+            if (location.notes && location.notes.length === 1 && location.notes[0] === 'Private') {
                 const li = document.createElement('li');
                 li.textContent = 'ℹ️ Private';
                 detailsList.appendChild(li);
             } else {
-                if (campground.address) {
+                if (location.address) {
                     const li = document.createElement('li');
-                    li.innerHTML = `📍 <a href="${campground.mapUrl}">${campground.address}</a>`;
+                    const fullAddress = `${location.address}, ${location.city}, ${location.state} ${location.zip}`;
+                    li.innerHTML = `📍 <a href="${location.mapUrl}">${fullAddress}</a>`;
                     detailsList.appendChild(li);
                 }
 
-                if (campground.phone || campground.email || campground.contactUrl) {
+                if (location.phone || location.email || location.contactUrl) {
                     const li = document.createElement('li');
                     let content = '';
 
-                    if (campground.phone) {
-                        content += `📞 <a href="tel:${campground.phone}">${campground.phone}</a>`;
+                    if (location.phone) {
+                        content += `📞 <a href="tel:${location.phone}">${location.phone}</a>`;
                     }
 
-                    if (campground.email) {
-                        const emailDisplay = campground.emailName || campground.email;
+                    if (location.email) {
+                        const emailDisplay = location.emailName || location.email;
                         if (content) content += ' | ';
-                        content += `📧 <a href="mailto:${campground.email}">${emailDisplay}</a>`;
-                    } else if (campground.contactUrl) {
+                        content += `📧 <a href="mailto:${location.email}">${emailDisplay}</a>`;
+                    } else if (location.contactUrl) {
                         if (content) content += ' | ';
-                        content += `📧 <a href="${campground.contactUrl}">contact us</a>`;
+                        content += `📧 <a href="${location.contactUrl}">contact us</a>`;
                     }
 
                     li.innerHTML = content;
                     detailsList.appendChild(li);
                 }
 
-                if (campground.bookingUrl || campground.booking || campground.siteMap) {
+                if (location.bookingUrl || location.booking || location.siteMap) {
                     const li = document.createElement('li');
                     let content = '';
 
-                    if (campground.bookingUrl) {
-                        content += `🎫 <a href="${campground.bookingUrl}">book online</a>`;
-                    } else if (campground.booking) {
-                        content += `🎫 ${campground.booking}`;
+                    if (location.bookingUrl) {
+                        content += `🎫 <a href="${location.bookingUrl}">book online</a>`;
+                    } else if (location.booking) {
+                        content += `🎫 ${location.booking}`;
                     }
 
-                    if (campground.siteMap) {
+                    if (location.siteMap) {
                         if (content) content += ' | ';
-                        content += `🏕️ <a href="${campground.siteMap}">Site map</a>`;
+                        content += `🏕️ <a href="${location.siteMap}">Site map</a>`;
                     }
 
                     li.innerHTML = content;
                     detailsList.appendChild(li);
                 }
 
-                if (campground.hours) {
+                if (location.hours) {
                     const li = document.createElement('li');
-                    li.innerHTML = `🕐 <strong>Hours:</strong> ${campground.hours}`;
+                    li.innerHTML = `🕐 <strong>Hours:</strong> ${location.hours}`;
                     detailsList.appendChild(li);
                 }
 
-                if (campground.distance) {
+                if (location.distance) {
                     const li = document.createElement('li');
-                    li.textContent = `🚗 ${campground.distance}`;
+                    li.textContent = `🚗 ${location.distance}`;
                     detailsList.appendChild(li);
                 }
 
-                if (campground.distances) {
-                    campground.distances.forEach(dist => {
+                if (location.distances) {
+                    location.distances.forEach(dist => {
                         const li = document.createElement('li');
                         li.textContent = `🚗 ${dist}`;
                         detailsList.appendChild(li);
                     });
                 }
 
-                if (campground.season) {
+                if (location.season) {
                     const li = document.createElement('li');
-                    li.textContent = `📆 ${campground.season}`;
+                    li.textContent = `📆 ${location.season}`;
                     detailsList.appendChild(li);
                 }
 
-                if (campground.features) {
-                    campground.features.forEach(feature => {
+                if (location.features) {
+                    location.features.forEach(feature => {
                         const li = document.createElement('li');
                         if (feature.includes('Good Sam')) {
                             li.textContent = `💰 ${feature}`;
@@ -131,8 +132,8 @@ async function loadAndRenderCampgrounds() {
                     });
                 }
 
-                if (campground.notes && !(campground.notes.length === 1 && campground.notes[0] === 'Private')) {
-                    campground.notes.forEach(note => {
+                if (location.notes && !(location.notes.length === 1 && location.notes[0] === 'Private')) {
+                    location.notes.forEach(note => {
                         const li = document.createElement('li');
                         li.textContent = note;
                         detailsList.appendChild(li);
@@ -140,12 +141,12 @@ async function loadAndRenderCampgrounds() {
                 }
             }
 
-            campDetails.appendChild(detailsList);
-            stateSection.appendChild(campDetails);
+            locationDetails.appendChild(detailsList);
+            stateSection.appendChild(locationDetails);
         });
 
         container.appendChild(stateSection);
     });
 }
 
-document.addEventListener('DOMContentLoaded', loadAndRenderCampgrounds);
+document.addEventListener('DOMContentLoaded', loadAndRenderLocations);

@@ -8,16 +8,16 @@ async function loadLocationData() {
     // Flatten the nested structure into the simple array format
     locationData = [];
     data.states.forEach(state => {
-        state.campgrounds.forEach(camp => {
-            if (camp.coords && camp.zip) {
+        state.locations.forEach(location => {
+            if (location.coords && location.zip) {
                 locationData.push({
-                    name: camp.name,
-                    zip: camp.zip,
-                    url: camp.url || camp.mapUrl,
-                    coords: camp.coords,
-                    defaultStart: camp.defaultStart || false,
-                    city: camp.city,
-                    state: camp.state
+                    name: location.name,
+                    zip: location.zip,
+                    url: location.url || location.mapUrl,
+                    coords: location.coords,
+                    defaultStart: location.defaultStart || false,
+                    city: location.city,
+                    state: location.state
                 });
             }
         });
