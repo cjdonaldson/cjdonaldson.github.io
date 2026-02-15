@@ -52,7 +52,7 @@
     {
       "name": "Virginia",
       "emoji": "🏔️",
-      "open": true,
+      "open": false,
       "locations": [
         {
           "name": "Camping World Roanoke",
@@ -153,7 +153,7 @@
     {
       "name": "South Carolina",
       "emoji": "🌲",
-      "open": true,
+      "open": false,
       "locations": [
         {
           "name": "Florence RV Park",
