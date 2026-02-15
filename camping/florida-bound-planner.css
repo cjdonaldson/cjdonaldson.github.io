@@ -109,3 +109,64 @@ body {
 .reset-route-button {
     background-color: #6c757d;
 }
+
+.info-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.info-icon {
+    cursor: help;
+    font-size: 0.9em;
+}
+
+.info-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.info-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.info-icon-wrapper:hover .info-tooltip {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.info-tooltip a {
+    color: #4da6ff;
+    text-decoration: none;
+}
+
+.info-tooltip a:hover {
+    text-decoration: underline;
+}
+
+.waypoint-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

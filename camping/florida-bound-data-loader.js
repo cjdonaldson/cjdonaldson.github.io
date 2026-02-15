@@ -17,7 +17,10 @@ async function loadLocationData() {
                     coords: location.coords,
                     defaultStart: location.defaultStart || false,
                     city: location.city,
-                    state: location.state
+                    state: location.state,
+                    address: location.address,
+                    bookingUrl: location.bookingUrl,
+                    phone: location.phone
                 });
             }
         });

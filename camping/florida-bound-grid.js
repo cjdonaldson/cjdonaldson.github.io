@@ -334,8 +334,10 @@ function updateRouteDisplay(plannerId) {
             displayText = `${index + 1}. ${direction} ${Math.round(distance)}mi ${hours}:${minutes.toString().padStart(2, '0')} ${waypoint.name}${cityState}`;
         }
 
+        const infoHtml = generateInfoTooltip(waypoint);
         div.innerHTML = `
 <span>${displayText}</span>
+${infoHtml}
 <button onclick="removeWaypoint(${plannerId}, ${index})">Remove</button>
 `;
         display.appendChild(div);
@@ -382,4 +384,31 @@ function generateGoogleMapsUrl(route) {
     }
 
     return url;
+}
+
+function generateInfoTooltip(waypoint) {
+    const links = [];
+
+    if (waypoint.url) {
+        links.push(`<a href="${waypoint.url}" target="_blank" rel="noopener noreferrer">Website</a>`);
+    }
+
+    if (waypoint.bookingUrl) {
+        links.push(`<a href="${waypoint.bookingUrl}" target="_blank" rel="noopener noreferrer">Booking</a>`);
+    } else if (waypoint.phone) {
+        links.push(`<a href="tel:${waypoint.phone}">${waypoint.phone}</a>`);
+    }
+
+    console.log('generateInfoTooltip DEBUG:', waypoint.name, 'bookingUrl:', waypoint.bookingUrl, 'links:', links);
+
+    if (links.length === 0) {
+        return '';
+    }
+
+    return `
+        <span class="info-icon-wrapper">
+            <span class="info-icon">ℹ️</span>
+            <span class="info-tooltip">${links.join('<br>')}</span>
+        </span>
+    `;
 }

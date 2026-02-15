@@ -73,7 +73,7 @@
           "mapUrl": "https://maps.app.goo.gl/3FZbsVUT2RLVwWPV9",
           "phone": "434-927-4198",
           "email": "info@smithmountaincampground.com",
-          "bookingUrl": "https://resnexus.com/resnexus/reservations/book",
+          "bookingUrl": "https://resnexus.com/resnexus/reservations/book/4A8AB833-C6E8-43B0-94D9-822CBB501BCC?roomclass=0",
           "siteMap": "./site-map/SmithMountain.jpg",
           "distance": "425 mi • 7 hrs from 18077",
           "season": "Year round",
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "name": "North Carolina",
+      "name": "South Carolina",
       "emoji": "🌲",
       "open": true,
       "locations": [
