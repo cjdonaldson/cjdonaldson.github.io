@@ -216,6 +216,7 @@ function updateWaypointOptions(plannerId) {
     select.innerHTML = '<option value="">-- Select destination --</option>';
 
     const usedLocations = new Set(planner.route.map(r => r.name));
+    const options = [];
 
     locations.forEach((loc, index) => {
         if (!usedLocations.has(loc.name)) {
@@ -243,13 +244,23 @@ function updateWaypointOptions(plannerId) {
                 const hours = Math.floor(timeHours);
                 const minutes = Math.floor((timeHours - hours) * 60);
                 const directionLabel = direction.toUpperCase();
-                const option = document.createElement('option');
-                option.value = index;
                 const cityState = loc.city && loc.state ? ` ${loc.city}, ${loc.state}` : '';
-                option.textContent = `${directionLabel} ${Math.round(distance)}mi ${hours}:${minutes.toString().padStart(2, '0')} ${loc.name}${cityState}`;
-                select.appendChild(option);
+                options.push({
+                    index: index,
+                    timeHours: timeHours,
+                    text: `${directionLabel} ${Math.round(distance)}mi ${hours}:${minutes.toString().padStart(2, '0')} ${loc.name}${cityState}`
+                });
             }
         }
+    });
+
+    options.sort((a, b) => a.timeHours - b.timeHours);
+
+    options.forEach(opt => {
+        const option = document.createElement('option');
+        option.value = opt.index;
+        option.textContent = opt.text;
+        select.appendChild(option);
     });
 }
 
