@@ -315,6 +315,23 @@
             "propane",
             "RV wash"
           ]
+        },
+        {
+          "name": "McIntosh Lake RV Park",
+          "emoji": "?",
+          "coords": [
+            31.8646,
+            -81.5028
+          ],
+          "zip": "31331",
+          "city": "Townsend",
+          "state": "GA",
+          "url": "http://www.mcintoshlakervpark.com",
+          "address": "1045 McIntosh Lake Ln SW",
+          "mapUrl": "https://maps.app.goo.gl/wQQqjCymQr17Uf3aA",
+          "phone": "912-224-6236",
+          "bookingUrl": "https://resnexus.com/resnexus/reservations/book/BB1B9B98-EAC9-4A93-9A4B-0275627193B2",
+          "siteMap": "./site-map/McIntoshLakeRvPark.jpg"
         }
       ]
     },
