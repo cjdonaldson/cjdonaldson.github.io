@@ -293,6 +293,28 @@
           "phone": "912-496-2220",
           "booking": "call to book",
           "email": "okefenokeervpark@yahoo.com"
+        },
+        {
+          "name": "Jenny Ridge RV Park",
+          "emoji": "x",
+          "coords": [
+            30.8145,
+            -81.9987
+          ],
+          "zip": "31537",
+          "city": "Folkston",
+          "state": "GA",
+          "url": "https://www.jennyridgerv.com",
+          "address": "2790 Second St S",
+          "mapUrl": "https://maps.app.goo.gl/2rLwa3bmkXJpUoBe8",
+          "phone": "912-496-1172",
+          "hours": "Mon - Sat  9:00 am - 4:00 pm",
+          "bookingUrl": "https://parkwith.us/camps/jenny-ridge-rv-park",
+          "siteMap": "./site-map/JennyRidgeRvPark.png",
+          "features": [
+            "propane",
+            "RV wash"
+          ]
         }
       ]
     },
