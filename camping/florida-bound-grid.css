@@ -106,3 +106,16 @@ body {
     background-color: #e0e0e0 !important;
     color: #999;
 }
+
+.location-controls {
+    margin-bottom: 15px;
+}
+
+.location-controls .sort-controls {
+    margin-left: 20px;
+    display: inline;
+}
+
+.reset-button {
+    background-color: #6c757d;
+}

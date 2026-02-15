@@ -120,15 +120,12 @@ function renderPlanner(planner) {
     const container = document.getElementById('planners-container');
     const plannerDiv = document.createElement('div');
     plannerDiv.id = `planner-${planner.id}`;
-    plannerDiv.className = 'planner';
-    plannerDiv.style.margin = '20px';
-    plannerDiv.style.display = 'inline-block';
-    plannerDiv.style.verticalAlign = 'top';
+    plannerDiv.className = 'planner planner-inline';
 
     plannerDiv.innerHTML = `
-<div style="display: flex; justify-content: space-between; align-items: center;">
+<div class="planner-header">
     <h2>Route Planner ${planner.id + 1}</h2>
-    ${planners.length > 1 ? `<button onclick="removePlanner(${planner.id})" style="background-color: #dc3545; padding: 5px 10px; margin: 0;">×</button>` : ''}
+    ${planners.length > 1 ? `<button onclick="removePlanner(${planner.id})" class="planner-remove-button">×</button>` : ''}
 </div>
 
 <div class="waypoint-list">
@@ -146,36 +143,36 @@ function renderPlanner(planner) {
 <input type="number" id="filter-value-${planner.id}" value="330" min="1">
 
 <label>Direction:</label>
-<div id="filter-direction-${planner.id}" style="display: flex; gap: 12px; align-items: center; flex-wrap: nowrap;">
-    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+<div id="filter-direction-${planner.id}" class="filter-direction-container">
+    <label class="filter-direction-label">
         <span>N</span>
         <input type="checkbox" value="n" checked>
     </label>
-    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+    <label class="filter-direction-label">
         <span>NE</span>
         <input type="checkbox" value="ne" checked>
     </label>
-    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+    <label class="filter-direction-label">
         <span>E</span>
         <input type="checkbox" value="e" checked>
     </label>
-    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+    <label class="filter-direction-label">
         <span>SE</span>
         <input type="checkbox" value="se" checked>
     </label>
-    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+    <label class="filter-direction-label">
         <span>S</span>
         <input type="checkbox" value="s" checked>
     </label>
-    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+    <label class="filter-direction-label">
         <span>SW</span>
         <input type="checkbox" value="sw" checked>
     </label>
-    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+    <label class="filter-direction-label">
         <span>W</span>
         <input type="checkbox" value="w" checked>
     </label>
-    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+    <label class="filter-direction-label">
         <span>NW</span>
         <input type="checkbox" value="nw" checked>
     </label>
@@ -187,7 +184,7 @@ function renderPlanner(planner) {
 </select>
 
 <button onclick="addWaypoint(${planner.id})">Add Stop</button>
-<button onclick="resetRoute(${planner.id})" style="background-color: #6c757d;">Reset Route</button>
+<button onclick="resetRoute(${planner.id})" class="reset-button">Reset Route</button>
 `;
 
     container.appendChild(plannerDiv);
@@ -335,17 +332,16 @@ function updateRouteDisplay(plannerId) {
 
     if (planner.route.length > 1) {
         const totalDiv = document.createElement('div');
-        totalDiv.style.marginTop = '10px';
-        totalDiv.style.fontWeight = 'bold';
+        totalDiv.className = 'route-total';
         const totalHours = Math.floor(totalTime);
         const totalMinutes = Math.floor((totalTime - totalHours) * 60);
         totalDiv.innerHTML = `<strong>Total: ${Math.round(totalDistance)} mi, ${totalHours}:${totalMinutes.toString().padStart(2, '0')}</strong>`;
         display.appendChild(totalDiv);
 
         const mapLinkDiv = document.createElement('div');
-        mapLinkDiv.style.marginTop = '10px';
+        mapLinkDiv.className = 'route-map-link';
         const mapsUrl = generateGoogleMapsUrl(planner.route);
-        mapLinkDiv.innerHTML = `<a href="${mapsUrl}" target="_blank" style="color: #009879; text-decoration: none; font-weight: bold;">🗺️ View Route in Google Maps</a>`;
+        mapLinkDiv.innerHTML = `<a href="${mapsUrl}" target="_blank">🗺️ View Route in Google Maps</a>`;
         display.appendChild(mapLinkDiv);
     }
 
