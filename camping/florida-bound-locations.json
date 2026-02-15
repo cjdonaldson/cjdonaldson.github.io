@@ -276,6 +276,23 @@
             "Check-in time is 12pm – 6pm ***Must make prior arrangements for check-ins after 6pm***",
             "Propane"
           ]
+        },
+        {
+          "name": "Okefenokee RV Park",
+          "emoji": "?",
+          "coords": [
+            30.8515,
+            -82.0191
+          ],
+          "zip": "31537",
+          "city": "Homeland",
+          "state": "GA",
+          "url": "http://okefenokeervpark.com/",
+          "address": "252 Bowery Lane",
+          "mapUrl": "https://maps.app.goo.gl/Ma1NXCW77u1uTYSB8",
+          "phone": "912-496-2220",
+          "booking": "call to book",
+          "email": "okefenokeervpark@yahoo.com"
         }
       ]
     },
