@@ -315,7 +315,38 @@ function updateRouteDisplay(plannerId) {
         const totalMinutes = Math.floor((totalTime - totalHours) * 60);
         totalDiv.innerHTML = `<strong>Total: ${Math.round(totalDistance)} mi, ${totalHours}:${totalMinutes.toString().padStart(2, '0')}</strong>`;
         display.appendChild(totalDiv);
+
+        const mapLinkDiv = document.createElement('div');
+        mapLinkDiv.style.marginTop = '10px';
+        const mapsUrl = generateGoogleMapsUrl(planner.route);
+        mapLinkDiv.innerHTML = `<a href="${mapsUrl}" target="_blank" style="color: #009879; text-decoration: none; font-weight: bold;">🗺️ View Route in Google Maps</a>`;
+        display.appendChild(mapLinkDiv);
     }
 
     updateMapForAllPlanners();
+}
+
+function generateGoogleMapsUrl(route) {
+    if (route.length < 2) return '#';
+
+    const formatLocation = (loc) => {
+        const cityState = loc.city && loc.state ? `${loc.city}, ${loc.state}` : null;
+        const parts = [loc.name, loc.address, cityState, loc.zip]
+            .filter(part => part && part.trim().length > 0);
+        return encodeURIComponent(parts.join(', '));
+    };
+
+    const origin = formatLocation(route[0]);
+    const destination = formatLocation(route[route.length - 1]);
+
+    let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
+
+    if (route.length > 2) {
+        const waypoints = route.slice(1, -1)
+            .map(loc => formatLocation(loc))
+            .join('|');
+        url += `&waypoints=${waypoints}`;
+    }
+
+    return url;
 }
