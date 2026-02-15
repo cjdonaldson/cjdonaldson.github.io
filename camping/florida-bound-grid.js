@@ -145,18 +145,41 @@ function renderPlanner(planner) {
 <label for="filter-value-${planner.id}">Max value:</label>
 <input type="number" id="filter-value-${planner.id}" value="330" min="1">
 
-<label for="filter-direction-${planner.id}">Direction:</label>
-<select id="filter-direction-${planner.id}">
-    <option value="all">All directions</option>
-    <option value="n">North (N)</option>
-    <option value="ne">Northeast (NE)</option>
-    <option value="e">East (E)</option>
-    <option value="se">Southeast (SE)</option>
-    <option value="s">South (S)</option>
-    <option value="sw">Southwest (SW)</option>
-    <option value="w">West (W)</option>
-    <option value="nw">Northwest (NW)</option>
-</select>
+<label>Direction:</label>
+<div id="filter-direction-${planner.id}" style="display: flex; gap: 12px; align-items: center; flex-wrap: nowrap;">
+    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <span>N</span>
+        <input type="checkbox" value="n" checked>
+    </label>
+    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <span>NE</span>
+        <input type="checkbox" value="ne" checked>
+    </label>
+    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <span>E</span>
+        <input type="checkbox" value="e" checked>
+    </label>
+    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <span>SE</span>
+        <input type="checkbox" value="se" checked>
+    </label>
+    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <span>S</span>
+        <input type="checkbox" value="s" checked>
+    </label>
+    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <span>SW</span>
+        <input type="checkbox" value="sw" checked>
+    </label>
+    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <span>W</span>
+        <input type="checkbox" value="w" checked>
+    </label>
+    <label style="margin: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <span>NW</span>
+        <input type="checkbox" value="nw" checked>
+    </label>
+</div>
 
 <label for="waypoint-select-${planner.id}">Add stop:</label>
 <select id="waypoint-select-${planner.id}">
@@ -171,7 +194,9 @@ function renderPlanner(planner) {
 
     document.getElementById(`filter-type-${planner.id}`).addEventListener('change', () => updateWaypointOptions(planner.id));
     document.getElementById(`filter-value-${planner.id}`).addEventListener('input', () => updateWaypointOptions(planner.id));
-    document.getElementById(`filter-direction-${planner.id}`).addEventListener('change', () => updateWaypointOptions(planner.id));
+    document.getElementById(`filter-direction-${planner.id}`).querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', () => updateWaypointOptions(planner.id));
+    });
 
     updateRouteDisplay(planner.id);
     updateWaypointOptions(planner.id);
@@ -188,7 +213,7 @@ function updateWaypointOptions(plannerId) {
     const select = document.getElementById(`waypoint-select-${plannerId}`);
     const filterType = document.getElementById(`filter-type-${plannerId}`).value;
     const filterValue = parseFloat(document.getElementById(`filter-value-${plannerId}`).value);
-    const filterDirection = document.getElementById(`filter-direction-${plannerId}`).value;
+    const selectedDirections = Array.from(document.getElementById(`filter-direction-${plannerId}`).querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
     const currentLocation = planner.route[planner.route.length - 1];
 
     select.innerHTML = '<option value="">-- Select destination --</option>';
@@ -214,16 +239,17 @@ function updateWaypointOptions(plannerId) {
                 passesFilter = timeHours <= filterValue;
             }
 
-            const passesDirection = matchesDirection(bearing, filterDirection);
+            const direction = getDirection(bearing);
+            const passesDirection = selectedDirections.length === 0 || selectedDirections.includes(direction);
 
             if (passesFilter && passesDirection) {
                 const hours = Math.floor(timeHours);
                 const minutes = Math.floor((timeHours - hours) * 60);
-                const direction = getDirection(bearing).toUpperCase();
+                const directionLabel = direction.toUpperCase();
                 const option = document.createElement('option');
                 option.value = index;
                 const cityState = loc.city && loc.state ? ` ${loc.city}, ${loc.state}` : '';
-                option.textContent = `${direction} ${Math.round(distance)}mi ${hours}:${minutes.toString().padStart(2, '0')} ${loc.name}${cityState}`;
+                option.textContent = `${directionLabel} ${Math.round(distance)}mi ${hours}:${minutes.toString().padStart(2, '0')} ${loc.name}${cityState}`;
                 select.appendChild(option);
             }
         }
