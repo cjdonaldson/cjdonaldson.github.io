@@ -185,3 +185,15 @@ bus bar -> fuse -> breaker panel -> loads
 - Starlink Mini uses a DC5521 barrel jack—a 5.5mm outer diameter, 2.1mm pin connector.
 - 10A fuse
 - CERRXIAN DC5521 Power Pigtails Cable
+- 12–48V DC power input
+- 60 watts minimum startup, snow melt, high demand traffic (video call)
+- 20–40 watts typical normal operation
+- LiFePO4 > 13V first 50% discharge depth; <5A
+- AWG vs 5A IR drop (V)  https://www.rapidtables.com/calc/wire/voltage-drop-calculator.html
+  | AWG | 10ft  | 15m    |
+  | --- | ---   | ---    |
+  | 18  | 0.64V | 3.13V  |
+  | 16  | 0.40V | 1.97V  |
+  | 14  | 0.25V | 1.23V  |
+- [10ft 14AWG cable](https://www.amazon.com/Extension-Adapter-Extender-Security-Network/dp/B08L6LJ5F4)
+- [M-M barrel](https://www.amazon.com/MOBOREST-Connector-Adapter-Female-Security/dp/B081Z92NJ9)
