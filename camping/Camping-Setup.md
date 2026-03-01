@@ -9,12 +9,12 @@
 - 33 gal gray
 - 32 gal black
 - usage:
-    - ~4 gals per person per day
+    - ~4 gals per person per day (conservative usage)
         - dishes (gray)
-        - showers (gray) - navy shower < 2 minutes
+        - showers (gray but goes to black tank) - navy shower < 2 minutes
         - toilet (black)
-        - teeth brushing (black)
-        - hand washing (black)
+        - teeth brushing (black - try using kitchen)
+        - hand washing (black - try using kitchen)
     - 2 people
         - 8 gals per day
         - 3 days = 24 gals
@@ -25,7 +25,7 @@
 - position the RV
     - blocking to get close to level
 - set parking brake
-- choke the wheels
+- chock the wheels
 - shore power
 - block and leveling jack
 - slide out
@@ -35,7 +35,7 @@
 # clock time:
 - press and hold the clock button
 - enter time in 24 hour format
-- press clocl button again to save
+- press clock button again to save
 
 # Auto-level Nulling
 - manual level the RV
@@ -47,7 +47,7 @@
 - (null is now set)
 
 # Tank cleaning
-= [The Truth About RV Black & Gray Tanks | How to Prevent Clogs, Odors & Sensor Problems](https://www.youtube.com/watch?v=ALZgId6X2Ng)
+- [The Truth About RV Black & Gray Tanks | How to Prevent Clogs, Odors & Sensor Problems](https://www.youtube.com/watch?v=ALZgId6X2Ng)
 - fresh water tank
     - fill with water
     - 16oz of bleach
