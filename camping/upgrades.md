@@ -190,10 +190,17 @@ bus bar -> fuse -> breaker panel -> loads
 - 20–40 watts typical normal operation
 - LiFePO4 > 13V first 50% discharge depth; <5A
 - AWG vs 5A IR drop (V)  https://www.rapidtables.com/calc/wire/voltage-drop-calculator.html
-  | AWG | 10ft  | 15m    |
-  | --- | ---   | ---    |
-  | 18  | 0.64V | 3.13V  |
-  | 16  | 0.40V | 1.97V  |
-  | 14  | 0.25V | 1.23V  |
+  | AWG | 10ft  | 25ft  | 15m   |
+  | --- | ---   | ---   | ---   |
+  | 18  | 0.64V | 1.37V | 3.13V |
+  | 16  | 0.40V | 0.80V | 1.97V |
+  | 14  | 0.25V | 0.50V | 1.23V |
+  | 12  | 0.16V | 0.31V | 0.77V |
 - [10ft 14AWG cable](https://www.amazon.com/Extension-Adapter-Extender-Security-Network/dp/B08L6LJ5F4)
 - [M-M barrel](https://www.amazon.com/MOBOREST-Connector-Adapter-Female-Security/dp/B081Z92NJ9)
+- mounting pole
+  - [1.5" PVC 10'](https://www.lowes.com/pd/Charlotte-Pipe-1-1-2-in-dia-x-20-ft-L-330-PSI-PVC-Pipe/3359594)
+  - [1.5" coupling](https://www.lowes.com/pd/Charlotte-Pipe-1-1-2-in-x-1-1-2-in-dia-x-330-Psi-Schedule-40-White-Coupling-PVC-Coupling/5005862599)
+  - [RV attachment ???]
+  - [need 25' 12AWG](https://www.amazon.com/THLY-150FT-Gauge-Automotive-Silicone/dp/B0BG2CLL1P)
+  - cut slot to feed cable through
