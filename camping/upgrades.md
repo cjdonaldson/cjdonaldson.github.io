@@ -203,4 +203,5 @@ bus bar -> fuse -> breaker panel -> loads
   - [1.5" coupling](https://www.lowes.com/pd/Charlotte-Pipe-1-1-2-in-x-1-1-2-in-dia-x-330-Psi-Schedule-40-White-Coupling-PVC-Coupling/5005862599)
   - [RV attachment ???]
   - [need 25' 12AWG](https://www.amazon.com/THLY-150FT-Gauge-Automotive-Silicone/dp/B0BG2CLL1P)
+  - [or 30' 12AWG](https://www.amazon.com/dp/B0D7BRF5YS)
   - cut slot to feed cable through
