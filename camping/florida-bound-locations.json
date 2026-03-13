@@ -228,7 +228,9 @@
           "distances": [
             "429 mi • 7 hrs from Smith Mountain",
             "300 mi • 5 hrs to Papa Lew's"
-          ]
+          ],
+          "features": ["pool", "playground", "river dock: boating", "dog wash", "propane", "dump station"],
+          "notes": ["overnight sites near office", "slight I95 noise"]
         },
         {
           "name": "Country Oaks Campground & RV",
@@ -380,7 +382,12 @@
           "state": "PA",
           "zip": "18077",
           "coords": [40.5936, -75.1886],
-          "notes": ["547 mi half way to Papa Lews", "590 mi half way to Royal Coachman"],
+          "notes": [
+              "273 mi quarter way to Papa Lews",
+              "295 mi quarter way to Royal Coachman",
+              "547 mi half way to Papa Lews",
+              "590 mi half way to Royal Coachman"
+          ],
           "distances": [
             " 427 mi •  7.1 hrs to Smith Mountain via Hamburg, PA",
             "1095 mi • 18.2 hrs to Papa Lew's via Hamburg, PA",
