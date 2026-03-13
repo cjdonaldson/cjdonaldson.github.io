@@ -32,7 +32,7 @@
           "state": "FL",
           "zip": "33525",
           "coords": [28.3345, -82.2292],
-          "pricing": ["0.00 fhu back-in"]
+          "pricing": [ { "fhu back-in": "0.00" } ]
         },
         {
           "name": "Flywheeler Park",
@@ -48,7 +48,7 @@
           "state": "FL",
           "zip": "33841",
           "coords": [27.7536, -81.7787],
-          "pricing": ["30.00 w/e back-in", "10.00 show fee"]
+          "pricing": [ { "e/w back-in": "30.00" }, { "show fee": "10.00" } ]
         }
       ]
     },
@@ -82,7 +82,7 @@
           "state": "VA",
           "zip": "24137",
           "coords": [36.9039, -79.6389],
-          "pricing": ["58.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "58.00" } ],
           "season": "Year round",
           "distance": "425 mi • 7 hrs from 18077"
         },
@@ -100,7 +100,7 @@
           "state": "VA",
           "zip": "24112",
           "coords": [36.6914, -79.8725],
-          "pricing": ["64.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "64.00" } ],
           "season": "Year round",
           "distance": "445 mi • 7.5 hrs from 18077"
         },
@@ -116,7 +116,7 @@
           "state": "VA",
           "zip": "22514",
           "coords": [38.0331, -77.3869],
-          "pricing": ["0.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "0.00" } ],
           "season": "Year round",
           "distance": "296 mi • 5.0 hrs from 18077"
         },
@@ -133,7 +133,7 @@
           "state": "VA",
           "zip": "23805",
           "coords": [37.2095, -77.3975],
-          "pricing": ["0.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "0.00" } ],
           "season": "Year round",
           "distance": "331 mi • 5.4 hrs from 18077",
           "notes": ["Good Sam discount"]
@@ -152,7 +152,7 @@
           "state": "VA",
           "zip": "23879",
           "coords": [36.5964, -77.5850],
-          "pricing": ["35.00 fhu pull-through"],
+          "pricing": [ { "fhu pull-through": "35.00" } ],
           "season": "Year round",
           "distance": "394 mi • 6.6 hrs from 18077",
           "notes": ["Late arrivals are available upon request - call Farley 252-955-1636"]
@@ -177,7 +177,7 @@
           "state": "NC",
           "zip": "28306",
           "coords": [34.8396, -78.9830],
-          "pricing": ["54.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "54.00" } ],
           "distance": ["536 mi • 8.9 hrs from 18077 via Hamburg, PA"]
         }
       ]
@@ -200,7 +200,7 @@
           "state": "SC",
           "zip": "29506",
           "coords": [34.1625, -79.7089],
-          "pricing": ["64.80 fhu back-in"],
+          "pricing": [ { "fhu back-in": "64.80" } ],
           "features": ["RV propane fill", "RV Dump Station"],
           "distance": ["609 mi • 6 hrs from 18077"]
         }
@@ -212,7 +212,7 @@
       "open": false,
       "locations": [
         {
-          "name": "Spacious Skies Campgrounds",
+          "name": "Spacious Skies Campgrounds Savannah",
           "emoji": "🌌",
           "url": "https://spaciousskiescampgrounds.com/savannah-oaks/",
           "siteMap": "./site-map/Spacious-Skies-Savannah-Oaks.pdf",
@@ -224,7 +224,7 @@
           "state": "GA",
           "zip": "31419",
           "coords": [32.0359, -81.1564],
-          "pricing": ["56.00 w/e back-in"],
+          "pricing": [ { "e/w back-in": "56.00" } ],
           "distances": [
             "429 mi • 7 hrs from Smith Mountain",
             "300 mi • 5 hrs to Papa Lew's"
@@ -244,7 +244,7 @@
           "state": "GA",
           "zip": "31548",
           "coords": [30.7997, -81.6890],
-          "pricing": ["0.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "0.00" } ],
           "season": "Year round",
           "features": ["Good Sam Discount", "Easy I-95 access", "Propane fill available"],
           "distances": [
@@ -264,7 +264,7 @@
           "state": "GA",
           "zip": "31636",
           "coords": [30.6793, -83.0918],
-          "pricing": ["65.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "65.00" } ],
           "season": "Year round",
           "features": ["Off I-75", "Propane fill available"],
           "distances": [
@@ -285,7 +285,7 @@
           "state": "GA",
           "zip": "31566",
           "coords": [31.4753, -81.9831],
-          "pricing": ["40.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "40.00" } ],
           "distances": [
             "853 mi • 14.2 hrs from 18077",
             "506 mi • 10.0 hrs from Smith Mountain",
@@ -308,7 +308,7 @@
           "state": "GA",
           "zip": "31331",
           "coords": [ 31.5853, -81.4494 ],
-          "pricing": ["49.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "49.00" } ],
           "features": [
             "Check-in time is 12pm – 6pm ***Must make prior arrangements for check-ins after 6pm***",
             "Propane"
@@ -325,7 +325,7 @@
           "state": "GA",
           "zip": "31537",
           "coords": [ 30.8515, -82.0191 ],
-          "pricing": ["45.00 fhu back-in"],
+          "pricing": [ { "fhu back-in": "45.00" } ],
           "notes": ["small park", "frieght train whistle all hours"],
           "booking": "call to book",
           "email": "okefenokeervpark@yahoo.com"
@@ -343,7 +343,7 @@
           "state": "GA",
           "zip": "31537",
           "coords": [ 30.8145, -81.9987 ],
-          "pricing": ["62.40 fhu back-in"],
+          "pricing": [ { "fhu back-in": "62.40" } ],
           "hours": "Mon - Sat  9:00 am - 4:00 pm",
           "features": [
             "propane",
@@ -363,7 +363,7 @@
           "state": "GA",
           "zip": "31331",
           "coords": [ 31.8646, -81.5028 ],
-          "pricing": ["49.95 fhu back-in"]
+          "pricing": [ { "fhu back-in": "49.95" } ]
         }
       ]
     },
