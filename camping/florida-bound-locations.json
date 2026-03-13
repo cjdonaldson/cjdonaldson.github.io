@@ -160,6 +160,29 @@
       ]
     },
     {
+      "name": "North Carolina",
+      "emoji": "🌲",
+      "open": false,
+      "locations": [
+        {
+          "name": "Spacious Skies Sandy Run",
+          "emoji": "🌊",
+          "url": "https://spaciousskiescampgrounds.com/sandy-run/",
+          "siteMap": "./site-map/spacious-skies-sandy-run.jpg",
+          "mapUrl": "https://maps.app.goo.gl/9P96aWqNnajysozp6",
+          "bookingUrl": "https://camp.spaciousskiescampgrounds.com/sandy-run/",
+          "phone": "910-425-9218",
+          "address": "821 Lazy Acres St",
+          "city": "Fayetteville",
+          "state": "NC",
+          "zip": "28306",
+          "coords": [34.8396, -78.9830],
+          "pricing": ["54.00 fhu back-in"],
+          "distance": ["536 mi • 8.9 hrs from 18077 via Hamburg, PA"]
+        }
+      ]
+    },
+    {
       "name": "South Carolina",
       "emoji": "🌲",
       "open": false,
