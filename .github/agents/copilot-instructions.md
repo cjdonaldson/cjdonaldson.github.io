@@ -3,6 +3,7 @@
 Auto-generated from all feature plans. Last updated: 2026-03-13
 
 ## Active Technologies
+- HTML5, CSS3, vanilla JavaScript (existing browser-executed static assets) + Browser DOM APIs, existing Florida Bound planner scripts/styles, static JSON fetch for planner data, no new libraries (001-one-line-filter-fields)
 
 - HTML5, CSS3, vanilla JavaScript (ES5-compatible; existing + Browser-native `<input type="date">` and (001-planner-date-stay)
 
@@ -22,6 +23,7 @@ npm test && npm run lint
 HTML5, CSS3, vanilla JavaScript (ES5-compatible; existing: Follow standard conventions
 
 ## Recent Changes
+- 001-one-line-filter-fields: Added HTML5, CSS3, vanilla JavaScript (existing browser-executed static assets) + Browser DOM APIs, existing Florida Bound planner scripts/styles, static JSON fetch for planner data, no new libraries
 
 - 001-planner-date-stay: Added HTML5, CSS3, vanilla JavaScript (ES5-compatible; existing + Browser-native `<input type="date">` and
 
