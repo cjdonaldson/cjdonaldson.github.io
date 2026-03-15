@@ -291,6 +291,7 @@ function removeWaypoint(plannerId, index) {
     if (planner.route.length === 0) {
         planner.route = [startLocation];
         planner.stays = [0];
+        planner.departureDate = todayIso();
     }
     updateRouteDisplay(plannerId);
     updateWaypointOptions(plannerId);

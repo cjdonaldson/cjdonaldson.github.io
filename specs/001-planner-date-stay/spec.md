@@ -21,11 +21,11 @@ As a traveler using the Florida Bound planner, I want to set a departure date on
 
 **Why this priority**: Without a departure-date anchor on the top location, downstream derived dates cannot be calculated consistently.
 
-**Independent Test**: Open `camping/florida-bound-planner.html`, confirm the first route item shows a single editable departure-date control below the location name, verify that it does not show a stay field, and confirm the control does not allow a date earlier than today.
+**Independent Test**: Open `camping/florida-bound-planner.html`, confirm the first route item shows a single editable departure-date control in the header row above the location name, verify that it does not show a stay field, and confirm the control does not allow a date earlier than today.
 
 **Acceptance Scenarios**:
 
-1. **Given** a new planner with only the top location shown, **When** the page loads, **Then** the top item displays one editable departure-date field below the location name and no stay field.
+1. **Given** a new planner with only the top location shown, **When** the page loads, **Then** the top item displays one editable departure-date field in the header row above the location name and no stay field.
 2. **Given** the top item is visible, **When** the user attempts to pick a departure date earlier than today, **Then** the planner prevents that selection.
 3. **Given** the user selects a valid departure date on the top item, **When** the first downstream stop is later added, **Then** that departure date becomes the derived date for the first downstream stop.
 
@@ -77,10 +77,10 @@ As a traveler refining the plan, I want changing the top departure date or a dow
 ### Functional Requirements
 
 - **FR-001**: `camping/florida-bound-planner.html` MUST present itinerary scheduling behavior for the Florida Bound planner without requiring users to calculate downstream dates manually.
-- **FR-002**: The planner MUST treat the initial route item as the top location and display a single editable departure-date field for that item below the location name.
+- **FR-002**: The planner MUST treat the initial route item as the top location and display a single editable departure-date field for that item in the header row above the location name.
 - **FR-003**: The top location MUST anchor the itinerary and MUST NOT display or edit a stay field.
 - **FR-004**: The planner MUST prevent selection of a top departure date earlier than today.
-- **FR-005**: Each downstream route item MUST display a derived date below the location name.
+- **FR-005**: Each downstream route item MUST display a derived date in the header row above the location name.
 - **FR-006**: Each downstream route item's displayed date MUST be read-only and MUST NOT be directly editable.
 - **FR-007**: Each downstream route item MUST display an editable stay field used to determine the date of the next downstream route item.
 - **FR-008**: The planner MUST NOT expose a downstream date picker or any other direct date-editing control for downstream route items.

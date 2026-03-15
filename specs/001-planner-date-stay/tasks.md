@@ -52,7 +52,7 @@ shared state that drives every downstream computation. All later tasks assume th
 
 - [X] T007 Add an `addDays(isoString, days)` helper function in `camping/florida-bound-grid.js` (place it immediately after `todayIso`) that creates `new Date(isoString + "T00:00:00")`, calls `date.setDate(date.getDate() + days)`, and returns the result formatted as an ISO-8601 `"YYYY-MM-DD"` string using the same zero-pad approach as `todayIso`; it must handle `days = 0` (returns the same date) and multi-day values correctly
 
-- [X] T008 Add a `computeDerivedDates(planner)` function in `camping/florida-bound-grid.js` (place it immediately after `addDays`) that: (a) returns an empty array `[]` if `planner.departureDate` is falsy or empty; (b) sets `dates[0] = planner.departureDate`; (c) iterates `i = 1` to `planner.route.length - 1`, setting `dates[i] = addDays(dates[i-1], planner.stays[i-1])`; (d) returns the `dates` array — `dates[1]` will always equal `planner.departureDate` since `stays[0]` is never applied
+- [X] T008 Add a `computeDerivedDates(planner)` function in `camping/florida-bound-grid.js` (place it immediately after `addDays`) that: (a) returns an empty array `[]` if `planner.departureDate` is falsy or empty; (b) sets `dates[0] = planner.departureDate`; (c) iterates `i = 1` to `planner.route.length - 1`, setting `dates[i] = addDays(dates[i-1], planner.stays[i-1])`; (d) returns the `dates` array — `dates[1]` will always equal `planner.departureDate` since `stays[0]` is never applied. Also add `formatDateShort(isoString)` immediately after `computeDerivedDates` to convert stored `YYYY-MM-DD` ISO strings to `M/D` for display (see data-model.md for format contract).
 
 **Checkpoint**: Planner state is extended; helpers are in place — User Story 1 can begin
 
