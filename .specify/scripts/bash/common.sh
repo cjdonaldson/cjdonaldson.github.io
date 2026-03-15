@@ -154,3 +154,26 @@ EOF
 check_file() { [[ -f "$1" ]] && echo "  ✓ $2" || echo "  ✗ $2"; }
 check_dir() { [[ -d "$1" && -n $(ls -A "$1" 2>/dev/null) ]] && echo "  ✓ $2" || echo "  ✗ $2"; }
 
+trim_trailing_whitespace() {
+    local target_file="$1"
+
+    if [[ ! -f "$target_file" ]]; then
+        return 0
+    fi
+
+    python - "$target_file" <<'PY'
+from pathlib import Path
+import sys
+
+path = Path(sys.argv[1])
+original_text = path.read_text(encoding="utf-8")
+normalized_lines = [line.rstrip(" 	") for line in original_text.splitlines()]
+normalized_text = "\n".join(normalized_lines)
+
+if original_text.endswith("\n"):
+    normalized_text += "\n"
+
+path.write_text(normalized_text, encoding="utf-8")
+PY
+}
+

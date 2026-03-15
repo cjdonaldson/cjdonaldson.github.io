@@ -1,5 +1,7 @@
 # Implementation Plan: [FEATURE]
 
+<!-- Formatting rule: remove trailing whitespace from every line. Use blank lines, not Markdown hard-break spaces. -->
+
 **Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
 **Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
 
@@ -17,14 +19,14 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., HTML5, CSS3, vanilla JS, Markdown or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., browser APIs, zero-build tooling, small JS library if justified]  
-**Content Sources**: [e.g., existing camping/ files, new curated references, external data or NEEDS CLARIFICATION]  
-**Testing/Validation**: [e.g., manual browser review, link checks, asset load checks, optional scripted validation]  
+**Language/Version**: [e.g., HTML5, CSS3, vanilla JS, Markdown or NEEDS CLARIFICATION]
+**Primary Dependencies**: [e.g., browser APIs, zero-build tooling, small JS library if justified]
+**Content Sources**: [e.g., existing camping/ files, new curated references, external data or NEEDS CLARIFICATION]
+**Testing/Validation**: [e.g., manual browser review, link checks, asset load checks, optional scripted validation]
 **Target Platform**: [e.g., GitHub Pages, static browsers, mobile + desktop browsers]
-**Project Type**: [e.g., static site, content collection, lightweight planner, reference docs]  
-**Performance Goals**: [e.g., fast page loads, readable pages, reasonable asset size or NEEDS CLARIFICATION]  
-**Constraints**: [e.g., lightweight maintenance, public-safe content, minimal dependencies]  
+**Project Type**: [e.g., static site, content collection, lightweight planner, reference docs]
+**Performance Goals**: [e.g., fast page loads, readable pages, reasonable asset size or NEEDS CLARIFICATION]
+**Constraints**: [e.g., lightweight maintenance, public-safe content, minimal dependencies]
 **Scale/Scope**: [e.g., affected pages, assets, itineraries, or docs in this change]
 
 ## Constitution Check

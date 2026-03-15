@@ -364,6 +364,8 @@ create_new_agent_file() {
         mv "$frontmatter_file" "$temp_file"
     fi
 
+    trim_trailing_whitespace "$temp_file"
+
     return 0
 }
 
@@ -511,6 +513,8 @@ update_existing_agent_file() {
             mv "$frontmatter_file" "$temp_file"
         fi
     fi
+
+    trim_trailing_whitespace "$temp_file"
 
     # Move temp file to target atomically
     if ! mv "$temp_file" "$target_file"; then

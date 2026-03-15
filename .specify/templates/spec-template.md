@@ -1,8 +1,10 @@
 # Feature Specification: [FEATURE NAME]
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
+<!-- Formatting rule: remove trailing whitespace from every line. Use blank lines, not Markdown hard-break spaces. -->
+
+**Feature Branch**: `[###-feature-name]`
+**Created**: [DATE]
+**Status**: Draft
 **Input**: User description: "$ARGUMENTS"
 
 ## User Scenarios & Testing *(mandatory)*
@@ -13,7 +15,7 @@
   you should still have a viable MVP (Minimum Viable Product) that delivers value.
   For this repository, stories may describe either site visitors or maintainers curating
   content, as long as each story delivers a usable, reviewable improvement on its own.
-  
+
   Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
   Think of each story as a standalone slice of functionality that can be:
   - Developed independently
@@ -87,7 +89,7 @@
 ### Functional Requirements
 
 - **FR-001**: Repository content MUST [specific capability, e.g., "present a curated camping itinerary from the site"]
-- **FR-002**: The change MUST identify [affected pages/files and their intended long-term home]  
+- **FR-002**: The change MUST identify [affected pages/files and their intended long-term home]
 - **FR-003**: Users or maintainers MUST be able to [key interaction, e.g., "find the referenced file from an index page"]
 - **FR-004**: The site MUST [data or content requirement, e.g., "surface supporting assets such as PDFs, maps, or notes"]
 - **FR-005**: The change MUST [behavior, e.g., "preserve lightweight maintenance and public-safe publication"]
