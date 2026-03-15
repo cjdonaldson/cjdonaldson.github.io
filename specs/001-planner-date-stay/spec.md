@@ -2,7 +2,7 @@
 
 **Feature Branch**: `[001-planner-date-stay]`
 **Created**: 2026-03-13
-**Status**: Draft
+**Status**: Complete
 **Input**: User description: "Correct `@camping/florida-bound-planner.html` so the top item is a departure-date-only itinerary anchor, downstream item dates are derived, and downstream timing is edited through stay fields rather than direct date edits."
 
 ## Clarifications

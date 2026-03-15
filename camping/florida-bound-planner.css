@@ -61,6 +61,11 @@ body {
     margin: 20px;
     display: inline-block;
     vertical-align: top;
+    width: 25em;
+}
+
+.planner-inline .waypoint-list {
+    width: 25em;
 }
 
 .planner-header {
@@ -167,6 +172,76 @@ body {
 
 .waypoint-item {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.waypoint-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
     gap: 5px;
+}
+
+.waypoint-location {
+    margin-top: 2px;
+}
+
+/* --- Waypoint meta spans --- */
+
+.waypoint-index {
+    white-space: nowrap;
+}
+
+.waypoint-direction {
+    width: 2.5em;
+    flex: none;
+}
+
+.waypoint-distance {
+    width: 4em;
+    flex: none;
+}
+
+.waypoint-time {
+    width: 3.5em;
+    flex: none;
+}
+
+/* --- Date / Stay inputs (feature: planner-date-stay) --- */
+
+.planner .departure-date-input {
+    font-size: 1em;
+    width: auto;
+    min-width: 0;
+    box-sizing: border-box;
+    flex: none;
+    margin-top: 0;
+    padding: 2px 4px;
+}
+
+.planner .derived-date-label {
+    width: 3.0em;
+    white-space: nowrap;
+    flex: none;
+}
+
+.planner .stay-input {
+    width: 3.0em;
+    min-width: 0;
+    box-sizing: border-box;
+    flex: none;
+    margin-top: 0;
+    padding: 2px 4px;
+}
+
+@media (max-width: 375px) {
+    .planner .departure-date-input {
+        max-width: 100%;
+        width: auto;
+    }
+
+    .planner .stay-input {
+        width: 3.0em;
+    }
 }

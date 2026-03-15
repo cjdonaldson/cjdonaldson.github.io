@@ -85,7 +85,7 @@ No build step or server is required — open the file directly in a browser.
 **Expect**:
 - Only the top item is shown.
 - No stay fields.
-- The departure-date field is cleared (or returned to empty / default).
+- The departure-date field shows today's date (reset restores `todayIso()`, same as initial create).
 
 ---
 

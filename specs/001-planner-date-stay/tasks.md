@@ -26,7 +26,7 @@ testing of each story increment.
 **Purpose**: Confirm the working baseline — verify the current planner renders without errors
 before any changes are made.
 
-- [ ] T001 Open `camping/florida-bound-planner.html` in a browser, click **+ Add Planner**, add two stops, and confirm the existing route display renders correctly with no console errors — this is the regression baseline for the feature
+- [X] T001 Open `camping/florida-bound-planner.html` in a browser, click **+ Add Planner**, add two stops, and confirm the existing route display renders correctly with no console errors — this is the regression baseline for the feature
 
 **Checkpoint**: Baseline confirmed — implementation may begin
 
@@ -40,19 +40,19 @@ stories depend on. **No user story work can begin until this phase is complete.*
 **⚠️ CRITICAL**: These tasks establish `planner.departureDate` and `planner.stays[]` — the
 shared state that drives every downstream computation. All later tasks assume this shape exists.
 
-- [ ] T002 In `createPlanner()` in `camping/florida-bound-grid.js`, add `departureDate: ""` and `stays: [0]` to the returned planner object literal alongside the existing `id` and `route` fields (keeps `route` and `stays` the same length from the moment of creation)
+- [X] T002 In `createPlanner()` in `camping/florida-bound-grid.js`, add `departureDate: todayIso()` and `stays: [0]` to the returned planner object literal alongside the existing `id` and `route` fields (keeps `route` and `stays` the same length from the moment of creation)
 
-- [ ] T003 In `addWaypoint()` in `camping/florida-bound-grid.js`, add `planner.stays.push(0)` immediately after `planner.route.push(location)` so `route` and `stays` grow in lockstep
+- [X] T003 In `addWaypoint()` in `camping/florida-bound-grid.js`, add `planner.stays.push(0)` immediately after `planner.route.push(location)` so `route` and `stays` grow in lockstep
 
-- [ ] T004 In `removeWaypoint()` in `camping/florida-bound-grid.js`, add `planner.stays.splice(index, 1)` immediately after `planner.route.splice(index, 1)` so `route` and `stays` shrink in lockstep; the existing guard that restores `[startLocation]` when `route` empties must also reset `stays` to `[0]`
+- [X] T004 In `removeWaypoint()` in `camping/florida-bound-grid.js`, add `planner.stays.splice(index, 1)` immediately after `planner.route.splice(index, 1)` so `route` and `stays` shrink in lockstep; the existing guard that restores `[startLocation]` when `route` empties must also reset `stays` to `[0]`
 
-- [ ] T005 In `resetRoute()` in `camping/florida-bound-grid.js`, add `planner.stays = [0]` and `planner.departureDate = ""` alongside the existing `planner.route = [startLocation]` assignment so all three fields return to their initial state together
+- [X] T005 In `resetRoute()` in `camping/florida-bound-grid.js`, add `planner.stays = [0]` and `planner.departureDate = todayIso()` alongside the existing `planner.route = [startLocation]` assignment so all three fields return to their initial state together
 
-- [ ] T006 Add a `todayIso()` helper function in `camping/florida-bound-grid.js` (place it above `updateRouteDisplay`) that returns today's date as an ISO-8601 string `"YYYY-MM-DD"` using `new Date()`, `getFullYear()`, `getMonth() + 1`, and `getDate()` with zero-padded month and day — no external libraries
+- [X] T006 Add a `todayIso()` helper function in `camping/florida-bound-grid.js` (place it above `updateRouteDisplay`) that returns today's date as an ISO-8601 string `"YYYY-MM-DD"` using `new Date()`, `getFullYear()`, `getMonth() + 1`, and `getDate()` with zero-padded month and day — no external libraries
 
-- [ ] T007 Add an `addDays(isoString, days)` helper function in `camping/florida-bound-grid.js` (place it immediately after `todayIso`) that creates `new Date(isoString + "T00:00:00")`, calls `date.setDate(date.getDate() + days)`, and returns the result formatted as an ISO-8601 `"YYYY-MM-DD"` string using the same zero-pad approach as `todayIso`; it must handle `days = 0` (returns the same date) and multi-day values correctly
+- [X] T007 Add an `addDays(isoString, days)` helper function in `camping/florida-bound-grid.js` (place it immediately after `todayIso`) that creates `new Date(isoString + "T00:00:00")`, calls `date.setDate(date.getDate() + days)`, and returns the result formatted as an ISO-8601 `"YYYY-MM-DD"` string using the same zero-pad approach as `todayIso`; it must handle `days = 0` (returns the same date) and multi-day values correctly
 
-- [ ] T008 Add a `computeDerivedDates(planner)` function in `camping/florida-bound-grid.js` (place it immediately after `addDays`) that: (a) returns an empty array `[]` if `planner.departureDate` is falsy or empty; (b) sets `dates[0] = planner.departureDate`; (c) iterates `i = 1` to `planner.route.length - 1`, setting `dates[i] = addDays(dates[i-1], planner.stays[i-1])`; (d) returns the `dates` array — `dates[1]` will always equal `planner.departureDate` since `stays[0]` is never applied
+- [X] T008 Add a `computeDerivedDates(planner)` function in `camping/florida-bound-grid.js` (place it immediately after `addDays`) that: (a) returns an empty array `[]` if `planner.departureDate` is falsy or empty; (b) sets `dates[0] = planner.departureDate`; (c) iterates `i = 1` to `planner.route.length - 1`, setting `dates[i] = addDays(dates[i-1], planner.stays[i-1])`; (d) returns the `dates` array — `dates[1]` will always equal `planner.departureDate` since `stays[0]` is never applied
 
 **Checkpoint**: Planner state is extended; helpers are in place — User Story 1 can begin
 
@@ -70,13 +70,13 @@ and confirm the picker blocks past dates.
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] In `updateRouteDisplay()` in `camping/florida-bound-grid.js`, inside the `planner.route.forEach` loop at the point where `div.innerHTML` is assembled for each waypoint item, add a conditional block: when `index === 0`, append an `<input type="date" class="departure-date-input" value="..." min="...">` element below the `<span>` holding the location name, with `value` bound to `planner.departureDate` (empty string when not yet set) and `min` set to `todayIso()` — do **not** add a stay field for `index === 0`
+- [X] T009 [US1] In `updateRouteDisplay()` in `camping/florida-bound-grid.js`, inside the `planner.route.forEach` loop at the point where `div.innerHTML` is assembled for each waypoint item, add a conditional block: when `index === 0`, append an `<input type="date" class="departure-date-input" value="..." min="...">` element below the `<span>` holding the location name, with `value` bound to `planner.departureDate` (empty string when not yet set) and `min` set to `todayIso()` — do **not** add a stay field for `index === 0`
 
-- [ ] T010 [US1] Immediately after appending the top-item `div` to `display` in `updateRouteDisplay()` in `camping/florida-bound-grid.js`, query-select the `.departure-date-input` inside that specific `div` and attach a `change` event listener that: (a) reads `e.target.value`; (b) assigns it to `planner.departureDate`; (c) calls `updateRouteDisplay(plannerId)` — this triggers a full re-render so downstream derived dates update immediately
+- [X] T010 [US1] Immediately after appending the top-item `div` to `display` in `updateRouteDisplay()` in `camping/florida-bound-grid.js`, query-select the `.departure-date-input` inside that specific `div` and attach a `change` event listener that: (a) reads `e.target.value`; (b) assigns it to `planner.departureDate`; (c) calls `updateRouteDisplay(plannerId)` — this triggers a full re-render so downstream derived dates update immediately
 
-- [ ] T011 [P] [US1] In `camping/florida-bound-planner.css`, add styles for `.departure-date-input`: display as block, margin-top of ~4px, font-size matching the existing waypoint-item text, width auto or fit-content, no extra border beyond the native date-input appearance — keep styling minimal and consistent with existing `.waypoint-item` styles
+- [X] T011 [P] [US1] In `camping/florida-bound-planner.css`, add styles for `.departure-date-input`: display as block, margin-top of ~4px, font-size matching the existing waypoint-item text, width auto or fit-content, no extra border beyond the native date-input appearance — keep styling minimal and consistent with existing `.waypoint-item` styles
 
-- [ ] T012 [US1] Manually verify Quickstart Scenario 1 (top item shows date input, no stay field) and Scenario 7 (past dates blocked by `min` attribute) against `camping/florida-bound-planner.html`; confirm no console errors and no visual regression to existing distance/direction/stop controls
+- [X] T012 [US1] Manually verify Quickstart Scenario 1 (top item shows date input, no stay field) and Scenario 7 (past dates blocked by `min` attribute) against `camping/florida-bound-planner.html`; confirm no console errors and no visual regression to existing distance/direction/stop controls
 
 **Checkpoint**: US1 complete — departure-date anchor is independently functional and testable
 
@@ -93,17 +93,17 @@ confirm there is no date input on the downstream stop.
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] At the top of the `planner.route.forEach` loop body in `updateRouteDisplay()` in `camping/florida-bound-grid.js` (before building `div.innerHTML`), call `const derivedDates = computeDerivedDates(planner)` once before the loop starts (hoist it above the `forEach`), so each iteration can read `derivedDates[index]` without recomputing
+- [X] T013 [US2] At the top of the `planner.route.forEach` loop body in `updateRouteDisplay()` in `camping/florida-bound-grid.js` (before building `div.innerHTML`), call `const derivedDates = computeDerivedDates(planner)` once before the loop starts (hoist it above the `forEach`), so each iteration can read `derivedDates[index]` without recomputing
 
-- [ ] T014 [US2] In `updateRouteDisplay()` in `camping/florida-bound-grid.js`, inside the same `div.innerHTML` conditional block: when `index > 0`, append a `<span class="derived-date-label">` containing `derivedDates[index]` (or an em-dash `—` placeholder when `derivedDates` is empty / departure date not yet set) below the location-name `<span>` — no `<input type="date">` for downstream items
+- [X] T014 [US2] In `updateRouteDisplay()` in `camping/florida-bound-grid.js`, inside the same `div.innerHTML` conditional block: when `index > 0`, append a `<span class="derived-date-label">` containing `derivedDates[index]` (or an em-dash `—` placeholder when `derivedDates` is empty / departure date not yet set) below the location-name `<span>` — no `<input type="date">` for downstream items
 
-- [ ] T015 [US2] In `updateRouteDisplay()` in `camping/florida-bound-grid.js`, still within the `index > 0` branch, append an `<input type="number" class="stay-input" min="0" step="1" value="...">` stay field below the derived-date span, with `value` bound to `planner.stays[index]` (default `0`)
+- [X] T015 [US2] In `updateRouteDisplay()` in `camping/florida-bound-grid.js`, still within the `index > 0` branch, append an `<input type="number" class="stay-input" min="0" step="1" value="...">` stay field below the derived-date span, with `value` bound to `planner.stays[index]` (default `0`)
 
-- [ ] T016 [US2] Immediately after appending each downstream `div` to `display` in `updateRouteDisplay()` in `camping/florida-bound-grid.js`, query-select the `.stay-input` inside that specific `div` and attach an `input` event listener that: (a) parses `parseInt(e.target.value, 10) || 0`; (b) clamps the result to `Math.max(0, parsedValue)`; (c) assigns it to `planner.stays[index]`; (d) calls `updateRouteDisplay(plannerId)` — full re-render recomputes all later derived dates
+- [X] T016 [US2] Immediately after appending each downstream `div` to `display` in `updateRouteDisplay()` in `camping/florida-bound-grid.js`, query-select the `.stay-input` inside that specific `div` and attach an `input` event listener that: (a) parses `parseInt(e.target.value, 10) || 0`; (b) clamps the result to `Math.max(0, parsedValue)`; (c) assigns it to `planner.stays[index]`; (d) calls `updateRouteDisplay(plannerId)` — full re-render recomputes all later derived dates
 
-- [ ] T017 [P] [US2] In `camping/florida-bound-planner.css`, add styles for `.derived-date-label` (display block, muted/secondary color or italic to visually distinguish it as read-only, margin-top ~2px, font-size matching waypoint text) and `.stay-input` (display inline-block, width ~60px, margin-top ~4px, font-size matching waypoint text) — keep styling consistent with existing `.waypoint-item` layout
+- [X] T017 [P] [US2] In `camping/florida-bound-planner.css`, add styles for `.derived-date-label` (display block, muted/secondary color or italic to visually distinguish it as read-only, margin-top ~2px, font-size matching waypoint text) and `.stay-input` (display inline-block, width ~60px, margin-top ~4px, font-size matching waypoint text) — keep styling consistent with existing `.waypoint-item` layout
 
-- [ ] T018 [US2] Manually verify Quickstart Scenario 2 (first downstream stop shows derived date = departure date, editable stay = 0, no date picker) against `camping/florida-bound-planner.html`; confirm no console errors and no visual regression
+- [X] T018 [US2] Manually verify Quickstart Scenario 2 (first downstream stop shows derived date = departure date, editable stay = 0, no date picker) against `camping/florida-bound-planner.html`; confirm no console errors and no visual regression
 
 **Checkpoint**: US2 complete — downstream derived dates and stay inputs are independently functional
 
@@ -127,13 +127,13 @@ task identifies the fix location.
 
 ### Verification for User Story 3
 
-- [ ] T019 [US3] Manually verify Quickstart Scenario 3 (stay cascade): build a three-stop route, set stays to 2, 3, 1, then change the middle stay to 5 — confirm the middle stop's derived date is unchanged and the third stop's derived date advances by 2 days (the difference between old stay 3 and new stay 5); confirm the top item and first downstream stop are unaffected
+- [X] T019 [US3] Manually verify Quickstart Scenario 3 (stay cascade): build a three-stop route, set stays to 2, 3, 1, then change the middle stay to 5 — confirm the middle stop's derived date is unchanged and the third stop's derived date advances by 2 days (the difference between old stay 3 and new stay 5); confirm the top item and first downstream stop are unaffected
 
-- [ ] T020 [US3] Manually verify Quickstart Scenario 4 (departure date recomputes all): with multiple stops showing derived dates, change the top departure date — confirm every downstream derived date shifts by the same number of days as the departure date change while all stay values remain unchanged
+- [X] T020 [US3] Manually verify Quickstart Scenario 4 (departure date recomputes all): with multiple stops showing derived dates, change the top departure date — confirm every downstream derived date shifts by the same number of days as the departure date change while all stay values remain unchanged
 
-- [ ] T021 [US3] Manually verify Quickstart Scenario 5 (remove middle stop recomputes remaining): build a route with top + three downstream stops with stays 2, 3, 1; remove the second downstream stop (stay 3) — confirm the remaining derived dates recompute from departure + retained stays [2, 1] with no stale dates and no console errors
+- [X] T021 [US3] Manually verify Quickstart Scenario 5 (remove middle stop recomputes remaining): build a route with top + three downstream stops with stays 2, 3, 1; remove the second downstream stop (stay 3) — confirm the remaining derived dates recompute from departure + retained stays [2, 1] with no stale dates and no console errors
 
-- [ ] T022 [US3] Manually verify Quickstart Scenario 6 (reset returns to single-item state): with multiple stops shown, click **Reset Route** — confirm only the top item is shown, the departure-date field is cleared (empty value), no stay fields are visible, and `planner.stays` is `[0]` (verifiable via browser console: `planners[0].stays`)
+- [X] T022 [US3] Manually verify Quickstart Scenario 6 (reset returns to single-item state): with multiple stops shown, click **Reset Route** — confirm only the top item is shown, the departure-date field shows today's date, no stay fields are visible, and `planner.stays` is `[0]` (verifiable via browser console: `planners[0].stays`)
 
 **Checkpoint**: All three user stories are complete and independently verified — proceed to polish
 
@@ -143,13 +143,13 @@ task identifies the fix location.
 
 **Purpose**: Final quality sweep across both changed files; no new functionality.
 
-- [ ] T023 [P] Review `camping/florida-bound-planner.css` for responsive layout — confirm the departure-date input and stay input are usable on narrow mobile viewports (≤ 375px width) without overflowing the `.waypoint-item` container; adjust `width` or `max-width` on `.departure-date-input` and `.stay-input` if needed
+- [X] T023 [P] Review `camping/florida-bound-planner.css` for responsive layout — confirm the departure-date input and stay input are usable on narrow mobile viewports (≤ 375px width) without overflowing the `.waypoint-item` container; adjust `width` or `max-width` on `.departure-date-input` and `.stay-input` if needed
 
-- [ ] T024 [P] Open `camping/florida-bound-planner.html` and exercise all 7 Quickstart scenarios in sequence; confirm zero console errors throughout and no visual regressions to existing controls (distance/direction labels, filter dropdowns, Add Stop button, Google Maps link)
+- [X] T024 [P] Open `camping/florida-bound-planner.html` and exercise all 7 Quickstart scenarios in sequence; confirm zero console errors throughout and no visual regressions to existing controls (distance/direction labels, filter dropdowns, Add Stop button, Google Maps link)
 
-- [ ] T025 Remove the pre-existing debug `console.log('generateInfoTooltip DEBUG:', ...)` statement from `generateInfoTooltip()` in `camping/florida-bound-grid.js` (line ~390 in the original file) — it is unrelated to this feature but produces noise in the console during manual verification
+- [X] T025 Remove the pre-existing debug `console.log('generateInfoTooltip DEBUG:', ...)` statement from `generateInfoTooltip()` in `camping/florida-bound-grid.js` (line ~390 in the original file) — it is unrelated to this feature but produces noise in the console during manual verification
 
-- [ ] T026 Do a final read of `camping/florida-bound-grid.js` confirming: (a) `route` and `stays` are always the same length after every mutation (add/remove/reset); (b) `computeDerivedDates` is called once per render, not inside the loop; (c) event listeners are attached after `display.appendChild(div)`, not before; (d) no `var`/`function` hoisting issues were introduced (match existing ES5-compatible style throughout)
+- [X] T026 Do a final read of `camping/florida-bound-grid.js` confirming: (a) `route` and `stays` are always the same length after every mutation (add/remove/reset); (b) `computeDerivedDates` is called once per render, not inside the loop; (c) event listeners are attached after `display.appendChild(div)`, not before; (d) no `var`/`function` hoisting issues were introduced (match existing ES5-compatible style throughout)
 
 ---
 

@@ -100,7 +100,9 @@ function createPlanner() {
     const plannerId = plannerIdCounter++;
     const planner = {
         id: plannerId,
-        route: [startLocation]
+        route: [startLocation],
+        departureDate: todayIso(),
+        stays: [0]
     };
     planners.push(planner);
     return planner;
@@ -274,6 +276,7 @@ function addWaypoint(plannerId) {
     if (selectedIndex !== '') {
         const location = locations[parseInt(selectedIndex)];
         planner.route.push(location);
+        planner.stays.push(0);
         updateRouteDisplay(plannerId);
         updateWaypointOptions(plannerId);
     }
@@ -284,8 +287,10 @@ function removeWaypoint(plannerId, index) {
     if (!planner) return;
 
     planner.route.splice(index, 1);
+    planner.stays.splice(index, 1);
     if (planner.route.length === 0) {
         planner.route = [startLocation];
+        planner.stays = [0];
     }
     updateRouteDisplay(plannerId);
     updateWaypointOptions(plannerId);
@@ -296,8 +301,43 @@ function resetRoute(plannerId) {
     if (!planner) return;
 
     planner.route = [startLocation];
+    planner.stays = [0];
+    planner.departureDate = todayIso();
     updateRouteDisplay(plannerId);
     updateWaypointOptions(plannerId);
+}
+
+function todayIso() {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function addDays(isoString, days) {
+    const date = new Date(isoString + 'T00:00:00');
+    date.setDate(date.getDate() + days);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function computeDerivedDates(planner) {
+    if (!planner.departureDate) return [];
+    const dates = [];
+    dates[0] = planner.departureDate;
+    for (let i = 1; i < planner.route.length; i++) {
+        dates[i] = addDays(dates[i - 1], planner.stays[i - 1]);
+    }
+    return dates;
+}
+
+function formatDateShort(isoString) {
+    if (!isoString) return '—';
+    const [, month, day] = isoString.split('-');
+    return `${month}/${day}`;
 }
 
 function updateRouteDisplay(plannerId) {
@@ -310,11 +350,18 @@ function updateRouteDisplay(plannerId) {
     let totalDistance = 0;
     let totalTime = 0;
 
+    const derivedDates = computeDerivedDates(planner);
+
     planner.route.forEach((waypoint, index) => {
         const div = document.createElement('div');
         div.className = 'waypoint-item';
 
-        let displayText = `${index + 1}. ${waypoint.name}`;
+        const cityState = waypoint.city && waypoint.state
+            ? ` ${waypoint.city}, ${waypoint.state}`
+            : '';
+        const locationText = `${waypoint.name}${cityState}`;
+
+        let metaSpans = `<span class="waypoint-index">${index + 1}.</span>`;
         if (index > 0) {
             const distance = haversineDistance(
                 planner.route[index-1].coords[0], planner.route[index-1].coords[1],
@@ -330,17 +377,54 @@ function updateRouteDisplay(plannerId) {
             totalTime += timeHours;
             const hours = Math.floor(timeHours);
             const minutes = Math.floor((timeHours - hours) * 60);
-            const cityState = waypoint.city && waypoint.state ? ` ${waypoint.city}, ${waypoint.state}` : '';
-            displayText = `${index + 1}. ${direction} ${Math.round(distance)}mi ${hours}:${minutes.toString().padStart(2, '0')} ${waypoint.name}${cityState}`;
+            metaSpans = `<span class="waypoint-index">${index + 1}.</span>` +
+                `<span class="waypoint-direction">${direction}</span>` +
+                `<span class="waypoint-distance">${Math.round(distance)}mi</span>` +
+                `<span class="waypoint-time">${hours}:${minutes.toString().padStart(2, '0')}</span>`;
         }
 
         const infoHtml = generateInfoTooltip(waypoint);
-        div.innerHTML = `
-<span>${displayText}</span>
-${infoHtml}
-<button onclick="removeWaypoint(${plannerId}, ${index})">Remove</button>
+
+        if (index === 0) {
+            div.innerHTML = `
+<div class="waypoint-header">
+  ${metaSpans}
+  <input type="date" class="departure-date-input" value="${planner.departureDate}" min="${todayIso()}">
+  ${infoHtml}
+  <button onclick="removeWaypoint(${plannerId}, ${index})">Remove</button>
+</div>
+<div class="waypoint-location">${locationText}</div>
 `;
+        } else {
+            const dateLabel = formatDateShort(derivedDates[index]);
+            div.innerHTML = `
+<div class="waypoint-header">
+  ${metaSpans}
+  <span class="derived-date-label">${dateLabel}</span>
+  <input type="number" class="stay-input" min="0" step="1" value="${planner.stays[index]}">
+  ${infoHtml}
+  <button onclick="removeWaypoint(${plannerId}, ${index})">Remove</button>
+</div>
+<div class="waypoint-location">${locationText}</div>
+`;
+        }
+
         display.appendChild(div);
+
+        if (index === 0) {
+            const departureDateInput = div.querySelector('.departure-date-input');
+            departureDateInput.addEventListener('change', (e) => {
+                planner.departureDate = e.target.value;
+                updateRouteDisplay(plannerId);
+            });
+        } else {
+            const stayInput = div.querySelector('.stay-input');
+            stayInput.addEventListener('input', (e) => {
+                const parsed = parseInt(e.target.value, 10) || 0;
+                planner.stays[index] = Math.max(0, parsed);
+                updateRouteDisplay(plannerId);
+            });
+        }
     });
 
     if (planner.route.length > 1) {
@@ -398,8 +482,6 @@ function generateInfoTooltip(waypoint) {
     } else if (waypoint.phone) {
         links.push(`<a href="tel:${waypoint.phone}">${waypoint.phone}</a>`);
     }
-
-    console.log('generateInfoTooltip DEBUG:', waypoint.name, 'bookingUrl:', waypoint.bookingUrl, 'links:', links);
 
     if (links.length === 0) {
         return '';

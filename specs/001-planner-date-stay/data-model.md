@@ -12,7 +12,7 @@
 |-----------------|------------------|-------------------------------------------------------------|
 | `id`            | integer          | Auto-incremented counter; existing field                    |
 | `route`         | `Location[]`     | Ordered array of location objects; existing field           |
-| `departureDate` | string (ISO date) | `"YYYY-MM-DD"`; `""` when not yet set by user; **new**     |
+| `departureDate` | string (ISO date) | `"YYYY-MM-DD"`; initialized to today via `todayIso()` on create and reset; **new**     |
 | `stays`         | `integer[]`      | `stays[i]` = nights at `route[i]`; `stays[0]` unused (top item has no stay); defaults to `0` for each downstream item; **new** |
 
 `route` and `stays` are always the same length; they are spliced in lockstep when a
@@ -49,6 +49,8 @@ A route item is a rendered `<div class="waypoint-item">` corresponding to
 | `i === 0`   | `<input type="date" min="[today]">` bound to `planner.departureDate` |
 | `i > 0`     | Read-only date label showing derived date + `<input type="number" min="0" step="1">` bound to `planner.stays[i]` |
 
+Derived dates are displayed as `M/D` (month/day, no year) using `formatDateShort(isoString)`. Storage and computation always use full `YYYY-MM-DD` ISO strings.
+
 ---
 
 ## Derived Date Computation
@@ -71,12 +73,12 @@ item has no stay field).
 
 | Trigger                          | State change                                          | Re-render scope              |
 |----------------------------------|-------------------------------------------------------|------------------------------|
-| Page load / `addPlanner()`       | New planner with `departureDate: ""`, `stays: [0]`    | Full planner render          |
+| Page load / `addPlanner()`       | New planner with `departureDate: todayIso()`, `stays: [0]`    | Full planner render          |
 | User sets departure date         | `planner.departureDate = value`                       | Full `updateRouteDisplay`    |
 | User adds a stop                 | `route.push(location)`, `stays.push(0)`               | Full `updateRouteDisplay`    |
 | User changes a downstream stay   | `planner.stays[i] = value`                            | Full `updateRouteDisplay`    |
 | User removes a stop at index `i` | `route.splice(i, 1)`, `stays.splice(i, 1)`            | Full `updateRouteDisplay`    |
-| User resets route                | `route = [startLocation]`, `stays = [0]`, `departureDate = ""` | Full `updateRouteDisplay` |
+| User resets route                | `route = [startLocation]`, `stays = [0]`, `departureDate = todayIso()` | Full `updateRouteDisplay` |
 
 ---
 
