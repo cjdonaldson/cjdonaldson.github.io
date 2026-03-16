@@ -135,14 +135,16 @@ function renderPlanner(planner) {
     <div id="route-display-${planner.id}"></div>
 </div>
 
-<label for="filter-type-${planner.id}">Filter by:</label>
-<select id="filter-type-${planner.id}">
-    <option value="time">Time (hours)</option>
-    <option value="distance">Distance (miles)</option>
-</select>
+<div class="filter-row">
+    <label for="filter-type-${planner.id}">Filter by:</label>
+    <select id="filter-type-${planner.id}">
+        <option value="time">Time (hours)</option>
+        <option value="distance">Distance (miles)</option>
+    </select>
 
-<label for="filter-value-${planner.id}">Max value:</label>
-<input type="number" id="filter-value-${planner.id}" value="5" min="1">
+    <label for="filter-value-${planner.id}">Max value:</label>
+    <input type="number" id="filter-value-${planner.id}" value="5" min="1">
+</div>
 
 <label>Direction:</label>
 <div id="filter-direction-${planner.id}" class="filter-direction-container">

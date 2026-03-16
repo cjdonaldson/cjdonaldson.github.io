@@ -80,6 +80,14 @@ body {
     margin: 0;
 }
 
+.filter-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px;
+}
+
 .filter-direction-container {
     display: flex;
     gap: 12px;
