@@ -88,6 +88,14 @@ body {
     gap: 12px;
 }
 
+.filter-row select {
+    width: 10em;
+}
+
+.filter-row input[type="number"] {
+    width: 5em;
+}
+
 .filter-direction-container {
     display: flex;
     gap: 12px;
