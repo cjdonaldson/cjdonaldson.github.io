@@ -72,8 +72,8 @@ camping/
 ├── florida-bound-planner.html
 ├── florida-bound-grid.js
 ├── florida-bound-planner.css
-├── florida-bound-data-loader.js
-└── florida-bound-utils.js
+├── florida-bound-data-loader.js  ← not in scope; no changes planned
+└── florida-bound-utils.js        ← not in scope; no changes planned
 
 specs/001-one-line-filter-fields/
 ├── plan.md

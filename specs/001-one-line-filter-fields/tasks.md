@@ -29,8 +29,8 @@ Validation tasks are included in each story phase to confirm acceptance criteria
 
 **Purpose**: Audit current markup and stylesheet to ground the implementation in real code before changing anything.
 
-- [ ] T001 Audit `camping/florida-bound-grid.js` — locate `renderPlanner()` and identify the exact lines where the `Filter by` label/select and `Max value` label/input are emitted; also note the standalone `<label>Direction:</label>` and `<div id="filter-direction-{id}">` sibling elements that must remain outside `.filter-row`
-- [ ] T002 [P] Audit both `camping/florida-bound-planner.css` and `camping/florida-bound-grid.css` — note the existing flex container patterns (e.g., `.filter-direction-container` gap: 12px) in both files to use as style reference and to identify any competing layout rules
+- [X] T001 Audit `camping/florida-bound-grid.js` — locate `renderPlanner()` and identify the exact lines where the `Filter by` label/select and `Max value` label/input are emitted; also note the standalone `<label>Direction:</label>` and `<div id="filter-direction-{id}">` sibling elements that must remain outside `.filter-row`
+- [X] T002 [P] Audit both `camping/florida-bound-planner.css` and `camping/florida-bound-grid.css` — note the existing flex container patterns (e.g., `.filter-direction-container` gap: 12px) in both files to use as style reference and to identify any competing layout rules
 
 ---
 
@@ -40,7 +40,7 @@ Validation tasks are included in each story phase to confirm acceptance criteria
 
 **⚠️ CRITICAL**: US1 implementation cannot begin until this phase is complete.
 
-- [ ] T003 Add `.filter-row` rule to `camping/florida-bound-planner.css` — `display: flex; flex-direction: row; flex-wrap: nowrap; gap: 12px;` matching the gap used by `.filter-direction-container` for visual consistency (confirm value from T002 audit before committing)
+- [X] T003 Add `.filter-row` rule to `camping/florida-bound-planner.css` — `display: flex; flex-direction: row; flex-wrap: nowrap; gap: 12px;` matching the gap used by `.filter-direction-container` for visual consistency; also `.filter-row select { width: 10em; }` and `.filter-row input[type="number"] { width: 5em; }` added during testing to prevent controls from spanning full row width
 
 **Checkpoint**: CSS class ready — US1 JS change can now begin.
 
@@ -54,12 +54,12 @@ Validation tasks are included in each story phase to confirm acceptance criteria
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] In `camping/florida-bound-grid.js` inside `renderPlanner()`, wrap the `Filter by` label/select and `Max value` label/input in `<div class="filter-row">…</div>`, placing `Filter by` first and `Max value` second, while preserving the existing IDs `filter-type-{id}` and `filter-value-{id}` and their `for`/`id` label associations unchanged
+- [X] T004 [US1] In `camping/florida-bound-grid.js` inside `renderPlanner()`, wrap the `Filter by` label/select and `Max value` label/input in `<div class="filter-row">…</div>`, placing `Filter by` first and `Max value` second, while preserving the existing IDs `filter-type-{id}` and `filter-value-{id}` and their `for`/`id` label associations unchanged
 
 ### Validation for User Story 1
 
-- [ ] T005 [P] [US1] Start a local static server (`python3 -m http.server 8000` from repo root) and open `http://localhost:8000/camping/florida-bound-planner.html`; confirm a single planner displays `Filter by` first and `Max value` second on one horizontal row
-- [ ] T006 [P] [US1] Change `Filter by` between its options and update `Max value`; confirm the one-row layout remains intact and the planner continues to function (waypoint options refresh correctly)
+- [X] T005 [P] [US1] Start a local static server (`python3 -m http.server 8000` from repo root) and open `http://localhost:8000/camping/florida-bound-planner.html`; confirm a single planner displays `Filter by` first and `Max value` second on one horizontal row
+- [X] T006 [P] [US1] Change `Filter by` between its options and update `Max value`; confirm the one-row layout remains intact and the planner continues to function (waypoint options refresh correctly)
 
 **Checkpoint**: US1 complete — single-planner one-line filter row is functional and verified.
 
@@ -73,10 +73,10 @@ Validation tasks are included in each story phase to confirm acceptance criteria
 
 ### Validation for User Story 2
 
-- [ ] T007 [US2] Add at least three planners on `http://localhost:8000/camping/florida-bound-planner.html`; confirm every planner instance shows `Filter by` and `Max value` on one horizontal row in the same order
-- [ ] T008 [US2] Remove one planner from the multi-planner view; confirm the remaining planners retain the one-row filter layout without any disruption
-- [ ] T009 [P] [US2] Refresh the page; confirm the planner re-renders with the one-row filter layout after reload (no state dependency on prior render)
-- [ ] T010 [P] [US2] Resize the browser to 375px viewport width; confirm `Filter by` and `Max value` remain visually grouped as one row and that the `Direction` controls remain outside that row
+- [X] T007 [US2] Add at least three planners on `http://localhost:8000/camping/florida-bound-planner.html`; confirm every planner instance shows `Filter by` and `Max value` on one horizontal row in the same order
+- [X] T008 [US2] Remove one planner from the multi-planner view; confirm the remaining planners retain the one-row filter layout without any disruption
+- [X] T009 [P] [US2] Refresh the page; confirm the planner re-renders with the one-row filter layout after reload (no state dependency on prior render)
+- [X] T010 [P] [US2] Resize the browser to 375px viewport width; confirm `Filter by` and `Max value` remain visually grouped as one row (horizontal scroll at this width is acceptable — `flex-wrap: nowrap` intentionally preserves grouping over visibility) and that the `Direction` controls remain outside that row
 
 **Checkpoint**: US2 complete — all planner instances consistently show the one-line filter row.
 
@@ -86,9 +86,9 @@ Validation tasks are included in each story phase to confirm acceptance criteria
 
 **Purpose**: Final contract compliance and regression checks across both stories.
 
-- [ ] T011 [P] Verify no existing control IDs were modified — confirm `filter-type-{id}` and `filter-value-{id}` are unchanged in `camping/florida-bound-grid.js`, satisfying the DOM constraints in `specs/001-one-line-filter-fields/contracts/planner-filter-row.md`
-- [ ] T012 [P] Open the browser console on `http://localhost:8000/camping/florida-bound-planner.html` and confirm: zero JavaScript errors; no broken asset references; the Network tab shows no new requests beyond the existing `florida-bound-locations.json` fetch; the planner page remains reachable via existing navigation links from `camping/florida-bound.html`
-- [ ] T013 Inspect the rendered DOM in browser DevTools to confirm both the standalone `<label>Direction:</label>` element and the `<div id="filter-direction-{id}">` div remain outside the `.filter-row` wrapper per the UI contract in `specs/001-one-line-filter-fields/contracts/planner-filter-row.md`
+- [X] T011 [P] Verify no existing control IDs were modified — confirm `filter-type-{id}` and `filter-value-{id}` are unchanged in `camping/florida-bound-grid.js`, satisfying the DOM constraints in `specs/001-one-line-filter-fields/contracts/planner-filter-row.md`
+- [X] T012 [P] Open the browser console on `http://localhost:8000/camping/florida-bound-planner.html` and confirm: zero JavaScript errors; no broken asset references; the Network tab shows no new requests beyond the existing `florida-bound-locations.json` fetch; the planner page remains reachable via existing navigation links from `camping/florida-bound.html`
+- [X] T013 Inspect the rendered DOM in browser DevTools to confirm both the standalone `<label>Direction:</label>` element and the `<div id="filter-direction-{id}">` div remain outside the `.filter-row` wrapper per the UI contract in `specs/001-one-line-filter-fields/contracts/planner-filter-row.md`
 
 ---
 
