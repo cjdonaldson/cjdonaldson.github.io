@@ -84,7 +84,7 @@
           "coords": [36.9039, -79.6389],
           "pricing": [ { "fhu back-in": "58.00" } ],
           "season": "Year round",
-          "distance": "425 mi • 7 hrs from 18077"
+          "distances": [ "425 mi • 7 hrs from 18077" ]
         },
         {
           "name": "Indian Heritage RV Park",
@@ -102,7 +102,7 @@
           "coords": [36.6914, -79.8725],
           "pricing": [ { "fhu back-in": "64.00" } ],
           "season": "Year round",
-          "distance": "445 mi • 7.5 hrs from 18077"
+          "distances": [ "445 mi • 7.5 hrs from 18077" ]
         },
         {
           "name": "Hidden Acres Family Campground",
@@ -118,7 +118,7 @@
           "coords": [38.0331, -77.3869],
           "pricing": [ { "fhu back-in": "0.00" } ],
           "season": "Year round",
-          "distance": "296 mi • 5.0 hrs from 18077"
+          "distances": [ "296 mi • 5.0 hrs from 18077" ]
         },
         {
           "name": "South 40 Campground",
@@ -135,9 +135,24 @@
           "coords": [37.2095, -77.3975],
           "pricing": [ { "fhu back-in": "0.00" } ],
           "season": "Year round",
-          "distance": "331 mi • 5.4 hrs from 18077",
+          "distances": [ "331 mi • 5.4 hrs from 18077" ],
           "notes": ["Good Sam discount"]
         },
+        {
+          "name": "Shenandoah River State Park",
+          "emoji": "x",
+          "url": "https://www.reservevaparks.com/Web/Default.aspx",
+          "mapUrl": "https://maps.app.goo.gl/neuzW1XMsFAh9Ums7",
+          "bookingUrl": "https://reservevaparks.com/web/",
+          "phone": "800-933-7275",
+          "email": "ShenandoahRiver@dcr.virginia.gov",
+          "address": "350 Daughter of Stars Dr.",
+          "city": "Bentonville",
+          "state": "VA",
+          "zip": "22610",
+          "coords": [ 38.8489, -78.3104 ],
+          "pricing": [ { "e / w": "49.00" } ]
+          }
         {
           "name": "Cattail Creek Campground",
           "emoji": "?",
@@ -154,7 +169,7 @@
           "coords": [36.5964, -77.5850],
           "pricing": [ { "fhu pull-through": "35.00" } ],
           "season": "Year round",
-          "distance": "394 mi • 6.6 hrs from 18077",
+          "distances": [ "246 mi • 4.1 hrs from 18077" ],
           "notes": ["Late arrivals are available upon request - call Farley 252-955-1636"]
         }
       ]
@@ -178,7 +193,7 @@
           "zip": "28306",
           "coords": [34.8396, -78.9830],
           "pricing": [ { "fhu back-in": "54.00" } ],
-          "distance": ["536 mi • 8.9 hrs from 18077 via Hamburg, PA"]
+          "distances": ["536 mi • 8.9 hrs from 18077 via Hamburg, PA"]
         }
       ]
     },
@@ -202,7 +217,7 @@
           "coords": [34.1625, -79.7089],
           "pricing": [ { "fhu back-in": "64.80" } ],
           "features": ["RV propane fill", "RV Dump Station"],
-          "distance": ["609 mi • 6 hrs from 18077"]
+          "distances": ["609 mi • 6 hrs from 18077"]
         }
       ]
     },
