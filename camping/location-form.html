@@ -51,12 +51,6 @@
             font-size: 14px;
         }
 
-        .optional {
-            color: #999;
-            font-weight: normal;
-            font-size: 12px;
-        }
-
         input[type="text"],
         input[type="tel"],
         input[type="email"],
@@ -65,7 +59,7 @@
         textarea,
         select {
             width: 100%;
-            padding: 12px;
+            padding: 0.5em;
             border: 2px solid #e0e0e0;
             border-radius: 6px;
             font-size: 14px;
@@ -90,6 +84,64 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
+
+        .form-row {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-row > .form-group {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 399px) {
+            .form-row {
+                grid-template-columns: 1fr !important;
+            }
+            .addr-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .addr-row input {
+                width: 100% !important;
+            }
+        }
+
+        .addr-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .addr-row > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .addr-row > div label {
+            margin-bottom: 6px;
+        }
+
+        .addr-street {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .identity-fields input {
+            padding: 0.5em; /* kept for specificity over any legacy overrides */
+        }
+
+        .addr-row input[name="city"]      { width: 10em; }
+        .addr-row input[name="state"]     { width: 3em; }
+        .addr-row input[name="zip"]       { width: 5em; }
+        .addr-row input[name="latitude"] { width: 9em; }
+        .addr-row input[name="longitude"] { width: 9em; }
+        .addr-row input[name="phone"]     { width: 8em; }
+        .addr-row input[name="email"]     { width: 32em; }
+        .addr-row input[name="emailName"] { width: 10em; }
+        .addr-row input[name="bookingUrl"] { width: 30em; }
 
         .array-input {
             margin-bottom: 10px;
@@ -183,139 +235,132 @@
         <p class="subtitle">Fill out the details for a new camping location</p>
 
         <form id="locationForm">
-            <div class="section-header">Basic Information</div>
+            <div class="section-header">Identity</div>
 
-            <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" id="name" name="name" required>
+            <div class="identity-fields">
+                <div class="form-row" style="grid-template-columns: 3fr 1fr">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emoji">Emoji</label>
+                        <input type="text" id="emoji" name="emoji" placeholder="🏕️" maxlength="2">
+                        <div class="hint">Single emoji character</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="url">Website URL *</label>
+                    <input type="url" id="url" name="url" required placeholder="https://example.com">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="emoji">Emoji *</label>
-                <input type="text" id="emoji" name="emoji" placeholder="🏕️" required maxlength="2">
-                <div class="hint">Single emoji character</div>
-            </div>
+            <div class="section-header">Location *</div>
 
-            <div class="form-group">
-                <label for="city">City *</label>
-                <input type="text" id="city" name="city" required>
-            </div>
-
-            <div class="form-group">
-                <label for="state">State *</label>
-                <input type="text" id="state" name="state" placeholder="FL" required maxlength="2">
-                <div class="hint">Two-letter state code</div>
-            </div>
-
-            <div class="form-group">
-                <label for="zip">ZIP Code *</label>
-                <input type="text" id="zip" name="zip" required>
-            </div>
-
-            <div class="section-header">Location Details</div>
-
-            <div class="form-group">
-                <label for="url">Website URL <span class="optional">(optional)</span></label>
-                <input type="url" id="url" name="url" placeholder="https://example.com">
-            </div>
-
-            <div class="form-group">
-                <label for="address">Street Address <span class="optional">(optional)</span></label>
-                <input type="text" id="address" name="address">
-            </div>
-
-            <div class="form-group">
-                <label for="mapUrl">Google Maps URL <span class="optional">(optional)</span></label>
-                <input type="url" id="mapUrl" name="mapUrl" placeholder="https://maps.app.goo.gl/...">
-            </div>
-
-            <div class="form-group coords-group">
+            <div class="addr-row">
+                <div class="addr-street">
+                    <label for="mapUrl">Google Maps URL</label>
+                    <input type="url" id="mapUrl" name="mapUrl" required placeholder="https://maps.app.goo.gl/...">
+                </div>
                 <div>
-                    <label for="latitude">Latitude *</label>
+                    <label for="latitude">Latitude</label>
                     <input type="number" id="latitude" name="latitude" step="any" required placeholder="27.1392">
                 </div>
                 <div>
-                    <label for="longitude">Longitude *</label>
+                    <label for="longitude">Longitude</label>
                     <input type="number" id="longitude" name="longitude" step="any" required placeholder="-82.4526">
                 </div>
             </div>
 
-            <div class="section-header">Contact Information</div>
+            <div class="addr-row">
+                <div class="addr-street">
+                    <label for="address">Street Address</label>
+                    <input type="text" id="address" name="address" required placeholder="123 Fake St">
+                </div>
+                <div>
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" required placeholder="Fake Place">
+                </div>
+                <div>
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state" required placeholder="FL" maxlength="2">
+                </div>
+                <div>
+                    <label for="zip">ZIP Code</label>
+                    <input type="text" id="zip" name="zip" required placeholder="12345">
+                </div>
+            </div>
 
-            <div class="form-group">
-                <label for="phone">Phone <span class="optional">(optional)</span></label>
-                <input type="tel" id="phone" name="phone" placeholder="877-570-2267">
+            <div class="section-header">Contact</div>
+
+            <div class="addr-row">
+                <div>
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="222-321-4123">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="joe@email.com">
+                </div>
+                <div>
+                    <label for="emailName">Email Contact Name</label>
+                    <input type="text" id="emailName" name="emailName" placeholder="Joe">
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="email">Email <span class="optional">(optional)</span></label>
-                <input type="email" id="email" name="email">
-            </div>
-
-            <div class="form-group">
-                <label for="emailName">Email Contact Name <span class="optional">(optional)</span></label>
-                <input type="text" id="emailName" name="emailName">
-            </div>
-
-            <div class="form-group">
-                <label for="hours">Hours <span class="optional">(optional)</span></label>
+                <label for="hours">Hours</label>
                 <input type="text" id="hours" name="hours" placeholder="Mon-Fri 8am-8pm | Sat-Sun 9:30am-6pm">
             </div>
 
-            <div class="section-header">Booking & Resources</div>
+            <div class="section-header">Web &amp; Resources</div>
 
             <div class="form-group">
-                <label for="contactUrl">Contact URL <span class="optional">(optional)</span></label>
-                <input type="url" id="contactUrl" name="contactUrl">
-            </div>
-
-            <div class="form-group">
-                <label for="bookingUrl">Booking URL <span class="optional">(optional)</span></label>
-                <input type="url" id="bookingUrl" name="bookingUrl">
-            </div>
-
-            <div class="form-group">
-                <label for="booking">Booking Instructions <span class="optional">(optional)</span></label>
-                <input type="text" id="booking" name="booking" placeholder="Call to book">
-            </div>
-
-            <div class="form-group">
-                <label for="siteMap">Site Map Path <span class="optional">(optional)</span></label>
+                <label for="siteMap">Site Map Path</label>
                 <input type="text" id="siteMap" name="siteMap" placeholder="./site-map/LocationName.pdf">
+            </div>
+
+            <div class="section-header">Booking</div>
+
+            <div class="addr-row">
+                <div>
+                    <label for="bookingMethod">Booking Method</label>
+                    <select id="bookingMethod" name="bookingMethod" onchange="updateBookingVisibility()">
+                        <option value="callToBook">Call to Book</option>
+                        <option value="bookOnline">Book Online</option>
+                    </select>
+                </div>
+                <div id="bookingUrlGroup" style="display: none">
+                    <label for="bookingUrl">Booking URL</label>
+                    <input type="url" id="bookingUrl" name="bookingUrl" placeholder="https://...">
+                </div>
             </div>
 
             <div class="section-header">Additional Details</div>
 
             <div class="form-group">
-                <label for="season">Season <span class="optional">(optional)</span></label>
+                <label for="season">Season</label>
                 <input type="text" id="season" name="season" placeholder="Year round">
             </div>
 
             <div class="form-group">
-                <label for="distance">Distance <span class="optional">(optional)</span></label>
-                <input type="text" id="distance" name="distance" placeholder="425 mi • 7 hrs from 18077">
-            </div>
-
-            <div class="form-group">
-                <label for="distances">Distances (one per line) <span class="optional">(optional)</span></label>
+                <label for="distances">Distances (one per line; enter each feature on a new line)</label>
                 <textarea id="distances" name="distances" placeholder="429 mi • 7 hrs from Smith Mountain&#10;300 mi • 5 hrs to Papa Lew's"></textarea>
-                <div class="hint">Enter each distance on a new line</div>
             </div>
 
             <div class="form-group">
-                <label for="features">Features (one per line) <span class="optional">(optional)</span></label>
+                <label for="features">Features (one per line; enter each feature on a new line)</label>
                 <textarea id="features" name="features" placeholder="RV propane fill&#10;RV Dump Station&#10;Good Sam Discount"></textarea>
-                <div class="hint">Enter each feature on a new line</div>
             </div>
 
             <div class="form-group">
-                <label for="notes">Notes (one per line) <span class="optional">(optional)</span></label>
+                <label for="notes">Notes (one per line; enter each feature on a new line)</label>
                 <textarea id="notes" name="notes" placeholder="Private&#10;Members only"></textarea>
-                <div class="hint">Enter each note on a new line</div>
             </div>
 
             <div class="form-group">
-                <label for="defaultStart">Default Start Location <span class="optional">(optional)</span></label>
+                <label for="defaultStart">Default Start Location</label>
                 <select id="defaultStart" name="defaultStart">
                     <option value="">No</option>
                     <option value="true">Yes</option>
@@ -334,6 +379,11 @@
     </div>
 
     <script>
+        function updateBookingVisibility() {
+            const group = document.getElementById('bookingUrlGroup');
+            group.style.display = document.getElementById('bookingMethod').value === 'bookOnline' ? '' : 'none';
+        }
+
         document.getElementById('locationForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -342,7 +392,9 @@
 
             // Required fields
             location.name = formData.get('name').trim();
-            location.emoji = formData.get('emoji').trim();
+            location.address = formData.get('address').trim();
+            location.url = formData.get('url').trim();
+            location.mapUrl = formData.get('mapUrl').trim();
             location.coords = [
                 parseFloat(formData.get('latitude')),
                 parseFloat(formData.get('longitude'))
@@ -351,10 +403,16 @@
             location.city = formData.get('city').trim();
             location.state = formData.get('state').trim().toUpperCase();
 
+            // Optional emoji (emit when non-empty, omit when empty)
+            const emoji = formData.get('emoji')?.trim();
+            if (emoji) {
+                location.emoji = emoji;
+            }
+
             // Optional single-value fields
             const optionalFields = [
-                'url', 'address', 'mapUrl', 'phone', 'email', 'emailName',
-                'hours', 'contactUrl', 'bookingUrl', 'booking', 'siteMap',
+                'phone', 'email', 'emailName',
+                'hours', 'siteMap',
                 'season', 'distance'
             ];
 
@@ -364,6 +422,12 @@
                     location[field] = value;
                 }
             });
+
+            // Booking URL (only when Book Online is active and non-empty)
+            if (document.getElementById('bookingMethod').value === 'bookOnline') {
+                const bUrl = formData.get('bookingUrl')?.trim();
+                if (bUrl) location.bookingUrl = bUrl;
+            }
 
             // Array fields (textarea)
             const arrayFields = ['distances', 'features', 'notes'];
@@ -411,6 +475,9 @@
         function resetForm() {
             document.getElementById('locationForm').reset();
             document.getElementById('output').classList.remove('show');
+            document.getElementById('bookingMethod').value = 'callToBook';
+            document.getElementById('bookingUrl').value = '';
+            updateBookingVisibility();
         }
     </script>
 </body>
