@@ -436,12 +436,12 @@
           "city": "Hamburg",
           "state": "PA",
           "zip": "19526",
-          "coords": [40.5514, -75.9386],
+          "coords": [40.5577, -76.0019],
           "hours": "Mon-Sat 9am-9pm | Sun 9am-7pm",
           "features": ["RV Dump Station"]
         },
         {
-          "id": "9bb9e11b",
+          "id": "c0a975b4",
           "name": "Camping World Hamburg",
           "emoji": "🚐",
           "url": "https://rv.campingworld.com/dealer/hamburg-pennsylvania",
@@ -451,7 +451,7 @@
           "city": "Hamburg",
           "state": "PA",
           "zip": "19526",
-          "coords": [40.5514, -75.9386],
+          "coords": [40.5606, -75.9961],
           "features": ["RV propane fill", "RV Dump Station"]
         }
       ]

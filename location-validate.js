@@ -1,9 +1,10 @@
+#!/usr/bin/env node
 'use strict';
 
 /**
  * location-validate.js
  *
- * Validates a locations JSON file (default: camping/florida-bound-locations.json).
+ * Validates a locations JSON file.
  *
  * Checks per location:
  *   1. coords array present with exactly 2 numeric values
@@ -17,14 +18,17 @@
  *
  * Exits 0 on full pass, non-zero on any failure.
  *
- * Usage: node location-validate.js [path/to/file.json]
+ * Usage: node location-validate.js <path/to/file.json>
  */
 
 const fs = require('fs');
 const crypto = require('crypto');
-const path = require('path');
 
-const dataPath = process.argv[2] || path.join(__dirname, 'camping/florida-bound-locations.json');
+const dataPath = process.argv[2];
+if (!dataPath) {
+  console.error('Usage: node location-validate.js <path/to/locations.json>');
+  process.exit(1);
+}
 
 // ── Read & parse ──────────────────────────────────────────────────────────────
 

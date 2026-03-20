@@ -1,10 +1,14 @@
+#!/usr/bin/env node
 'use strict';
 
 const fs = require('fs');
-const path = require('path');
 const { generateLocationId } = require('./location-id-gen.js');
 
-const dataPath = process.argv[2] || path.join(__dirname, 'camping/florida-bound-locations.json');
+const dataPath = process.argv[2];
+if (!dataPath) {
+  console.error('Usage: node location-id-add.js <path/to/locations.json>');
+  process.exit(1);
+}
 
 const rawJson = fs.readFileSync(dataPath, 'utf8');
 const data = JSON.parse(rawJson);
