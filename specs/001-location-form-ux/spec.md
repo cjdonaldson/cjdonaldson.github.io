@@ -4,7 +4,7 @@
 
 **Feature Branch**: `001-location-form-ux`
 **Created**: 2025-03-16
-**Status**: Draft
+**Status**: Delivered
 
 ## Overview
 
@@ -202,3 +202,140 @@ A maintainer scanning the form can identify the correct section at a glance with
 - Reducing padding or margin between form groups slightly (visual tightening) is acceptable provided field labels and inputs remain clearly legible at default browser zoom
 - The form width remains at the current ~800px maximum
 - No draft-saving, pre-population from existing data, or import functionality is in scope
+
+## Implementation Addendum
+
+**Recorded**: 2025-07-14
+**Status**: Delivered — documents final resolved state as implemented after interactive refinement
+
+This addendum captures how the delivered implementation diverged from the original spec during the speckit lifecycle (clarify → plan → tasks → implement) and the subsequent interactive UX refinement session. It is a record of intent, not a correction to the original spec.
+
+---
+
+### Section Structure: Spec vs. Delivered
+
+The spec prescribed **seven sections**: Identity, Address, Coordinates, Contact, Web & Resources, Booking, Additional Details.
+
+The delivered implementation uses **four sections**:
+
+| # | Delivered Section | Replaces |
+|---|-------------------|----------|
+| 1 | Overview | Identity |
+| 2 | Location \* | Address + Coordinates |
+| 3 | Contact | Contact (unchanged) |
+| 4 | Additional Details | Additional Details (unchanged) |
+
+Web & Resources and Booking were eliminated as standalone sections. Their fields were redistributed or removed (see Field Changes below).
+
+---
+
+### Section Consolidation Details
+
+**Identity → Overview**
+
+The Identity section was renamed "Overview" and expanded to absorb the booking interaction and web links:
+
+- Name, Emoji (optional), Website URL, Site Map Path, Reservation (select), Reservation URL all appear in this section.
+
+**Address + Coordinates → Location \***
+
+The two separate sections were merged into one "Location \*" section with two rows:
+
+- **Row 1 (`addr-row`)**: Street Address, City, State, ZIP — laid out as a flex row with label-above-input columns.
+- **Row 2**: Google Maps URL, Latitude, Longitude — also in a flex row.
+
+The section heading carries the asterisk ("Location \*") as the sole required-field indicator for this section; individual field labels do not carry `*` markers (see speckit.analyze findings).
+
+**Web & Resources eliminated**
+
+Website URL moved to Overview. Site Map Path moved to Overview. `contactUrl` was removed entirely — inspection of `florida-bound-locations.json` confirmed the field is unused across all production records.
+
+**Booking → Reservation (in Overview)**
+
+The Booking section was eliminated. Booking became a "Reservation" `<select>` element plus a "Reservation URL" input, both placed inside the Overview section. The label "Booking" was renamed "Reservation" throughout.
+
+---
+
+### Field Changes
+
+| Field | Original Spec | Delivered |
+|-------|--------------|-----------|
+| `address` | Optional | **Required** |
+| `url` (Website URL) | Optional | **Required** |
+| `mapUrl` (Google Maps URL) | Optional | **Required** |
+| `emoji` | Required | **Optional** |
+| `contactUrl` | Present | **Removed** (unused in production data) |
+| Booking control | Radio buttons (Call to Book / Book Online) | **`<select>`** (same two options) |
+| Booking URL visibility | Hidden when "Call to Book"; shown when "Book Online" | Always visible; **disabled** when "Call to Book", enabled when "Book Online" |
+| Section label | "Booking" | **"Reservation"** |
+
+---
+
+### Layout Patterns
+
+**`addr-row` pattern**
+
+A custom flexbox class applied to multi-field rows in the Location section:
+
+```css
+display: flex;
+align-items: flex-end;
+gap: 10px;
+```
+
+Each child is a label-above-input column. This pattern differs from the `.form-row` CSS Grid pattern used elsewhere in the form.
+
+**Field widths (delivered)**
+
+| Field | Width |
+|-------|-------|
+| City | 10em |
+| State | 3em |
+| ZIP | 5em |
+| Latitude | 9em |
+| Longitude | 9em |
+| Phone | 8em |
+| Email | 32em |
+| Email / Contact Name | 10em |
+| Site Map Path | 18em |
+| Reservation URL | 42em |
+
+**Global input padding**: `0.5em`
+
+---
+
+### Reservation URL Visual State
+
+The Reservation URL field is always present in the DOM (never hidden). Its enabled/disabled state mirrors the Reservation `<select>` value:
+
+- **"Call to Book" selected**: field is `disabled`; background `#f0f0f0`, border `#d0d0d0`, text color `#bbb`, cursor `not-allowed`
+- **"Book Online" selected**: field is enabled; background `white`; `0.25s` CSS transition on background-color
+
+Because disabled inputs are excluded from `FormData`, the JSON emit reads `#bookingUrl` value directly via `document.getElementById` rather than via `FormData`.
+
+---
+
+### Responsive Behavior
+
+A single breakpoint governs narrow-viewport layout:
+
+```css
+@media (max-width: 399px) {
+  /* collapses .form-row CSS Grid to single column */
+  /* collapses .addr-row flex to single column */
+}
+```
+
+The `.form-row` collapse rule uses `!important` to override inline `style=` grid-template attributes set directly on elements. This is a known workaround and is flagged as **technical debt** to be addressed in a future session by moving grid-template values to CSS classes rather than inline styles.
+
+---
+
+### speckit.analyze Findings — Session Resolution
+
+The `speckit.analyze` agent surfaced the following findings after implementation. Resolutions are recorded here:
+
+| Finding | Description | Resolution |
+|---------|-------------|------------|
+| M1 | `'distance'` typo in `optionalFields` JavaScript array (should be `'distances'`) | **Fixed** by the user during the refinement session |
+| H3 | Required fields lack `*` markers on individual form labels | **Intentional** — the asterisk appears only in the section heading "Location \*"; individual field labels are left unmarked by user decision |
+| Remaining findings | F1 (status header), I1 (phantom Type field), I2/I3 (contactUrl/radio→select terminology), I4 (contract table labels), I5 (field widths), A1 (audit trail), F2 (legacy keys), I6 (plan.md radio language) | All resolved in this addendum update; see individual sections above for corrections applied |

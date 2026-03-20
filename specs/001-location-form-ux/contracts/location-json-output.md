@@ -34,7 +34,6 @@ rules for the mutually exclusive booking fields.
   // --- Optional single-value fields (omitted when empty) ---
   "emoji":      "string — single emoji character",
   "siteMap":    "string — relative path to site map PDF",
-  "contactUrl": "string — contact page URL",
   "phone":      "string — phone number",
   "email":      "string — email address",
   "emailName":  "string — name of email contact",
@@ -65,9 +64,9 @@ These rules supersede general optional-field handling and must be enforced in JS
 
 | Condition | `bookingUrl` emitted? | `booking` emitted? |
 |-----------|----------------------|-------------------|
-| Radio = "Call to Book" (any URL value) | ❌ Never | ❌ Never |
-| Radio = "Book Online", URL non-empty | ✅ Yes | ❌ Never |
-| Radio = "Book Online", URL empty | ❌ No | ❌ Never |
+| Select = "Call to Book" (any URL value) | ❌ Never | ❌ Never |
+| Select = "Book Online", URL non-empty | ✅ Yes | ❌ Never |
+| Select = "Book Online", URL empty | ❌ No | ❌ Never |
 
 Both `bookingUrl` and `booking` MUST NOT appear simultaneously in any output object.
 
@@ -104,7 +103,6 @@ Both `bookingUrl` and `booking` MUST NOT appear simultaneously in any output obj
   "url": "https://www.floridastateparks.org/oscar-scherer",
   "mapUrl": "https://maps.app.goo.gl/abc123",
   "siteMap": "./site-map/OscarScherer.pdf",
-  "contactUrl": "https://www.floridastateparks.org/contact",
   "phone": "941-483-5956",
   "email": "oscar.scherer@example.com",
   "emailName": "Park Ranger",
@@ -155,7 +153,7 @@ Both `bookingUrl` and `booking` MUST NOT appear simultaneously in any output obj
 - The planner already treats absence of `bookingUrl` as "Call to Book" per the
   clarification session (2026-03-19).
 - All other keys (`name`, `emoji`, `coords`, `zip`, `city`, `state`, `url`,
-  `address`, `mapUrl`, `phone`, `email`, `emailName`, `hours`, `contactUrl`,
+  `address`, `mapUrl`, `phone`, `email`, `emailName`, `hours`,
   `siteMap`, `season`, `distances`, `features`, `notes`, `defaultStart`) are
   unchanged in structure; `address`, `url`, and `mapUrl` are now always emitted
   (required fields), and `emoji` is now conditionally emitted (optional field,

@@ -26,7 +26,6 @@ the Florida Bound planner via `camping/florida-bound-locations.json`.
 | Latitude | `coords[0]` | number | ✅ Yes | Number input, step=any |
 | Longitude | `coords[1]` | number | ✅ Yes | Number input, step=any |
 | Site Map Path | `siteMap` | string | No | Text input |
-| Contact URL | `contactUrl` | string (URL) | No | URL input |
 | Booking URL | `bookingUrl` | string (URL) | No | URL input — emitted only when "Book Online" is active and non-empty |
 | Phone | `phone` | string | No | Tel input |
 | Email | `email` | string (email) | No | Email input |
@@ -42,7 +41,8 @@ the Florida Bound planner via `camping/florida-bound-locations.json`.
 
 | Old Field | Old JSON Key | Replacement |
 |-----------|-------------|-------------|
-| Booking Instructions | `booking` | Removed. Replaced by the "Call to Book" / "Book Online" radio interaction. Absence of `bookingUrl` is the implicit call-to-book indicator. Existing records containing `"booking": "Call to book"` are unaffected. |
+| Booking Instructions | `booking` | Removed. Replaced by the "Call to Book" / "Book Online" `<select>` interaction. Absence of `bookingUrl` is the implicit call-to-book indicator. Existing records containing `"booking": "Call to book"` are unaffected. |
+| Contact URL | `contactUrl` | Removed. Field was unused across all production records in `florida-bound-locations.json` (confirmed by inspection during the refinement session). The form input and JSON emission logic were both removed. |
 
 ### Validation Rules
 
@@ -66,13 +66,13 @@ the Florida Bound planner via `camping/florida-bound-locations.json`.
 
 ## Entity: Booking Method (UI State)
 
-A mutually exclusive radio selection that controls which booking data appears in the
+A mutually exclusive `<select>` element that controls which booking data appears in the
 generated JSON. This is a UI-only concept — it has no persistent representation in the
 JSON schema beyond presence/absence of `bookingUrl`.
 
 ### States
 
-| Radio Value | Label | Default | bookingUrl in JSON | booking in JSON |
+| Select Value | Label | Default | bookingUrl in JSON | booking in JSON |
 |-------------|-------|---------|-------------------|-----------------|
 | `callToBook` | Call to Book | ✅ Yes | Never emitted | Never emitted |
 | `bookOnline` | Book Online | No | Emitted if non-empty | Never emitted |
@@ -80,14 +80,14 @@ JSON schema beyond presence/absence of `bookingUrl`.
 ### State Transitions
 
 ```
-Initial load → "Call to Book" selected, URL input hidden
+Initial load → "Call to Book" selected, URL input disabled (visible, grayed)
     │
     ├─ User selects "Book Online"
-    │       → URL input appears (display: block)
+    │       → URL input enabled (white background, 0.25s transition)
     │       → Any previously entered URL is restored
     │
     └─ User selects "Call to Book"
-            → URL input is hidden (display: none)
+            → URL input disabled (gray background, muted border)
             → URL field value is PRESERVED (not cleared)
             → JSON output will NOT include bookingUrl
 ```
