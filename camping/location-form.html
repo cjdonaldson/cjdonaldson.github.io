@@ -74,6 +74,18 @@
             border-color: #667eea;
         }
 
+        #bookingUrl:disabled {
+            background-color: #f0f0f0;
+            border-color: #d0d0d0;
+            color: #bbb;
+            cursor: not-allowed;
+        }
+
+        #bookingUrl:not(:disabled) {
+            background-color: #fff;
+            transition: background-color 0.25s;
+        }
+
         textarea {
             resize: vertical;
             min-height: 80px;
@@ -129,10 +141,7 @@
             min-width: 0;
         }
 
-        .identity-fields input {
-            padding: 0.5em; /* kept for specificity over any legacy overrides */
-        }
-
+        .addr-row input[name="siteMap"]   { width: 18em; }
         .addr-row input[name="city"]      { width: 10em; }
         .addr-row input[name="state"]     { width: 3em; }
         .addr-row input[name="zip"]       { width: 5em; }
@@ -141,7 +150,7 @@
         .addr-row input[name="phone"]     { width: 8em; }
         .addr-row input[name="email"]     { width: 32em; }
         .addr-row input[name="emailName"] { width: 10em; }
-        .addr-row input[name="bookingUrl"] { width: 30em; }
+        .addr-row input[name="bookingUrl"] { width: 42em; }
 
         .array-input {
             margin-bottom: 10px;
@@ -235,24 +244,41 @@
         <p class="subtitle">Fill out the details for a new camping location</p>
 
         <form id="locationForm">
-            <div class="section-header">Identity</div>
+            <div class="section-header">Overview</div>
 
-            <div class="identity-fields">
-                <div class="form-row" style="grid-template-columns: 3fr 1fr">
-                    <div class="form-group">
-                        <label for="name">Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="emoji">Emoji</label>
-                        <input type="text" id="emoji" name="emoji" placeholder="🏕️" maxlength="2">
-                        <div class="hint">Single emoji character</div>
-                    </div>
-                </div>
-
+            <div class="form-row" style="grid-template-columns: 3fr 1fr">
                 <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="emoji">Emoji</label>
+                    <input type="text" id="emoji" name="emoji" placeholder="🏕️" maxlength="2">
+                </div>
+            </div>
+
+            <div class="addr-row">
+                <div class="addr-street">
                     <label for="url">Website URL *</label>
                     <input type="url" id="url" name="url" required placeholder="https://example.com">
+                </div>
+                <div>
+                    <label for="siteMap">Site Map</label>
+                    <input type="text" id="siteMap" name="siteMap" placeholder="./site-map/LocationName.pdf">
+                </div>
+            </div>
+
+            <div class="addr-row">
+                <div>
+                    <label for="bookingMethod">Reservation</label>
+                    <select id="bookingMethod" name="bookingMethod" onchange="updateBookingVisibility()">
+                        <option value="callToBook">Call to Book</option>
+                        <option value="bookOnline">Book Online</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="bookingUrl">&nbsp;</label>
+                    <input type="url" id="bookingUrl" name="bookingUrl" placeholder="https://..." disabled>
                 </div>
             </div>
 
@@ -314,29 +340,6 @@
                 <input type="text" id="hours" name="hours" placeholder="Mon-Fri 8am-8pm | Sat-Sun 9:30am-6pm">
             </div>
 
-            <div class="section-header">Web &amp; Resources</div>
-
-            <div class="form-group">
-                <label for="siteMap">Site Map Path</label>
-                <input type="text" id="siteMap" name="siteMap" placeholder="./site-map/LocationName.pdf">
-            </div>
-
-            <div class="section-header">Booking</div>
-
-            <div class="addr-row">
-                <div>
-                    <label for="bookingMethod">Booking Method</label>
-                    <select id="bookingMethod" name="bookingMethod" onchange="updateBookingVisibility()">
-                        <option value="callToBook">Call to Book</option>
-                        <option value="bookOnline">Book Online</option>
-                    </select>
-                </div>
-                <div id="bookingUrlGroup" style="display: none">
-                    <label for="bookingUrl">Booking URL</label>
-                    <input type="url" id="bookingUrl" name="bookingUrl" placeholder="https://...">
-                </div>
-            </div>
-
             <div class="section-header">Additional Details</div>
 
             <div class="form-group">
@@ -380,8 +383,8 @@
 
     <script>
         function updateBookingVisibility() {
-            const group = document.getElementById('bookingUrlGroup');
-            group.style.display = document.getElementById('bookingMethod').value === 'bookOnline' ? '' : 'none';
+            const urlInput = document.getElementById('bookingUrl');
+            urlInput.disabled = document.getElementById('bookingMethod').value !== 'bookOnline';
         }
 
         document.getElementById('locationForm').addEventListener('submit', function(e) {
@@ -413,7 +416,7 @@
             const optionalFields = [
                 'phone', 'email', 'emailName',
                 'hours', 'siteMap',
-                'season', 'distance'
+                'season', 'distances'
             ];
 
             optionalFields.forEach(field => {
@@ -425,7 +428,7 @@
 
             // Booking URL (only when Book Online is active and non-empty)
             if (document.getElementById('bookingMethod').value === 'bookOnline') {
-                const bUrl = formData.get('bookingUrl')?.trim();
+                const bUrl = document.getElementById('bookingUrl').value.trim();
                 if (bUrl) location.bookingUrl = bUrl;
             }
 
@@ -477,7 +480,7 @@
             document.getElementById('output').classList.remove('show');
             document.getElementById('bookingMethod').value = 'callToBook';
             document.getElementById('bookingUrl').value = '';
-            updateBookingVisibility();
+            document.getElementById('bookingUrl').disabled = true;
         }
     </script>
 </body>

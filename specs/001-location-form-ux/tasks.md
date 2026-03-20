@@ -121,8 +121,8 @@ description: "Task list for Location Form UX Improvements"
 
 **Purpose**: Final verification spanning all four user stories after all phases are complete.
 
-- [ ] T016 [P] Perform complete manual browser review of camping/location-form.html — verify all seven quickstart scenarios: (1) section headers in correct order Identity→Additional Details; (2) name/emoji, city/state/zip, phone/email render as multi-column rows at desktop width; (3) all multi-column rows collapse to single-column below 400px; (4) zero "(optional)" text visible on the page; (5) booking radio default + show/hide + URL preservation + JSON output for all three states; (6) Clear Form resets all fields including booking radio to "Call to Book" with URL hidden; (7) fully-filled form JSON contains all required keys, no `booking` key, no spurious keys
 - [X] T015 [P] Verify the `<style>` block in camping/location-form.html has no remaining dead CSS: confirm `.optional` rule is gone (T006), `.coords-group` rule is intact and unchanged, `.form-row` and its child/media rules are present (T002)
+- [X] T016 [P] Perform complete manual browser review of camping/location-form.html — verify all seven quickstart scenarios: (1) section headers in correct order Identity→Additional Details; (2) name/emoji, city/state/zip, phone/email render as multi-column rows at desktop width; (3) all multi-column rows collapse to single-column below 400px; (4) zero "(optional)" text visible on the page; (5) booking radio default + show/hide + URL preservation + JSON output for all three states; (6) Clear Form resets all fields including booking radio to "Call to Book" with URL hidden; (7) fully-filled form JSON contains all required keys, no `booking` key, no spurious keys
 
 ---
 
