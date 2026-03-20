@@ -6,6 +6,7 @@
       "open": true,
       "locations": [
         {
+          "id": "5c4ce2cb",
           "name": "Royal Coachman",
           "emoji": "⛱️",
           "url": "https://rvonthego.com/florida/royal-coachman-rv-resort/",
@@ -21,6 +22,7 @@
           "hours": "Mon-Fri 8am-8pm | Sat-Sun 9:30am-6pm"
         },
         {
+          "id": "0450fbdd",
           "name": "Papa Lew's",
           "emoji": "🏡",
           "url": "https://maps.app.goo.gl/kjcHvrb7m72eqeDa8",
@@ -34,6 +36,7 @@
           "pricing": [ { "fhu back-in": "0.00" } ]
         },
         {
+          "id": "5fd7359d",
           "name": "Flywheeler Park",
           "emoji": "🚜",
           "url": "https://floridaflywheelers.org/",
@@ -57,6 +60,7 @@
       "open": false,
       "locations": [
         {
+          "id": "7e1e55c0",
           "name": "Camping World Roanoke",
           "emoji": "🚐",
           "url": "https://rv.campingworld.com/dealer/roanoke-virginia/rv-parts-supplies",
@@ -68,6 +72,7 @@
           "features": ["RV propane fill", "RV Dump Station"]
         },
         {
+          "id": "a1122425",
           "name": "Smith Mountain Campground",
           "emoji": "⛰️",
           "url": "http://smithmountaincampground.com/",
@@ -86,6 +91,7 @@
           "distances": [ "425 mi • 7 hrs from 18077" ]
         },
         {
+          "id": "cf0b163f",
           "name": "Indian Heritage RV Park",
           "emoji": "🪶",
           "url": "https://indianheritagervpark.net/",
@@ -104,6 +110,7 @@
           "distances": [ "445 mi • 7.5 hrs from 18077" ]
         },
         {
+          "id": "1a3f891d",
           "name": "Hidden Acres Family Campground",
           "emoji": "?",
           "url": "https://campgrounds.rvlife.com/regions/virginia/milford/hidden-acres-family-campground-3024",
@@ -119,6 +126,7 @@
           "distances": [ "296 mi • 5.0 hrs from 18077" ]
         },
         {
+          "id": "7d5692f4",
           "name": "South 40 Campground",
           "emoji": "?",
           "url": "https://www.south40camping.com/",
@@ -136,6 +144,7 @@
           "notes": ["Good Sam discount"]
         },
         {
+          "id": "37ffd3de",
           "name": "Shenandoah River State Park",
           "emoji": "x",
           "url": "https://www.reservevaparks.com/Web/Default.aspx",
@@ -151,6 +160,7 @@
           "pricing": [ { "e / w": "49.00" } ]
         },
         {
+          "id": "1092cc3b",
           "name": "Cattail Creek Campground",
           "emoji": "?",
           "url": "https://www.cattailcreekcampground.com/",
@@ -177,6 +187,7 @@
       "open": false,
       "locations": [
         {
+          "id": "bf531552",
           "name": "Spacious Skies Sandy Run",
           "emoji": "🌊",
           "url": "https://spaciousskiescampgrounds.com/sandy-run/",
@@ -200,6 +211,7 @@
       "open": false,
       "locations": [
         {
+          "id": "926cae37",
           "name": "Florence RV Park",
           "emoji": "🌊",
           "url": "https://www.florencervpark.com/",
@@ -223,6 +235,7 @@
       "open": false,
       "locations": [
         {
+          "id": "cce6e85c",
           "name": "Spacious Skies Campgrounds Savannah",
           "emoji": "🌌",
           "url": "https://spaciousskiescampgrounds.com/savannah-oaks/",
@@ -244,6 +257,7 @@
           "notes": ["overnight sites near office", "slight I95 noise"]
         },
         {
+          "id": "1f25e7ca",
           "name": "Country Oaks Campground & RV",
           "emoji": "🌲",
           "url": "http://www.countryoaksrv.com/",
@@ -263,6 +277,7 @@
           ]
         },
         {
+          "id": "1d3b7719",
           "name": "Eagle's Roost RV Resort",
           "emoji": "🦅",
           "url": "https://eaglesroostrvresort.com/",
@@ -283,6 +298,7 @@
           ]
         },
         {
+          "id": "674cc343",
           "name": "Deep Bend Landing",
           "emoji": "?",
           "url": "https://www.deepbendlanding.com/",
@@ -306,6 +322,7 @@
           "features": ["Propane fill available"]
         },
         {
+          "id": "c8474e10",
           "name": "Lake Harmony RV Park",
           "emoji": "?",
           "url": "https://lakeharmonypark.com/",
@@ -325,6 +342,7 @@
           ]
         },
         {
+          "id": "8b6ab13e",
           "name": "Okefenokee RV Park",
           "emoji": "?",
           "url": "http://okefenokeervpark.com/",
@@ -340,6 +358,7 @@
           "email": "okefenokeervpark@yahoo.com"
         },
         {
+          "id": "90817842",
           "name": "Jenny Ridge RV Park",
           "emoji": "x",
           "url": "https://www.jennyridgerv.com",
@@ -360,6 +379,7 @@
           ]
         },
         {
+          "id": "62369192",
           "name": "McIntosh Lake RV Park",
           "emoji": "?",
           "url": "http://www.mcintoshlakervpark.com",
@@ -382,6 +402,7 @@
       "open": false,
       "locations": [
         {
+          "id": "413a7acf",
           "name": "Riegelsville",
           "emoji": "🏠",
           "url": "https://maps.app.goo.gl/6Poc8G2q1e9171Pr5",
@@ -405,6 +426,7 @@
           ]
         },
         {
+          "id": "d1bac0ce",
           "name": "Cabela's Hamburg",
           "emoji": "🎣",
           "url": "https://stores.cabelas.com/us/pa/hamburg/100-cabela-drive.html?y_source=1_Mzk4NjcxMi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
@@ -419,6 +441,7 @@
           "features": ["RV Dump Station"]
         },
         {
+          "id": "9bb9e11b",
           "name": "Camping World Hamburg",
           "emoji": "🚐",
           "url": "https://rv.campingworld.com/dealer/hamburg-pennsylvania",
