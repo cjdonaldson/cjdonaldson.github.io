@@ -48,7 +48,7 @@ async function loadAndRenderLocations() {
                     detailsList.appendChild(li);
                 }
 
-                if (location.phone || location.email || location.contactUrl) {
+                if (location.phone || location.email) {
                     const li = document.createElement('li');
                     let content = '';
 
@@ -60,23 +60,18 @@ async function loadAndRenderLocations() {
                         const emailDisplay = location.emailName || location.email;
                         if (content) content += ' | ';
                         content += `📧 <a href="mailto:${location.email}">${emailDisplay}</a>`;
-                    } else if (location.contactUrl) {
-                        if (content) content += ' | ';
-                        content += `📧 <a href="${location.contactUrl}">contact us</a>`;
                     }
 
                     li.innerHTML = content;
                     detailsList.appendChild(li);
                 }
 
-                if (location.bookingUrl || location.booking || location.siteMap) {
+                if (location.bookingUrl || location.siteMap) {
                     const li = document.createElement('li');
                     let content = '';
 
                     if (location.bookingUrl) {
                         content += `🎫 <a href="${location.bookingUrl}">book online</a>`;
-                    } else if (location.booking) {
-                        content += `🎫 ${location.booking}`;
                     }
 
                     if (location.siteMap) {

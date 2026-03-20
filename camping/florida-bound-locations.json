@@ -108,7 +108,6 @@
           "emoji": "?",
           "url": "https://campgrounds.rvlife.com/regions/virginia/milford/hidden-acres-family-campground-3024",
           "mapUrl": "https://maps.app.goo.gl/Nr784GFeYGmLqHso7",
-          "booking": "Call to book",
           "phone": "804-633-7592",
           "address": "17391 Richmond Turnpike",
           "city": "Milford",
@@ -125,7 +124,6 @@
           "url": "https://www.south40camping.com/",
           "siteMap": "./site-map/south40.png",
           "mapUrl": "https://maps.app.goo.gl/X7xWjdtvLen4oSie7",
-          "booking": "Call to book",
           "phone": "804-732-8345",
           "address": "2809 Courtland Rd",
           "city": "Petersburg",
@@ -151,7 +149,7 @@
           "zip": "22610",
           "coords": [ 38.8489, -78.3104 ],
           "pricing": [ { "e / w": "49.00" } ]
-          }
+        },
         {
           "name": "Cattail Creek Campground",
           "emoji": "?",
@@ -207,7 +205,6 @@
           "url": "https://www.florencervpark.com/",
           "siteMap": "./site-map/FlorenceRvPark.png",
           "mapUrl": "https://maps.app.goo.gl/N5DevLCWijEZTWgd9",
-          "booking": "call to book",
           "phone": "843-665-7007",
           "address": "1115 E. Campground Road",
           "city": "Florence",
@@ -251,7 +248,6 @@
           "emoji": "🌲",
           "url": "http://www.countryoaksrv.com/",
           "mapUrl": "https://maps.app.goo.gl/EQ4GcegwBeZhHz119",
-          "booking": "Call to book",
           "phone": "+1-912-729-6212",
           "address": "2456 Scrubby Bluff Rd",
           "city": "Kingsland",
@@ -341,7 +337,6 @@
           "coords": [ 30.8515, -82.0191 ],
           "pricing": [ { "fhu back-in": "45.00" } ],
           "notes": ["small park", "frieght train whistle all hours"],
-          "booking": "call to book",
           "email": "okefenokeervpark@yahoo.com"
         },
         {
