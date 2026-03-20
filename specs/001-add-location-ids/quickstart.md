@@ -83,9 +83,7 @@ Run with: `node --input-type=module < script.mjs`
 Run the required validation script from the repository root:
 
 ```bash
-./validate-ids.sh
-# or directly:
-node validate-ids.js camping/florida-bound-locations.json
+./validate-ids.js camping/florida-bound-locations.json
 ```
 
 The script exits `0` on success. On any violation it exits non-zero and prints a
@@ -145,4 +143,4 @@ All three should return `true`. Note: these one-liners do **not** check for stal
 | `62369192` | McIntosh Lake RV Park | GA |
 | `413a7acf` | Riegelsville | PA |
 | `d1bac0ce` | Cabela's Hamburg | PA |
-| `9bb9e11b` | Camping World Hamburg | PA |
+| `c0a975b4` | Camping World Hamburg | PA |

@@ -23,7 +23,7 @@ be committed. See `research.md` for details.
 **Language/Version**: JSON (data file), vanilla JavaScript (formula — browser-native only)
 **Primary Dependencies**: `crypto.subtle.digest` (browser) / Node.js `crypto` module (tooling) — zero external libraries
 **Content Sources**: `camping/florida-bound-locations.json` (23 locations across 6 states)
-**Testing/Validation**: Manual spot-check in browser console; required Node.js validation script (`validate-ids.js` at repo root, run via `validate-ids.sh`) committed alongside the data file, enforcing uniqueness, format, and ID–coords consistency (stale-ID detection exits non-zero)
+**Testing/Validation**: Manual spot-check in browser console; required Node.js validation script (`validate-ids.js` at repo root) committed alongside the data file, enforcing uniqueness, format, and ID–coords consistency (stale-ID detection exits non-zero)
 **Target Platform**: GitHub Pages static site; any modern browser supporting `crypto.subtle`
 **Project Type**: Static data file update (camping content)
 **Performance Goals**: No runtime cost — IDs are pre-computed and stored in the JSON file
@@ -85,8 +85,9 @@ camping/
 ├── florida-bound-locations.json   # ← only data file changed by this feature
 └── site-map/
 
-validate-ids.js    # Required deliverable — validates uniqueness, format, and ID–coords consistency
-validate-ids.sh    # Bash wrapper: node validate-ids.js camping/florida-bound-locations.json
+validate-ids.js        # Required deliverable — validates uniqueness, format, and ID–coords consistency
+location-id-gen.js     # Required deliverable — generates a stable ID from a coord string
+location-id-add.js     # Required deliverable — adds missing IDs to locations with valid coords
 ```
 
 **Structure Decision**: Single-file data update within the existing

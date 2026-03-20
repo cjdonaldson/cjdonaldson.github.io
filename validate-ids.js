@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * location-validate.js
+ * validate-ids.js
  *
  * Validates a locations JSON file.
  *
@@ -18,7 +18,7 @@
  *
  * Exits 0 on full pass, non-zero on any failure.
  *
- * Usage: node location-validate.js <path/to/file.json>
+ * Usage: ./validate-ids.js <path/to/file.json>
  */
 
 const fs = require('fs');
@@ -26,7 +26,7 @@ const crypto = require('crypto');
 
 const dataPath = process.argv[2];
 if (!dataPath) {
-  console.error('Usage: node location-validate.js <path/to/locations.json>');
+  console.error('Usage: ./validate-ids.js <path/to/locations.json>');
   process.exit(1);
 }
 
@@ -134,10 +134,10 @@ const locationCount = data.states.reduce(
 );
 
 if (errors.length === 0) {
-  console.log(`✓ location-validate: ${locationCount} locations checked, all IDs valid`);
+  console.log(`✓ validate-ids: ${locationCount} locations checked, all IDs valid`);
   process.exit(0);
 } else {
-  console.error(`✗ location-validate: ${errors.length} error(s) in ${locationCount} locations:`);
+  console.error(`✗ validate-ids: ${errors.length} error(s) in ${locationCount} locations:`);
   errors.forEach(e => console.error(`  - ${e}`));
   process.exit(1);
 }

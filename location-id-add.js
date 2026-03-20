@@ -6,7 +6,7 @@ const { generateLocationId } = require('./location-id-gen.js');
 
 const dataPath = process.argv[2];
 if (!dataPath) {
-  console.error('Usage: node location-id-add.js <path/to/locations.json>');
+  console.error('Usage: ./location-id-add.js <path/to/locations.json>');
   process.exit(1);
 }
 

@@ -42,14 +42,14 @@ with fewer or more than 4 decimal places is a data error.
 **Rationale**: Standardising on 4 decimal places eliminates any mismatch between the raw JSON
 text and the formula input string. `toFixed(4)` is consistent across all JavaScript runtimes
 (browser and Node.js), so the formula is portable and unambiguous. Three locations in the file
-already carry coordinates with trailing zeros written as 4 decimal places; these values are
-correct as-is and must not be altered:
+had coordinates written with only 3 decimal places; these were corrected to 4 decimal places
+during Phase 2 (T002–T004) before IDs were assigned:
 
-| Location | State | `coords` (as stored) | Formula input string |
-|----------|-------|----------------------|----------------------|
-| Cattail Creek Campground | VA | `[36.5964, -77.5850]` | `"36.5964,-77.5850"` |
-| Spacious Skies Sandy Run | NC | `[34.8396, -78.9830]` | `"34.8396,-78.9830"` |
-| Country Oaks Campground & RV | GA | `[30.7997, -81.6890]` | `"30.7997,-81.6890"` |
+| Location | State | Coord before fix | Coord after fix |
+|----------|-------|-----------------|-----------------|
+| Cattail Creek Campground | VA | `-77.585` | `-77.5850` |
+| Spacious Skies Sandy Run | NC | `-78.983` | `-78.9830` |
+| Country Oaks Campground & RV | GA | `-81.689` | `-81.6890` |
 
 **Alternatives considered**: Using raw template-literal interpolation `${lat},${lng}` (rejected —
 JavaScript drops trailing zeros, creating a mismatch between the JSON text and the formula input
@@ -87,7 +87,7 @@ matches the exact collision edge case identified in the spec.
 | Location | Old coords | Corrected coords | New `id` |
 |---|---|---|---|
 | Cabela's Hamburg | `[40.5514, -75.9386]` | `[40.5577, -76.0019]` | `d1bac0ce` |
-| Camping World Hamburg | `[40.5514, -75.9386]` | `[40.5607, -75.9961]` | `9bb9e11b` |
+| Camping World Hamburg | `[40.5514, -75.9386]` | `[40.5606, -75.9961]` | `c0a975b4` |
 
 All 23 location IDs are now unique.
 
@@ -119,4 +119,4 @@ All 23 location IDs are now unique.
 | `62369192` | McIntosh Lake RV Park | GA | `[31.8646, -81.5028]` | `"31.8646,-81.5028"` |
 | `413a7acf` | Riegelsville | PA | `[40.5936, -75.1886]` | `"40.5936,-75.1886"` |
 | `d1bac0ce` | Cabela's Hamburg | PA | `[40.5577, -76.0019]` | `"40.5577,-76.0019"` |
-| `9bb9e11b` | Camping World Hamburg | PA | `[40.5607, -75.9961]` | `"40.5607,-75.9961"` |
+| `c0a975b4` | Camping World Hamburg | PA | `[40.5606, -75.9961]` | `"40.5606,-75.9961"` |

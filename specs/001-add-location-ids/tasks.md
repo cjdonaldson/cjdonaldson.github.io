@@ -3,7 +3,7 @@
 **Input**: Design documents from `specs/001-add-location-ids/`
 **Prerequisites**: plan.md ✅ · spec.md ✅ · data-model.md ✅ · research.md ✅ · quickstart.md ✅
 
-**Scope**: `camping/florida-bound-locations.json` (data file only) + `validate-ids.js` / `validate-ids.sh` (repo root). No changes to any `.js` runtime file; no planner page edits.
+**Scope**: `camping/florida-bound-locations.json` (data file only) + `validate-ids.js`, `location-id-gen.js`, `location-id-add.js` (repo root). No changes to any camping planner runtime `.js` file; no planner page edits.
 
 **No tests requested**: Validation is via the required `validate-ids.js` script (FR-005) and manual browser-console spot-checks (SC-004). No separate test files.
 
@@ -21,7 +21,7 @@
 
 **Purpose**: Confirm the JSON file is in a known state before any edits.
 
-- [ ] T001 Audit `camping/florida-bound-locations.json`: run `node -e "const d=require('./camping/florida-bound-locations.json'); let n=0; d.states.forEach(s=>s.locations.forEach(l=>{n++;const bad=l.coords.some(c=>!/^-?\d+\.\d{4}$/.test(c.toFixed(4)));console.log(n,l.name,l.coords,bad?'PRECISION_BAD':'ok',Object.keys(l)[0]==='id'?'HAS_ID':'NO_ID');})); console.log('Total:',n);"` and confirm: 23 locations total, no `id` fields present, Hamburg PA has corrected coords (`[40.5577, -76.0019]` and `[40.5607, -75.9961]`), and identify which coords have fewer than 4 decimal places in the raw source
+- [x] T001 Audit `camping/florida-bound-locations.json`: run `node -e "const d=require('./camping/florida-bound-locations.json'); let n=0; d.states.forEach(s=>s.locations.forEach(l=>{n++;const bad=l.coords.some(c=>!/^-?\d+\.\d{4}$/.test(c.toFixed(4)));console.log(n,l.name,l.coords,bad?'PRECISION_BAD':'ok',Object.keys(l)[0]==='id'?'HAS_ID':'NO_ID');})); console.log('Total:',n);"` and confirm: 23 locations total, no `id` fields present, Hamburg PA has corrected coords (`[40.5577, -76.0019]` and `[40.5606, -75.9961]`), and identify which coords have fewer than 4 decimal places in the raw source
 
 ---
 
@@ -41,9 +41,9 @@
 
 > **Note**: `toFixed(4)` on the parsed number already produces the correct formula input (e.g. `(-77.585).toFixed(4)` → `"-77.5850"`), so the pre-computed IDs in `research.md` are valid. The fix here is a source-format correction only — no ID values change.
 
-- [ ] T002 In `camping/florida-bound-locations.json`, change Cattail Creek Campground's second coord from `-77.585` to `-77.5850` (add trailing zero so raw JSON text has exactly 4 decimal places)
-- [ ] T003 In `camping/florida-bound-locations.json`, change Spacious Skies Sandy Run's second coord from `-78.983` to `-78.9830` (add trailing zero so raw JSON text has exactly 4 decimal places)
-- [ ] T004 In `camping/florida-bound-locations.json`, change Country Oaks Campground & RV's second coord from `-81.689` to `-81.6890` (add trailing zero so raw JSON text has exactly 4 decimal places)
+- [x] T002 In `camping/florida-bound-locations.json`, change Cattail Creek Campground's second coord from `-77.585` to `-77.5850` (add trailing zero so raw JSON text has exactly 4 decimal places)
+- [x] T003 In `camping/florida-bound-locations.json`, change Spacious Skies Sandy Run's second coord from `-78.983` to `-78.9830` (add trailing zero so raw JSON text has exactly 4 decimal places)
+- [x] T004 In `camping/florida-bound-locations.json`, change Country Oaks Campground & RV's second coord from `-81.689` to `-81.6890` (add trailing zero so raw JSON text has exactly 4 decimal places)
 
 **Checkpoint**: All 23 coords now have exactly 4 decimal places. Validate with:
 ```bash
@@ -94,7 +94,7 @@ print('All coords OK' if ok else 'FAIL')
 | `62369192` | McIntosh Lake RV Park | GA | `[31.8646, -81.5028]` |
 | `413a7acf` | Riegelsville | PA | `[40.5936, -75.1886]` |
 | `d1bac0ce` | Cabela's Hamburg | PA | `[40.5577, -76.0019]` |
-| `9bb9e11b` | Camping World Hamburg | PA | `[40.5607, -75.9961]` |
+| `c0a975b4` | Camping World Hamburg | PA | `[40.5606, -75.9961]` |
 
 **Key-order rule** (FR-002): `id` MUST be the literal first key in each object. Example of correct form:
 ```json
@@ -108,12 +108,12 @@ print('All coords OK' if ok else 'FAIL')
 
 ### Implementation for User Story 1
 
-- [ ] T005 [US1] In `camping/florida-bound-locations.json`, insert `"id": "5c4ce2cb"` as the first key in Royal Coachman, `"id": "0450fbdd"` in Papa Lew's, and `"id": "5fd7359d"` in Flywheeler Park (all 3 Florida locations)
-- [ ] T006 [US1] In `camping/florida-bound-locations.json`, insert id fields for all 7 Virginia locations: Camping World Roanoke → `7e1e55c0`, Smith Mountain Campground → `a1122425`, Indian Heritage RV Park → `cf0b163f`, Hidden Acres Family Campground → `1a3f891d`, South 40 Campground → `7d5692f4`, Shenandoah River State Park → `37ffd3de`, Cattail Creek Campground → `1092cc3b`; confirm `id` is first key in each object
-- [ ] T007 [US1] In `camping/florida-bound-locations.json`, insert id fields for NC and SC locations: Spacious Skies Sandy Run → `bf531552`, Florence RV Park → `926cae37`; confirm `id` is first key in each object
-- [ ] T008 [US1] In `camping/florida-bound-locations.json`, insert id fields for all 8 Georgia locations: Spacious Skies Campgrounds Savannah → `cce6e85c`, Country Oaks Campground & RV → `1f25e7ca`, Eagle's Roost RV Resort → `1d3b7719`, Deep Bend Landing → `674cc343`, Lake Harmony RV Park → `c8474e10`, Okefenokee RV Park → `8b6ab13e`, Jenny Ridge RV Park → `90817842`, McIntosh Lake RV Park → `62369192`; confirm `id` is first key in each object
-- [ ] T009 [US1] In `camping/florida-bound-locations.json`, insert id fields for all 3 Pennsylvania locations: Riegelsville → `413a7acf`, Cabela's Hamburg → `d1bac0ce`, Camping World Hamburg → `9bb9e11b`; confirm `id` is first key in each object
-- [ ] T010 [US1] Spot-check 3 IDs via browser DevTools console (F12 → Console) using the formula from `specs/001-add-location-ids/quickstart.md`: verify Royal Coachman `[27.1392, -82.4526]` → `5c4ce2cb`, Cattail Creek `[36.5964, -77.5850]` → `1092cc3b`, and Cabela's Hamburg `[40.5577, -76.0019]` → `d1bac0ce`; all three must match their stored values
+- [x] T005 [US1] In `camping/florida-bound-locations.json`, insert `"id": "5c4ce2cb"` as the first key in Royal Coachman, `"id": "0450fbdd"` in Papa Lew's, and `"id": "5fd7359d"` in Flywheeler Park (all 3 Florida locations)
+- [x] T006 [US1] In `camping/florida-bound-locations.json`, insert id fields for all 7 Virginia locations: Camping World Roanoke → `7e1e55c0`, Smith Mountain Campground → `a1122425`, Indian Heritage RV Park → `cf0b163f`, Hidden Acres Family Campground → `1a3f891d`, South 40 Campground → `7d5692f4`, Shenandoah River State Park → `37ffd3de`, Cattail Creek Campground → `1092cc3b`; confirm `id` is first key in each object
+- [x] T007 [US1] In `camping/florida-bound-locations.json`, insert id fields for NC and SC locations: Spacious Skies Sandy Run → `bf531552`, Florence RV Park → `926cae37`; confirm `id` is first key in each object
+- [x] T008 [US1] In `camping/florida-bound-locations.json`, insert id fields for all 8 Georgia locations: Spacious Skies Campgrounds Savannah → `cce6e85c`, Country Oaks Campground & RV → `1f25e7ca`, Eagle's Roost RV Resort → `1d3b7719`, Deep Bend Landing → `674cc343`, Lake Harmony RV Park → `c8474e10`, Okefenokee RV Park → `8b6ab13e`, Jenny Ridge RV Park → `90817842`, McIntosh Lake RV Park → `62369192`; confirm `id` is first key in each object
+- [x] T009 [US1] In `camping/florida-bound-locations.json`, insert id fields for all 3 Pennsylvania locations: Riegelsville → `413a7acf`, Cabela's Hamburg → `d1bac0ce`, Camping World Hamburg → `c0a975b4`; confirm `id` is first key in each object
+- [x] T010 [US1] Spot-check 3 IDs via browser DevTools console (F12 → Console) using the formula from `specs/001-add-location-ids/quickstart.md`: verify Royal Coachman `[27.1392, -82.4526]` → `5c4ce2cb`, Cattail Creek `[36.5964, -77.5850]` → `1092cc3b`, and Cabela's Hamburg `[40.5577, -76.0019]` → `d1bac0ce`; all three must match their stored values
 
 **Checkpoint**: US1 complete — 23 location objects each have `id` as their first key, all values are 8 lowercase hex chars, no duplicates. Independently verifiable by opening the JSON in any editor.
 
@@ -121,17 +121,17 @@ print('All coords OK' if ok else 'FAIL')
 
 ## Phase 4: User Story 2 — Validation Script (Priority: P2)
 
-**Goal**: A Node.js script (`validate-ids.js`) and bash wrapper (`validate-ids.sh`) at the repo root allow any developer to verify the data file in one command. The script enforces FR-005 (uniqueness + format + stale-ID detection).
+**Goal**: A Node.js script (`validate-ids.js`) at the repo root allows any developer to verify the data file in one command. The script enforces FR-005 (uniqueness + format + stale-ID detection).
 
-**Independent Test**: Run `./validate-ids.sh` from the repo root and confirm exit code 0 with a success summary. Then run it against a deliberately corrupted copy (one id changed) and confirm exit non-zero with a human-readable error naming the affected location.
+**Independent Test**: Run `./validate-ids.js camping/florida-bound-locations.json` from the repo root and confirm exit code 0 with a success summary. Then run it against a deliberately corrupted copy (one id changed) and confirm exit non-zero with a human-readable error naming the affected location.
 
 ### Implementation for User Story 2
 
-- [ ] T011 [US2] Create `validate-ids.js` at the repository root as a Node.js CommonJS script (no `"type": "module"` in package.json — use `require`/`createHash` directly or use `.mjs` extension): the script reads the JSON file path from `process.argv[2]` (defaulting to `'camping/florida-bound-locations.json'` if omitted); walks all nested objects that have a `coords` field; for each such object performs four checks — (1) `id` field exists, (2) `id` matches `/^[0-9a-f]{8}$/`, (3) the computed value `require('crypto').createHash('sha256').update(\`${coords[0].toFixed(4)},${coords[1].toFixed(4)}\`, 'utf8').digest('hex').slice(0,8)` equals the stored `id` (stale-ID detection), (4) after all locations are collected, all `id` values are unique; on any failure, print a human-readable error identifying the location `name` and the specific problem, then `process.exit(1)`; on success, print `"✓ validate-ids: N locations checked, all IDs valid"` and exit 0
-- [ ] T012 [US2] Create `validate-ids.sh` at the repository root with content: `#!/usr/bin/env bash` + `set -euo pipefail` + `node "$(dirname "$0")/validate-ids.js" "${1:-camping/florida-bound-locations.json}"`; then run `chmod +x validate-ids.sh`
-- [ ] T013 [US2] Run `./validate-ids.sh` from the repository root; confirm the output is `"✓ validate-ids: 23 locations checked, all IDs valid"` and the exit code is 0; if non-zero, inspect the error message, correct the identified issue in `camping/florida-bound-locations.json`, and re-run until clean
+- [x] T011 [US2] Create `validate-ids.js` at the repository root as a Node.js CommonJS script with shebang (`#!/usr/bin/env node`); the script reads the JSON file path from `process.argv[2]` (required — exits with usage error if omitted); walks all nested objects that have a `coords` field; for each such object performs four checks — (1) `id` field exists, (2) `id` matches `/^[0-9a-f]{8}$/`, (3) the computed value `require('crypto').createHash('sha256').update(\`${coords[0].toFixed(4)},${coords[1].toFixed(4)}\`, 'utf8').digest('hex').slice(0,8)` equals the stored `id` (stale-ID detection), (4) after all locations are collected, all `id` values are unique; on any failure, print a human-readable error identifying the location `name` and the specific problem, then `process.exit(1)`; on success, print `"✓ validate-ids: N locations checked, all IDs valid"` and exit 0
+- [x] T012 [US2] `chmod +x validate-ids.js` so it can be run as `./validate-ids.js <file>`
+- [x] T013 [US2] Run `./validate-ids.js camping/florida-bound-locations.json` from the repository root; confirm the output is `"✓ validate-ids: 23 locations checked, all IDs valid"` and the exit code is 0; if non-zero, inspect the error message, correct the identified issue in `camping/florida-bound-locations.json`, and re-run until clean
 
-**Checkpoint**: US2 complete — `validate-ids.sh` exits 0 cleanly. Developer can independently reproduce any location's ID by running the formula in a browser console (documented in `quickstart.md`).
+**Checkpoint**: US2 complete — `./validate-ids.js camping/florida-bound-locations.json` exits 0 cleanly. Developer can independently reproduce any location's ID by running the formula in a browser console (documented in `quickstart.md`).
 
 ---
 
@@ -143,7 +143,7 @@ print('All coords OK' if ok else 'FAIL')
 
 ### Implementation for User Story 3
 
-- [ ] T014 [P] [US3] Verify `specs/001-add-location-ids/quickstart.md` is accurate and self-contained: (a) paste the browser console snippet into DevTools and confirm `locationId(27.1392, -82.4526)` returns `5c4ce2cb`; (b) confirm the Node.js snippet produces `5fd7359d` for `[27.7536, -81.7787]`; (c) confirm the "Adding an ID for a New Location" four-step checklist references `validate-ids.sh` as the final verification step; if any discrepancy exists, update `specs/001-add-location-ids/quickstart.md` to match actual behaviour
+- [x] T014 [P] [US3] Verify `specs/001-add-location-ids/quickstart.md` is accurate and self-contained: (a) paste the browser console snippet into DevTools and confirm `locationId(27.1392, -82.4526)` returns `5c4ce2cb`; (b) confirm the Node.js snippet produces `5fd7359d` for `[27.7536, -81.7787]`; (c) confirm the "Adding an ID for a New Location" four-step checklist references `validate-ids.js` as the final verification step; if any discrepancy exists, update `specs/001-add-location-ids/quickstart.md` to match actual behaviour
 
 **Checkpoint**: US3 complete — `quickstart.md` is an accurate, standalone reference for any future maintainer.
 
@@ -153,9 +153,9 @@ print('All coords OK' if ok else 'FAIL')
 
 **Purpose**: End-to-end validation confirming all acceptance criteria are met before committing.
 
-- [ ] T015 [P] Run the three `jq` one-liners from `specs/001-add-location-ids/data-model.md` validation checklist against `camping/florida-bound-locations.json`; confirm all three return `true`: (1) all coords-bearing locations have an `id` field, (2) all `id` values are unique, (3) all `id` values match `/^[0-9a-f]{8}$/`
-- [ ] T016 [P] Verify coordinate precision: run `grep -oP '"coords":\s*\[\K[^\]]+' camping/florida-bound-locations.json` and confirm every numeric value in the output has exactly 4 decimal places (no `-77.585`, `-78.983`, or `-81.689` style values remain)
-- [ ] T017 Run a final end-to-end check: `./validate-ids.sh` exits 0; `node -e "const d=require('./camping/florida-bound-locations.json'); let bad=[]; d.states.forEach(s=>s.locations.forEach(l=>{ if(Object.keys(l)[0]!=='id') bad.push(l.name); })); console.log(bad.length?'FAIL: id not first in: '+bad.join(', '):'OK: id is first key in all 23 locations');"` outputs `OK`; and the total location count is 23
+- [x] T015 [P] Run the three `jq` one-liners from `specs/001-add-location-ids/data-model.md` validation checklist against `camping/florida-bound-locations.json`; confirm all three return `true`: (1) all coords-bearing locations have an `id` field, (2) all `id` values are unique, (3) all `id` values match `/^[0-9a-f]{8}$/`
+- [x] T016 [P] Verify coordinate precision: run `grep -oP '"coords":\s*\[\K[^\]]+' camping/florida-bound-locations.json` and confirm every numeric value in the output has exactly 4 decimal places (no `-77.585`, `-78.983`, or `-81.689` style values remain)
+- [x] T017 Run a final end-to-end check: `./validate-ids.js camping/florida-bound-locations.json` exits 0; `node -e "const d=require('./camping/florida-bound-locations.json'); let bad=[]; d.states.forEach(s=>s.locations.forEach(l=>{ if(Object.keys(l)[0]!=='id') bad.push(l.name); })); console.log(bad.length?'FAIL: id not first in: '+bad.join(', '):'OK: id is first key in all 23 locations');"` outputs `OK`; and the total location count is 23
 
 ---
 
@@ -193,7 +193,7 @@ Phase 1 (Setup)
 |-------|------------------|--------|
 | T002, T003, T004 | ⚠️ Same file — do sequentially in one pass | Avoid merge conflicts |
 | T005 → T009 | ⚠️ Same file — do sequentially in one pass | Avoid merge conflicts |
-| T011, T012 | ✅ Different files | `validate-ids.js` and `validate-ids.sh` are independent |
+| T011, T012 | ✅ Independent steps | `validate-ids.js` creation and `chmod +x` are sequential but fast |
 | T014, T011/T012 | ✅ Different files | `quickstart.md` vs root scripts |
 | T015, T016 | ✅ Read-only checks | No writes; safe to run together |
 
@@ -202,12 +202,12 @@ Phase 1 (Setup)
 ## Parallel Example: User Story 2
 
 ```bash
-# T011 and T012 can be written simultaneously (different files):
-Task A: "Create validate-ids.js at repo root with checks: id presence, format, stale-ID, uniqueness"
-Task B: "Create validate-ids.sh at repo root as chmod+x bash wrapper calling node validate-ids.js"
+# T011: Create validate-ids.js with shebang, all validation checks, required file-path arg
+# T012: chmod +x validate-ids.js
 
-# Then T013 runs after both complete:
-./validate-ids.sh   # → ✓ validate-ids: 23 locations checked, all IDs valid
+# Then T013 runs:
+./validate-ids.js camping/florida-bound-locations.json
+# → ✓ validate-ids: 23 locations checked, all IDs valid
 ```
 
 ---
@@ -245,8 +245,8 @@ T001 → T002 → T003 → T004
 ## Notes
 
 - All 23 IDs are pre-computed in `specs/001-add-location-ids/research.md` — use them verbatim; do not re-derive
-- The Hamburg PA collision is already resolved in the JSON (`[40.5577, -76.0019]` / `[40.5607, -75.9961]`)
+- The Hamburg PA collision is already resolved in the JSON (`[40.5577, -76.0019]` / `[40.5606, -75.9961]`)
 - Coord precision fix (Phase 2) is a source-format correction only; the pre-computed IDs are unaffected
 - **No `.js` runtime files should be touched** — this feature is data-file + validation tooling only (see spec.md Out of Scope)
 - `validate-ids.js` must use Node.js built-in `crypto` only — zero external dependencies
-- Commit both `validate-ids.js` and `validate-ids.sh` together with the updated data file (FR-005)
+- Commit `validate-ids.js`, `location-id-gen.js`, and `location-id-add.js` together with the updated data file (FR-005)

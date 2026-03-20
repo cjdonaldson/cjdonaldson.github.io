@@ -4,7 +4,7 @@
 
 **Feature Branch**: `001-add-location-ids`
 **Created**: 2026-03-19
-**Status**: Draft
+**Status**: Complete
 **Input**: User description: "Add a stable unique id field to each location object in camping/florida-bound-locations.json."
 
 ## User Scenarios & Testing *(mandatory)*
@@ -106,12 +106,12 @@ collide with any existing `id` in the file.
   (latitude and longitude) using the formula defined below.
 - **FR-005**: No two locations in the file MUST share the same `id` value; uniqueness MUST be
   verified before the file is committed. A validation script (`validate-ids.js` at the repository
-  root, executed via `validate-ids.sh`) is a **required deliverable** and MUST be committed
-  alongside the updated data file. The script MUST exit non-zero and print a human-readable error
-  when any uniqueness or format constraint is violated. The script MUST also recompute each
-  location's `id` from its stored `coords` and fail if any stored `id` does not match the
-  recomputed value; a stale `id` (stored value not matching the recomputed value from current
-  `coords`) is a machine-enforced error condition, not a manual concern.
+  root) is a **required deliverable** and MUST be committed alongside the updated data file. The
+  script MUST exit non-zero and print a human-readable error when any uniqueness or format
+  constraint is violated. The script MUST also recompute each location's `id` from its stored
+  `coords` and fail if any stored `id` does not match the recomputed value; a stale `id` (stored
+  value not matching the recomputed value from current `coords`) is a machine-enforced error
+  condition, not a manual concern.
 - **FR-006**: A location object that is missing a `coords` field MUST be treated as a data error
   and MUST NOT receive an `id` until valid coordinates are added.
 - **FR-007**: The ID generation formula MUST be fully reproducible using only browser-native
@@ -178,9 +178,11 @@ SHA-256(`"27.1392,-82.4526"`).
 The following work is explicitly **deferred** to a follow-on feature and is **not** part of this
 feature's acceptance criteria:
 
-- **Planner page JavaScript updates**: No changes to any `.js` file (or any other runtime code)
-  are required or permitted as part of this feature. The `id` field is added to the data file only.
+- **Planner page JavaScript updates**: No changes to any camping planner runtime `.js` file are
+  required or permitted as part of this feature. The `id` field is added to the data file only.
   Consuming the new `id` field in the camping planner page is a separate, follow-on feature.
+  Tooling scripts at the repository root (`validate-ids.js`, `location-id-gen.js`,
+  `location-id-add.js`) are in scope as required supporting deliverables.
 
 ## Assumptions
 
@@ -206,5 +208,5 @@ feature's acceptance criteria:
 ### Session 2026-03-20
 
 - Q: What is the scope boundary for this feature — data file only, or does it include planner page JS updates? → A: Data-file only. Updating the planner page JS is explicitly out of scope and deferred to a follow-on feature.
-- Q: Is a validation script a required deliverable, and where should it live? → A: Yes, required. Script is `validate-ids.js` at the repository root, executed via `validate-ids.sh`; both must be committed alongside the updated data file. FR-005 updated to reflect this.
+- Q: Is a validation script a required deliverable, and where should it live? → A: Yes, required. Script is `validate-ids.js` at the repository root; it must be committed alongside the updated data file. No bash wrapper is needed — the shebang line makes the script directly executable. FR-005 updated to reflect this.
 - Q: When coordinates change after an ID is assigned, how should stale IDs be detected? → A: Validation script detects stale IDs — the script recomputes each `id` from its stored `coords` and exits non-zero if any stored `id` does not match the recomputed value. Stale IDs are a machine-enforced, testable constraint. FR-005, the stale-ID edge case, and plan artifacts updated accordingly.
