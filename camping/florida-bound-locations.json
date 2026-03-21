@@ -65,6 +65,7 @@
           "emoji": "🚐",
           "url": "https://rv.campingworld.com/dealer/roanoke-virginia/rv-parts-supplies",
           "mapUrl": "https://rv.campingworld.com/dealer/roanoke-virginia/rv-parts-supplies",
+          "address": "8198 Gander Way",
           "city": "Roanoke",
           "state": "VA",
           "zip": "24019",
@@ -112,7 +113,6 @@
         {
           "id": "1a3f891d",
           "name": "Hidden Acres Family Campground",
-          "emoji": "?",
           "url": "https://campgrounds.rvlife.com/regions/virginia/milford/hidden-acres-family-campground-3024",
           "mapUrl": "https://maps.app.goo.gl/Nr784GFeYGmLqHso7",
           "phone": "804-633-7592",
@@ -128,7 +128,6 @@
         {
           "id": "7d5692f4",
           "name": "South 40 Campground",
-          "emoji": "?",
           "url": "https://www.south40camping.com/",
           "siteMap": "./site-map/south40.png",
           "mapUrl": "https://maps.app.goo.gl/X7xWjdtvLen4oSie7",
@@ -146,7 +145,6 @@
         {
           "id": "37ffd3de",
           "name": "Shenandoah River State Park",
-          "emoji": "x",
           "url": "https://www.reservevaparks.com/Web/Default.aspx",
           "mapUrl": "https://maps.app.goo.gl/neuzW1XMsFAh9Ums7",
           "bookingUrl": "https://reservevaparks.com/web/",
@@ -162,7 +160,6 @@
         {
           "id": "1092cc3b",
           "name": "Cattail Creek Campground",
-          "emoji": "?",
           "url": "https://www.cattailcreekcampground.com/",
           "siteMap": "./site-map/CattailCreek.pdf",
           "mapUrl": "https://maps.app.goo.gl/Mh1Dtjvjwoy2Xdgw8",
@@ -173,7 +170,7 @@
           "city": "Skippers",
           "state": "VA",
           "zip": "23879",
-          "coords": [ 36.5964, -77.585 ],
+          "coords": [ 36.5964, -77.5850 ],
           "pricing": [ { "fhu pull-through": "35.00" } ],
           "season": "Year round",
           "distances": [ "246 mi • 4.1 hrs from 18077" ],
@@ -199,7 +196,7 @@
           "city": "Fayetteville",
           "state": "NC",
           "zip": "28306",
-          "coords": [ 34.8396, -78.983 ],
+          "coords": [ 34.8396, -78.9830 ],
           "pricing": [ { "fhu back-in": "54.00" } ],
           "distances": [ "536 mi • 8.9 hrs from 18077 via Hamburg, PA" ]
         }
@@ -267,7 +264,7 @@
           "city": "Kingsland",
           "state": "GA",
           "zip": "31548",
-          "coords": [ 30.7997, -81.689 ],
+          "coords": [ 30.7997, -81.6890 ],
           "pricing": [ { "fhu back-in": "0.00" } ],
           "season": "Year round",
           "distances": [
@@ -300,7 +297,6 @@
         {
           "id": "674cc343",
           "name": "Deep Bend Landing",
-          "emoji": "?",
           "url": "https://www.deepbendlanding.com/",
           "siteMap": "./site-map/DeepBendLanding.jpg",
           "mapUrl": "https://maps.app.goo.gl/Mh3rA3MvAYRfvMVi7",
@@ -324,7 +320,6 @@
         {
           "id": "c8474e10",
           "name": "Lake Harmony RV Park",
-          "emoji": "?",
           "url": "https://lakeharmonypark.com/",
           "siteMap": "./site-map/LakeHarmony.jpg",
           "mapUrl": "https://maps.app.goo.gl/rGGvGpxqya89rSB18",
@@ -344,7 +339,6 @@
         {
           "id": "8b6ab13e",
           "name": "Okefenokee RV Park",
-          "emoji": "?",
           "url": "http://okefenokeervpark.com/",
           "mapUrl": "https://maps.app.goo.gl/Ma1NXCW77u1uTYSB8",
           "phone": "912-496-2220",
@@ -360,7 +354,6 @@
         {
           "id": "90817842",
           "name": "Jenny Ridge RV Park",
-          "emoji": "x",
           "url": "https://www.jennyridgerv.com",
           "siteMap": "./site-map/JennyRidgeRvPark.png",
           "mapUrl": "https://maps.app.goo.gl/2rLwa3bmkXJpUoBe8",
@@ -381,7 +374,6 @@
         {
           "id": "62369192",
           "name": "McIntosh Lake RV Park",
-          "emoji": "?",
           "url": "http://www.mcintoshlakervpark.com",
           "siteMap": "./site-map/McIntoshLakeRvPark.jpg",
           "mapUrl": "https://maps.app.goo.gl/wQQqjCymQr17Uf3aA",
@@ -407,6 +399,7 @@
           "emoji": "🏠",
           "url": "https://maps.app.goo.gl/6Poc8G2q1e9171Pr5",
           "mapUrl": "https://maps.app.goo.gl/6Poc8G2q1e9171Pr5",
+          "address": "947 Fairmont Rd",
           "city": "Riegelsville",
           "state": "PA",
           "zip": "18077",

@@ -18,7 +18,7 @@ async function loadAndRenderLocations() {
             const locationDetails = document.createElement('details');
 
             const locationSummary = document.createElement('summary');
-            locationSummary.innerHTML = `${location.emoji} `;
+            locationSummary.innerHTML = location.emoji ? `${location.emoji} ` : '';
 
             if (location.url) {
                 const link = document.createElement('a');

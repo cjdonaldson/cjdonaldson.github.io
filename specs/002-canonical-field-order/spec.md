@@ -4,7 +4,7 @@
 
 **Feature Branch**: `002-canonical-field-order`
 **Created**: 2026-03-20
-**Status**: Draft
+**Status**: Completed
 **Input**: User description: "consistent and meaningful JSON field ordering for location records — formalize the canonical field order model, fix existing records in the JSON data file, and update camping/location-form.html to generate JSON in that order"
 
 ## User Scenarios & Testing *(mandatory)*
