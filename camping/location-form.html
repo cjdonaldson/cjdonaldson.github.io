@@ -387,11 +387,26 @@
             urlInput.disabled = document.getElementById('bookingMethod').value !== 'bookOnline';
         }
 
-        document.getElementById('locationForm').addEventListener('submit', function(e) {
+        document.getElementById('locationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
+            if (!crypto.subtle) {
+                document.getElementById('jsonOutput').textContent = 'ID generation is not supported in this context. Please open this file in Firefox, or serve it over HTTP/HTTPS.';
+                document.getElementById('output').classList.add('show');
+                return;
+            }
+
             const formData = new FormData(e.target);
-            const location = {};
+
+            const lat4 = parseFloat(formData.get('latitude')).toFixed(4);
+            const lng4 = parseFloat(formData.get('longitude')).toFixed(4);
+            const coordStr = `${lat4},${lng4}`;
+            const bytes = new TextEncoder().encode(coordStr);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', bytes);
+            const hexStr = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+            const id = hexStr.slice(0, 8);
+
+            const location = { id };
 
             // Required fields
             location.name = formData.get('name').trim();
@@ -399,8 +414,8 @@
             location.url = formData.get('url').trim();
             location.mapUrl = formData.get('mapUrl').trim();
             location.coords = [
-                parseFloat(formData.get('latitude')),
-                parseFloat(formData.get('longitude'))
+                parseFloat(lat4),
+                parseFloat(lng4)
             ];
             location.zip = formData.get('zip').trim();
             location.city = formData.get('city').trim();
