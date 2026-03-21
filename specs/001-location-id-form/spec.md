@@ -4,7 +4,7 @@
 
 **Feature Branch**: `001-location-id-form`
 **Created**: 2026-03-20
-**Status**: Draft
+**Status**: Completed
 **Input**: User description: "add location id part 2 — adjust camping/location-form.html to generate the location id when generating the json data."
 
 ## Overview

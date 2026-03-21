@@ -47,7 +47,7 @@
 - [X] T004 [US1] In `camping/location-form.html`, immediately after `e.preventDefault()` on line 391, add a `crypto.subtle` availability guard: `if (!crypto.subtle) { ... return; }` — the error branch must render the message **"ID generation is not supported in this context. Please open this file in Firefox, or serve it over HTTP/HTTPS."** into `document.getElementById('jsonOutput').textContent`, add the `.show` class to `#output`, and `return` without producing any JSON (FR-010; research.md §5)
 - [X] T005 [US1] In `camping/location-form.html`, after the guard from T004, add coordinate normalization variables and the ID derivation block: read `latitude` and `longitude` from `formData`, compute `lat4 = parseFloat(...).toFixed(4)` and `lng4 = parseFloat(...).toFixed(4)`, build `coordStr = \`${lat4},${lng4}\``, encode with `new TextEncoder().encode(coordStr)`, `await crypto.subtle.digest('SHA-256', bytes)`, convert the resulting `ArrayBuffer` to a 64-char hex string via `Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('')`, and derive `const id = hexStr.slice(0, 8)` (research.md §2)
 - [X] T006 [US1] In `camping/location-form.html`, change `const location = {};` (line 394) to `const location = { id };` so `id` is the first — and at this point only — assigned key before any other field is set (FR-001, FR-004; research.md §6)
-- [x] T007 [P] [US1] Manual test — US1 happy path: open `camping/location-form.html` in Firefox over `file://`, fill in the quickstart.md minimum required fields with latitude `27.1392` / longitude `-82.4526`, click **Generate JSON**, and verify: (a) `"id"` key is present in the output, (b) its value is exactly `"5c4ce2cb"` (8 lowercase hex chars), (c) the value matches the T002 reference output
+- [X] T007 [P] [US1] Manual test — US1 happy path: open `camping/location-form.html` in Firefox over `file://`, fill in the quickstart.md minimum required fields with latitude `27.1392` / longitude `-82.4526`, click **Generate JSON**, and verify: (a) `"id"` key is present in the output, (b) its value is exactly `"5c4ce2cb"` (8 lowercase hex chars), (c) the value matches the T002 reference output
 
 **Checkpoint**: US1 is independently functional — JSON output now always includes a correct `id`
 
@@ -63,7 +63,7 @@
 
 - [X] T008 [US2] In `camping/location-form.html`, confirm that the `lat4` and `lng4` variables introduced in T005 already provide normalized values via `parseFloat(...).toFixed(4)` — this is the single normalization point for both hash input (US2, FR-003) and JSON output (FR-008); no additional change is needed if T005 was implemented correctly (verify by inspection)
 - [X] T009 [US2] In `camping/location-form.html`, replace the existing `coords` assignment (lines 401–404): change `parseFloat(formData.get('latitude'))` and `parseFloat(formData.get('longitude'))` to `parseFloat(lat4)` and `parseFloat(lng4)` respectively — this writes the 4-decimal normalized numbers (not raw user input) into the JSON output (FR-008; research.md §7; data-model.md "Changed Fields")
-- [x] T010 [P] [US2] Manual test — US2 normalization: (a) enter latitude `27.139` / longitude `-82.45`, generate JSON, confirm `id` matches `node location-id-gen.js "27.1390,-82.4500"`; (b) enter latitude `27.13920` / longitude `-82.45260`, generate JSON, confirm `id` matches `node location-id-gen.js "27.1392,-82.4526"`; (c) confirm `coords` in the output is `[27.139, -82.45]` for case (a) and `[27.1392, -82.4526]` for case (b) (quickstart.md §"Coordinate Normalization")
+- [X] T010 [P] [US2] Manual test — US2 normalization: (a) enter latitude `27.139` / longitude `-82.45`, generate JSON, confirm `id` matches `node location-id-gen.js "27.1390,-82.4500"`; (b) enter latitude `27.13920` / longitude `-82.45260`, generate JSON, confirm `id` matches `node location-id-gen.js "27.1392,-82.4526"`; (c) confirm `coords` in the output is `[27.139, -82.45]` for case (a) and `[27.1392, -82.4526]` for case (b) (quickstart.md §"Coordinate Normalization")
 
 **Checkpoint**: US2 is independently functional — normalization produces IDs consistent with the standalone script for any decimal precision
 
@@ -78,7 +78,7 @@
 ### Implementation for User Story 3
 
 - [X] T011 [US3] In `camping/location-form.html`, verify that `const location = { id };` (set in T006) is still the initialization line and that no other key has been inserted before `id` — if any other field assignment appears before `id` in the handler body, reorder so `const location = { id }` is declared first; this guarantees insertion-order serialization via `JSON.stringify` places `id` first (FR-004; research.md §6)
-- [x] T012 [P] [US3] Manual test — US3 placement: open `camping/location-form.html` in Firefox, generate a valid JSON blob with all optional fields populated, visually inspect the raw output and confirm `"id"` is the very first key (precedes `"name"`, `"address"`, etc.)
+- [X] T012 [P] [US3] Manual test — US3 placement: open `camping/location-form.html` in Firefox, generate a valid JSON blob with all optional fields populated, visually inspect the raw output and confirm `"id"` is the very first key (precedes `"name"`, `"address"`, etc.)
 
 **Checkpoint**: All three user stories are independently functional
 
@@ -88,9 +88,9 @@
 
 **Purpose**: Full acceptance verification across all stories and requirements
 
-- [x] T013 [P] Cross-check `id` against `location-id-gen.js` for all three coordinate pairs from T002 in a single session: enter each pair in the form, generate JSON, compare each `id` to the recorded reference values — all three must match exactly (SC-002)
-- [x] T014 Full regression walkthrough per FR-005 and SC-003 using the checklist in `specs/001-location-id-form/quickstart.md §"No Regressions"`: test browser field validation (leave required field blank → no JSON), optional fields omitted from output, array fields (features/notes/distances), Copy to Clipboard, Clear Form, and Booking URL toggle — all must behave identically to pre-change behavior
-- [x] T015 [P] Error-path test: open `camping/location-form.html` in Chrome over `file://` (drag-and-drop or File > Open), fill in any valid form data, click **Generate JSON**, and confirm: (a) the output area shows the error message containing *"not supported in this context"* and the Firefox/HTTP instruction, (b) no JSON object is present anywhere in the output (FR-010, SC-004)
+- [X] T013 [P] Cross-check `id` against `location-id-gen.js` for all three coordinate pairs from T002 in a single session: enter each pair in the form, generate JSON, compare each `id` to the recorded reference values — all three must match exactly (SC-002)
+- [X] T014 Full regression walkthrough per FR-005 and SC-003 using the checklist in `specs/001-location-id-form/quickstart.md §"No Regressions"`: test browser field validation (leave required field blank → no JSON), optional fields omitted from output, array fields (features/notes/distances), Copy to Clipboard, Clear Form, and Booking URL toggle — all must behave identically to pre-change behavior
+- [X] T015 [P] Error-path test: open `camping/location-form.html` in Chrome over `file://` (drag-and-drop or File > Open), fill in any valid form data, click **Generate JSON**, and confirm: (a) the output area shows the error message containing *"not supported in this context"* and the Firefox/HTTP instruction, (b) no JSON object is present anywhere in the output (FR-010, SC-004)
 - [X] T016 [P] File size gate: run `wc -c camping/location-form.html` and confirm the result is ≤ 18,400 bytes (the 16,352-byte baseline + 2,048-byte maximum increase per SC-004)
 
 ---
