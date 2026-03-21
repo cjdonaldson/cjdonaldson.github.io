@@ -18,7 +18,7 @@
           "city": "Nokomis",
           "state": "FL",
           "zip": "34275",
-          "coords": [27.1392, -82.4526],
+          "coords": [ 27.1392, -82.4526 ],
           "hours": "Mon-Fri 8am-8pm | Sat-Sun 9:30am-6pm"
         },
         {
@@ -27,13 +27,13 @@
           "emoji": "🏡",
           "url": "https://maps.app.goo.gl/kjcHvrb7m72eqeDa8",
           "mapUrl": "https://maps.app.goo.gl/kjcHvrb7m72eqeDa8",
-          "notes": ["Private"],
           "address": "35445 Clinton Ave",
           "city": "Dade City",
           "state": "FL",
           "zip": "33525",
-          "coords": [28.3345, -82.2292],
-          "pricing": [ { "fhu back-in": "0.00" } ]
+          "coords": [ 28.3345, -82.2292 ],
+          "pricing": [ { "fhu back-in": "0.00" } ],
+          "notes": [ "Private" ]
         },
         {
           "id": "5fd7359d",
@@ -49,7 +49,7 @@
           "city": "Fort Meade",
           "state": "FL",
           "zip": "33841",
-          "coords": [27.7536, -81.7787],
+          "coords": [ 27.7536, -81.7787 ],
           "pricing": [ { "e/w back-in": "30.00" }, { "show fee": "10.00" } ]
         }
       ]
@@ -68,8 +68,8 @@
           "city": "Roanoke",
           "state": "VA",
           "zip": "24019",
-          "coords": [37.3226, -79.9745],
-          "features": ["RV propane fill", "RV Dump Station"]
+          "coords": [ 37.3226, -79.9745 ],
+          "features": [ "RV propane fill", "RV Dump Station" ]
         },
         {
           "id": "a1122425",
@@ -85,7 +85,7 @@
           "city": "Penhook",
           "state": "VA",
           "zip": "24137",
-          "coords": [36.9039, -79.6389],
+          "coords": [ 36.9039, -79.6389 ],
           "pricing": [ { "fhu back-in": "58.00" } ],
           "season": "Year round",
           "distances": [ "425 mi • 7 hrs from 18077" ]
@@ -104,7 +104,7 @@
           "city": "Martinsville",
           "state": "VA",
           "zip": "24112",
-          "coords": [36.6914, -79.8725],
+          "coords": [ 36.6914, -79.8725 ],
           "pricing": [ { "fhu back-in": "64.00" } ],
           "season": "Year round",
           "distances": [ "445 mi • 7.5 hrs from 18077" ]
@@ -120,7 +120,7 @@
           "city": "Milford",
           "state": "VA",
           "zip": "22514",
-          "coords": [38.0331, -77.3869],
+          "coords": [ 38.0331, -77.3869 ],
           "pricing": [ { "fhu back-in": "0.00" } ],
           "season": "Year round",
           "distances": [ "296 mi • 5.0 hrs from 18077" ]
@@ -137,11 +137,11 @@
           "city": "Petersburg",
           "state": "VA",
           "zip": "23805",
-          "coords": [37.2095, -77.3975],
+          "coords": [ 37.2095, -77.3975 ],
           "pricing": [ { "fhu back-in": "0.00" } ],
           "season": "Year round",
           "distances": [ "331 mi • 5.4 hrs from 18077" ],
-          "notes": ["Good Sam discount"]
+          "notes": [ "Good Sam discount" ]
         },
         {
           "id": "37ffd3de",
@@ -173,11 +173,11 @@
           "city": "Skippers",
           "state": "VA",
           "zip": "23879",
-          "coords": [36.5964, -77.5850],
+          "coords": [ 36.5964, -77.585 ],
           "pricing": [ { "fhu pull-through": "35.00" } ],
           "season": "Year round",
           "distances": [ "246 mi • 4.1 hrs from 18077" ],
-          "notes": ["Late arrivals are available upon request - call Farley 252-955-1636"]
+          "notes": [ "Late arrivals are available upon request - call Farley 252-955-1636" ]
         }
       ]
     },
@@ -199,9 +199,9 @@
           "city": "Fayetteville",
           "state": "NC",
           "zip": "28306",
-          "coords": [34.8396, -78.9830],
+          "coords": [ 34.8396, -78.983 ],
           "pricing": [ { "fhu back-in": "54.00" } ],
-          "distances": ["536 mi • 8.9 hrs from 18077 via Hamburg, PA"]
+          "distances": [ "536 mi • 8.9 hrs from 18077 via Hamburg, PA" ]
         }
       ]
     },
@@ -222,10 +222,10 @@
           "city": "Florence",
           "state": "SC",
           "zip": "29506",
-          "coords": [34.1625, -79.7089],
+          "coords": [ 34.1625, -79.7089 ],
           "pricing": [ { "fhu back-in": "64.80" } ],
-          "features": ["RV propane fill", "RV Dump Station"],
-          "distances": ["609 mi • 6 hrs from 18077"]
+          "distances": [ "609 mi • 6 hrs from 18077" ],
+          "features": [ "RV propane fill", "RV Dump Station" ]
         }
       ]
     },
@@ -247,14 +247,14 @@
           "city": "Savannah",
           "state": "GA",
           "zip": "31419",
-          "coords": [32.0359, -81.1564],
+          "coords": [ 32.0359, -81.1564 ],
           "pricing": [ { "e/w back-in": "56.00" } ],
           "distances": [
             "429 mi • 7 hrs from Smith Mountain",
             "300 mi • 5 hrs to Papa Lew's"
           ],
-          "features": ["pool", "playground", "river dock: boating", "dog wash", "propane", "dump station"],
-          "notes": ["overnight sites near office", "slight I95 noise"]
+          "features": [ "pool", "playground", "river dock: boating", "dog wash", "propane", "dump station" ],
+          "notes": [ "overnight sites near office", "slight I95 noise" ]
         },
         {
           "id": "1f25e7ca",
@@ -267,14 +267,14 @@
           "city": "Kingsland",
           "state": "GA",
           "zip": "31548",
-          "coords": [30.7997, -81.6890],
+          "coords": [ 30.7997, -81.689 ],
           "pricing": [ { "fhu back-in": "0.00" } ],
           "season": "Year round",
-          "features": ["Good Sam Discount", "Easy I-95 access", "Propane fill available"],
           "distances": [
             "514 mi • 9 hrs from Smith Mountain",
             "205 mi • 4 hrs to Papa Lew's"
-          ]
+          ],
+          "features": [ "Good Sam Discount", "Easy I-95 access", "Propane fill available" ]
         },
         {
           "id": "1d3b7719",
@@ -288,14 +288,14 @@
           "city": "Lake Park",
           "state": "GA",
           "zip": "31636",
-          "coords": [30.6793, -83.0918],
+          "coords": [ 30.6793, -83.0918 ],
           "pricing": [ { "fhu back-in": "65.00" } ],
           "season": "Year round",
-          "features": ["Off I-75", "Propane fill available"],
           "distances": [
             "603 mi • 10 hrs from Smith Mountain",
             "107 mi • 2 hrs to Papa Lew's"
-          ]
+          ],
+          "features": [ "Off I-75", "Propane fill available" ]
         },
         {
           "id": "674cc343",
@@ -310,16 +310,16 @@
           "city": "Waynesville",
           "state": "GA",
           "zip": "31566",
-          "coords": [31.4753, -81.9831],
+          "coords": [ 31.4753, -81.9831 ],
           "pricing": [ { "fhu back-in": "40.00" } ],
+          "season": "Year round",
           "distances": [
             "853 mi • 14.2 hrs from 18077",
             "506 mi • 10.0 hrs from Smith Mountain",
             "240 mi • 4.0 hrs to Papa Lew's",
             "282 mi • 4.7 hrs to Flywheeler Park"
           ],
-          "season": "Year round",
-          "features": ["Propane fill available"]
+          "features": [ "Propane fill available" ]
         },
         {
           "id": "c8474e10",
@@ -348,14 +348,14 @@
           "url": "http://okefenokeervpark.com/",
           "mapUrl": "https://maps.app.goo.gl/Ma1NXCW77u1uTYSB8",
           "phone": "912-496-2220",
+          "email": "okefenokeervpark@yahoo.com",
           "address": "252 Bowery Lane",
           "city": "Homeland",
           "state": "GA",
           "zip": "31537",
           "coords": [ 30.8515, -82.0191 ],
           "pricing": [ { "fhu back-in": "45.00" } ],
-          "notes": ["small park", "frieght train whistle all hours"],
-          "email": "okefenokeervpark@yahoo.com"
+          "notes": ["small park", "frieght train whistle all hours"]
         },
         {
           "id": "90817842",
@@ -407,23 +407,23 @@
           "emoji": "🏠",
           "url": "https://maps.app.goo.gl/6Poc8G2q1e9171Pr5",
           "mapUrl": "https://maps.app.goo.gl/6Poc8G2q1e9171Pr5",
-          "defaultStart": true,
           "city": "Riegelsville",
           "state": "PA",
           "zip": "18077",
-          "coords": [40.5936, -75.1886],
-          "notes": [
-              "273 mi quarter way to Papa Lews",
-              "295 mi quarter way to Royal Coachman",
-              "547 mi half way to Papa Lews",
-              "590 mi half way to Royal Coachman"
-          ],
+          "coords": [ 40.5936, -75.1886 ],
           "distances": [
             " 427 mi •  7.1 hrs to Smith Mountain via Hamburg, PA",
             "1095 mi • 18.2 hrs to Papa Lew's via Hamburg, PA",
             "1136 mi • 18.9 hrs to Flywheeler Park via Hamburg, PA",
             "1180 mi • 19.6 hrs to ROyal Coachman via Hamburg, PA"
-          ]
+          ],
+          "notes": [
+            "273 mi quarter way to Papa Lews",
+            "295 mi quarter way to Royal Coachman",
+            "547 mi half way to Papa Lews",
+            "590 mi half way to Royal Coachman"
+          ],
+          "defaultStart": true
         },
         {
           "id": "d1bac0ce",
@@ -438,7 +438,7 @@
           "zip": "19526",
           "coords": [40.5577, -76.0019],
           "hours": "Mon-Sat 9am-9pm | Sun 9am-7pm",
-          "features": ["RV Dump Station"]
+          "features": [ "RV Dump Station" ]
         },
         {
           "id": "c0a975b4",
@@ -451,8 +451,8 @@
           "city": "Hamburg",
           "state": "PA",
           "zip": "19526",
-          "coords": [40.5606, -75.9961],
-          "features": ["RV propane fill", "RV Dump Station"]
+          "coords": [ 40.5606, -75.9961 ],
+          "features": [ "RV propane fill", "RV Dump Station" ]
         }
       ]
     }

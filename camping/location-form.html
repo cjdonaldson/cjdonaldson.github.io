@@ -406,66 +406,76 @@
             const hexStr = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
             const id = hexStr.slice(0, 8);
 
-            const location = { id };
+            const location = { id };                                                       // pos  1
 
-            // Required fields
-            location.name = formData.get('name').trim();
-            location.address = formData.get('address').trim();
-            location.url = formData.get('url').trim();
-            location.mapUrl = formData.get('mapUrl').trim();
-            location.coords = [
-                parseFloat(lat4),
-                parseFloat(lng4)
-            ];
-            location.zip = formData.get('zip').trim();
-            location.city = formData.get('city').trim();
-            location.state = formData.get('state').trim().toUpperCase();
+            location.name = formData.get('name').trim();                                   // pos  2
 
-            // Optional emoji (emit when non-empty, omit when empty)
             const emoji = formData.get('emoji')?.trim();
-            if (emoji) {
-                location.emoji = emoji;
-            }
+            if (emoji) location.emoji = emoji;                                             // pos  3
 
-            // Optional single-value fields
-            const optionalFields = [
-                'phone', 'email', 'emailName',
-                'hours', 'siteMap',
-                'season'
-            ];
+            location.url = formData.get('url').trim();                                     // pos  4
 
-            optionalFields.forEach(field => {
-                const value = formData.get(field)?.trim();
-                if (value) {
-                    location[field] = value;
-                }
-            });
+            const siteMap = formData.get('siteMap')?.trim();
+            if (siteMap) location.siteMap = siteMap;                                       // pos  5
+
+            location.mapUrl = formData.get('mapUrl').trim();                               // pos  6
 
             // Booking URL (only when Book Online is active and non-empty)
             if (document.getElementById('bookingMethod').value === 'bookOnline') {
                 const bUrl = document.getElementById('bookingUrl').value.trim();
-                if (bUrl) location.bookingUrl = bUrl;
+                if (bUrl) location.bookingUrl = bUrl;                                      // pos  7
             }
 
-            // Array fields (textarea)
-            const arrayFields = ['distances', 'features', 'notes'];
-            arrayFields.forEach(field => {
-                const value = formData.get(field)?.trim();
-                if (value) {
-                    const items = value.split('\n')
-                        .map(item => item.trim())
-                        .filter(item => item.length > 0);
-                    if (items.length > 0) {
-                        location[field] = items;
-                    }
-                }
-            });
+            const phone = formData.get('phone')?.trim();
+            if (phone) location.phone = phone;                                             // pos  8
 
-            // Boolean field
+            const email = formData.get('email')?.trim();
+            if (email) location.email = email;                                             // pos  9
+
+            const emailName = formData.get('emailName')?.trim();
+            if (emailName) location.emailName = emailName;                                 // pos 10
+
+            location.address = formData.get('address').trim();                             // pos 11
+
+            location.city = formData.get('city').trim();                                   // pos 12
+
+            location.state = formData.get('state').trim().toUpperCase();                   // pos 13
+
+            location.zip = formData.get('zip').trim();                                     // pos 14
+
+            location.coords = [                                                            // pos 15
+                parseFloat(lat4),
+                parseFloat(lng4)
+            ];
+
+            // pricing (pos 16) — not in form; omitted intentionally
+
+            const hours = formData.get('hours')?.trim();
+            if (hours) location.hours = hours;                                             // pos 17
+
+            const season = formData.get('season')?.trim();
+            if (season) location.season = season;                                          // pos 18
+
+            const distancesRaw = formData.get('distances')?.trim();
+            if (distancesRaw) {
+                const dArr = distancesRaw.split('\n').map(item => item.trim()).filter(item => item.length > 0);
+                if (dArr.length > 0) location.distances = dArr;                            // pos 19
+            }
+
+            const featuresRaw = formData.get('features')?.trim();
+            if (featuresRaw) {
+                const fArr = featuresRaw.split('\n').map(item => item.trim()).filter(item => item.length > 0);
+                if (fArr.length > 0) location.features = fArr;                             // pos 20
+            }
+
+            const notesRaw = formData.get('notes')?.trim();
+            if (notesRaw) {
+                const nArr = notesRaw.split('\n').map(item => item.trim()).filter(item => item.length > 0);
+                if (nArr.length > 0) location.notes = nArr;                                // pos 21
+            }
+
             const defaultStart = formData.get('defaultStart');
-            if (defaultStart === 'true') {
-                location.defaultStart = true;
-            }
+            if (defaultStart === 'true') location.defaultStart = true;                    // pos 22
 
             // Display JSON
             const jsonString = JSON.stringify(location, null, 2);
