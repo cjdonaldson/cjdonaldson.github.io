@@ -2,6 +2,11 @@
 
 wd-40 dry lube many uses
 
+# Mold Cleaning
+
+Mix one gallon of hot water with a cup of powdered dishwashing soap and a cup of white vinegar, or a splash of
+detergent.
+
 ## Engine
 - Oil Change F450 7.3L V8
     - ~~3,000 to 5,000 miles, or once a year for conventional oil~~
