@@ -26,7 +26,7 @@ testing of each story. Four source files are changed; no new files or dependenci
 **Purpose**: Understand the current structure of the four files that will be modified before
 any changes are made.
 
-- [ ] T001 Review `renderPlanner()` and `updateRouteDisplay()` in `camping/florida-bound-grid.js`, and `loadLocationData()` in `camping/florida-bound-data-loader.js` to confirm existing element ID patterns (e.g. `route-display-{id}`), event-wiring conventions, and the shape of each stop object in `planner.route`
+- [X] T001 Review `renderPlanner()` and `updateRouteDisplay()` in `camping/florida-bound-grid.js`, and `loadLocationData()` in `camping/florida-bound-data-loader.js` to confirm existing element ID patterns (e.g. `route-display-{id}`), event-wiring conventions, and the shape of each stop object in `planner.route`
 
 **Checkpoint**: Ready to begin foundational changes
 
@@ -39,9 +39,9 @@ All three tasks touch different files and can run in parallel.
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T002 [P] Add `id: location.id` to the location object literal inside `loadLocationData()` in `camping/florida-bound-data-loader.js` so every flattened `LocationObject` in `locationData[]` exposes the stable 8-char hex ID (FR-001; data-model.md § 1 Location)
-- [ ] T003 [P] Inject the full sequence area HTML block into `renderPlanner()` in `camping/florida-bound-grid.js` — wrapper `div#sequence-area-{id}` (initially `style="display:none"`), title row with `<label>` + `<input type="text" list="route-titles-{id}">` + `<datalist id="route-titles-{id}">`, sequence row with `<label>` + `<textarea id="sequence-text-{id}" rows="2" spellcheck="false">` + `<button id="sequence-copy-btn-{id}" type="button">📋 Copy</button>`, and a hidden `<div id="sequence-copy-warning-{id}">` — per contracts/data-and-dom.md § 6
-- [ ] T004 [P] Add base CSS layout rules for `.sequence-area`, `.sequence-row`, and `.sequence-title-row` (flexbox row, label + control alignment, `display:none` default for wrapper) to `camping/florida-bound-planner.css`
+- [X] T002 [P] Add `id: location.id` to the location object literal inside `loadLocationData()` in `camping/florida-bound-data-loader.js` so every flattened `LocationObject` in `locationData[]` exposes the stable 8-char hex ID (FR-001; data-model.md § 1 Location)
+- [X] T003 [P] Inject the full sequence area HTML block into `renderPlanner()` in `camping/florida-bound-grid.js` — wrapper `div#sequence-area-{id}` (initially `style="display:none"`), title row with `<label>` + `<input type="text" list="route-titles-{id}">` + `<datalist id="route-titles-{id}">`, sequence row with `<label>` + `<textarea id="sequence-text-{id}" rows="2" spellcheck="false">` + `<button id="sequence-copy-btn-{id}" type="button">📋 Copy</button>`, and a hidden `<div id="sequence-copy-warning-{id}">` — per contracts/data-and-dom.md § 6
+- [X] T004 [P] Add base CSS layout rules for `.sequence-area`, `.sequence-row`, and `.sequence-title-row` (flexbox row, label + control alignment, `display:none` default for wrapper) to `camping/florida-bound-planner.css`
 
 **Checkpoint**: Foundation ready — all user story phases can now begin
 
@@ -61,9 +61,9 @@ entire sequence area is hidden.
 
 ### Implementation for User Story 1
 
-- [ ] T005 [US1] Add `updateSequenceArea(planner)` function to `camping/florida-bound-grid.js`: compute `planner.route.map(loc => loc.id).join(':')`, write the result into `#sequence-text-{id}` textarea value, and toggle `#sequence-area-{id}` between `display:none` and `display:block` based on `planner.route.length >= 2` (research.md RQ-7, FR-002, FR-003, FR-004)
-- [ ] T006 [US1] Call `updateSequenceArea(planner)` from within `updateRouteDisplay(plannerId)` in `camping/florida-bound-grid.js` so the sequence area refreshes on every route change with no user action required (FR-004)
-- [ ] T007 [P] [US1] Add CSS for `.sequence-textarea` (readable height, monospace or clear font, `resize: vertical`, `word-break: break-all`) in `camping/florida-bound-planner.css`
+- [X] T005 [US1] Add `updateSequenceArea(planner)` function to `camping/florida-bound-grid.js`: compute `planner.route.map(loc => loc.id).join(':')`, write the result into `#sequence-text-{id}` textarea value, and toggle `#sequence-area-{id}` between `display:none` and `display:block` based on `planner.route.length >= 2` (research.md RQ-7, FR-002, FR-003, FR-004)
+- [X] T006 [US1] Call `updateSequenceArea(planner)` from within `updateRouteDisplay(plannerId)` in `camping/florida-bound-grid.js` so the sequence area refreshes on every route change with no user action required (FR-004)
+- [X] T007 [P] [US1] Add CSS for `.sequence-textarea` (readable height, monospace or clear font, `resize: vertical`, `word-break: break-all`) in `camping/florida-bound-planner.css`
 - [ ] T008 [US1] Manual validation per quickstart.md steps 1–4: confirm sequence area is hidden with one stop, appears with two stops showing two IDs joined by `:`, extends when a third stop is added, and shortens when a stop is removed
 
 **Checkpoint**: User Story 1 fully functional and independently testable — MVP deliverable
@@ -82,9 +82,9 @@ button label changes briefly (~1.5 s) then resets to original.
 
 ### Implementation for User Story 2
 
-- [ ] T009 [US2] Implement async `copySequence(plannerId)` in `camping/florida-bound-grid.js` using `navigator.clipboard.writeText(text)` — on success, change the button label/icon for ~1.5 s then restore original; in `.catch()`, call `showClipboardWarning(plannerId)` to make `#sequence-copy-warning-{id}` visible — do NOT write to clipboard on failure (research.md RQ-4, FR-005, FR-006)
-- [ ] T010 [US2] Wire `click` event on `#sequence-copy-btn-{id}` to call `copySequence(plannerId)` inside the `renderPlanner()` event-wiring section in `camping/florida-bound-grid.js`
-- [ ] T011 [P] [US2] Add CSS for `.sequence-copy-btn` (aligned to right of textarea, clear button style) and `.sequence-copy-warning` (error/warning color, hidden by default) in `camping/florida-bound-planner.css`
+- [X] T009 [US2] Implement async `copySequence(plannerId)` in `camping/florida-bound-grid.js` using `navigator.clipboard.writeText(text)` — on success, change the button label/icon for ~1.5 s then restore original; in `.catch()`, call `showClipboardWarning(plannerId)` to make `#sequence-copy-warning-{id}` visible — do NOT write to clipboard on failure (research.md RQ-4, FR-005, FR-006)
+- [X] T010 [US2] Wire `click` event on `#sequence-copy-btn-{id}` to call `copySequence(plannerId)` inside the `renderPlanner()` event-wiring section in `camping/florida-bound-grid.js`
+- [X] T011 [P] [US2] Add CSS for `.sequence-copy-btn` (aligned to right of textarea, clear button style) and `.sequence-copy-warning` (error/warning color, hidden by default) in `camping/florida-bound-planner.css`
 - [ ] T012 [US2] Manual validation per quickstart.md steps 5–6: click copy on a 2-stop route, paste into a text editor and confirm exact match; confirm button shows brief feedback for ~1.5 s then resets to original label
 
 **Checkpoint**: User Stories 1 AND 2 both independently functional
@@ -104,11 +104,11 @@ error row at the unknown ID's position. Clear the textarea and confirm no route 
 
 ### Implementation for User Story 3
 
-- [ ] T013 [US3] Implement `sanitiseSequence(raw)` in `camping/florida-bound-grid.js`: `raw.trim()`, strip chars outside `[a-zA-Z0-9:\-]`, normalise `-` to `:`, collapse consecutive colons, strip leading/trailing colons — returns empty string for blank input (research.md RQ-6, FR-008)
-- [ ] T014 [US3] Implement `restoreRouteFromSequence(plannerId, sequenceStr)` in `camping/florida-bound-grid.js`: call `sanitiseSequence`, split on `:`, return early if empty, for each token lookup `getLocationData()` by `.id` — push matching `LocationObject` or `{ errorId: token }` sentinel — assign to `planner.route`, reset `planner.stays` to equal-length zeros array, call `updateRouteDisplay(plannerId)` (data-model.md § State Transitions — Route reconstruction from paste, FR-008, FR-009)
-- [ ] T015 [US3] Add error-row rendering inside `updateRouteDisplay()` in `camping/florida-bound-grid.js`: when a route stop is a `{ errorId }` sentinel, render `<div class="waypoint-item waypoint-error">` containing the unknown ID text and a `⚠ Unknown ID` label at the correct ordinal index (research.md RQ-5, FR-009)
-- [ ] T016 [US3] Wire `input` and `change` events on `#sequence-text-{id}` textarea in the `renderPlanner()` event-wiring section in `camping/florida-bound-grid.js` to call `restoreRouteFromSequence(plannerId, textarea.value)` (FR-007)
-- [ ] T017 [P] [US3] Add CSS for `.waypoint-error`, `.waypoint-error-id` (monospace, error color), and `.waypoint-error-label` (warning icon label style) in `camping/florida-bound-planner.css`
+- [X] T013 [US3] Implement `sanitiseSequence(raw)` in `camping/florida-bound-grid.js`: `raw.trim()`, strip chars outside `[a-zA-Z0-9:\-]`, normalise `-` to `:`, collapse consecutive colons, strip leading/trailing colons — returns empty string for blank input (research.md RQ-6, FR-008)
+- [X] T014 [US3] Implement `restoreRouteFromSequence(plannerId, sequenceStr)` in `camping/florida-bound-grid.js`: call `sanitiseSequence`, split on `:`, return early if empty, for each token lookup `getLocationData()` by `.id` — push matching `LocationObject` or `{ errorId: token }` sentinel — assign to `planner.route`, reset `planner.stays` to equal-length zeros array, call `updateRouteDisplay(plannerId)` (data-model.md § State Transitions — Route reconstruction from paste, FR-008, FR-009)
+- [X] T015 [US3] Add error-row rendering inside `updateRouteDisplay()` in `camping/florida-bound-grid.js`: when a route stop is a `{ errorId }` sentinel, render `<div class="waypoint-item waypoint-error">` containing the unknown ID text and a `⚠ Unknown ID` label at the correct ordinal index (research.md RQ-5, FR-009)
+- [X] T016 [US3] Wire `input` and `change` events on `#sequence-text-{id}` textarea in the `renderPlanner()` event-wiring section in `camping/florida-bound-grid.js` to call `restoreRouteFromSequence(plannerId, textarea.value)` (FR-007)
+- [X] T017 [P] [US3] Add CSS for `.waypoint-error`, `.waypoint-error-id` (monospace, error color), and `.waypoint-error-label` (warning icon label style) in `camping/florida-bound-planner.css`
 - [ ] T018 [US3] Manual validation per quickstart.md steps 7–9: paste valid 3-stop sequence and confirm route loads in order; paste sequence with one bad ID and confirm valid stops load with an error row at the bad ID's position; clear textarea and confirm no route change and no error
 
 **Checkpoint**: User Stories 1, 2, AND 3 all independently functional
@@ -128,12 +128,12 @@ the title dropdown, select it, verify the route reconstructs with the correct st
 
 ### Implementation for User Story 4
 
-- [ ] T019 [US4] Add `let routeData = []` module-scoped variable to `camping/florida-bound-data-loader.js` and assign `routeData = (data.routes || [])` inside `loadLocationData()` after the JSON fetch resolves (data-model.md § 2 NamedRoutePlan, contracts/data-and-dom.md § 2.1)
-- [ ] T020 [US4] Add `function getRouteData() { return routeData; }` export in `camping/florida-bound-data-loader.js` (contracts/data-and-dom.md § 2.3, FR-013)
-- [ ] T021 [P] [US4] Add top-level `"routes"` array with at least one real example entry (`{ "title": "...", "sequence": "..." }` using valid location IDs from the existing data) before the `"states"` key in `camping/florida-bound-locations.json` (contracts/data-and-dom.md § 1.2 `routes` array schema)
-- [ ] T022 [US4] After data load in `camping/florida-bound-grid.js`, populate `<datalist id="route-titles-{id}">` with one `<option value="planTitle">` per entry from `getRouteData()`; leave the datalist empty without error when `getRouteData()` returns `[]` (FR-013)
-- [ ] T023 [US4] Wire `input` event on `#route-title-input-{id}` inside the `renderPlanner()` event-wiring section in `camping/florida-bound-grid.js`: compare `input.value` against each `getRouteData()[n].title`; on exact match, set `#sequence-text-{id}` value to the plan's `sequence` and call `restoreRouteFromSequence(plannerId, plan.sequence)` (data-model.md § State Transitions — Named plan selection, FR-014)
-- [ ] T024 [P] [US4] Add CSS for `.route-title-input` with `width: 36ch` so 30–40 characters are visible at a time; do NOT set `maxlength` or `overflow: hidden` — the field must scroll through titles of any length as the cursor moves (FR-010, FR-011, research.md RQ-3)
+- [X] T019 [US4] Add `let routeData = []` module-scoped variable to `camping/florida-bound-data-loader.js` and assign `routeData = (data.routes || [])` inside `loadLocationData()` after the JSON fetch resolves (data-model.md § 2 NamedRoutePlan, contracts/data-and-dom.md § 2.1)
+- [X] T020 [US4] Add `function getRouteData() { return routeData; }` export in `camping/florida-bound-data-loader.js` (contracts/data-and-dom.md § 2.3, FR-013)
+- [X] T021 [P] [US4] Add top-level `"routes"` array with at least one real example entry (`{ "title": "...", "sequence": "..." }` using valid location IDs from the existing data) before the `"states"` key in `camping/florida-bound-locations.json` (contracts/data-and-dom.md § 1.2 `routes` array schema)
+- [X] T022 [US4] After data load in `camping/florida-bound-grid.js`, populate `<datalist id="route-titles-{id}">` with one `<option value="planTitle">` per entry from `getRouteData()`; leave the datalist empty without error when `getRouteData()` returns `[]` (FR-013)
+- [X] T023 [US4] Wire `input` event on `#route-title-input-{id}` inside the `renderPlanner()` event-wiring section in `camping/florida-bound-grid.js`: compare `input.value` against each `getRouteData()[n].title`; on exact match, set `#sequence-text-{id}` value to the plan's `sequence` and call `restoreRouteFromSequence(plannerId, plan.sequence)` (data-model.md § State Transitions — Named plan selection, FR-014)
+- [X] T024 [P] [US4] Add CSS for `.route-title-input` with `width: 36ch` so 30–40 characters are visible at a time; do NOT set `maxlength` or `overflow: hidden` — the field must scroll through titles of any length as the cursor moves (FR-010, FR-011, research.md RQ-3)
 - [ ] T025 [US4] Manual validation per quickstart.md steps 10–11: add entry to `routes` array, reload page, confirm plan name appears in title dropdown, select it, confirm sequence field populates and route loads with correct stops
 
 **Checkpoint**: All four user stories independently functional
@@ -144,9 +144,9 @@ the title dropdown, select it, verify the route reconstructs with the correct st
 
 **Purpose**: Verify behavior that spans multiple user stories and confirm no regressions.
 
-- [ ] T026 [P] Resize the browser to a narrow mobile-width viewport and confirm the sequence area (textarea, copy button, title field) remains readable and does not overflow the viewport horizontally; adjust flexbox/wrapping rules in `camping/florida-bound-planner.css` if needed (SC-007)
-- [ ] T027 Verify per-planner independence (FR-015) in `camping/florida-bound-grid.js`: if the page contains multiple planner instances confirm each has its own independent `sequence-area-{id}`, `sequence-text-{id}`, `sequence-copy-btn-{id}`, `route-title-input-{id}`, and `route-titles-{id}` with no cross-planner state bleed
-- [ ] T028 [P] Review `camping/florida-bound-planner.css` for duplicate or conflicting rules introduced across Phases 3–6; consolidate without changing behavior
+- [X] T026 [P] Resize the browser to a narrow mobile-width viewport and confirm the sequence area (textarea, copy button, title field) remains readable and does not overflow the viewport horizontally; adjust flexbox/wrapping rules in `camping/florida-bound-planner.css` if needed (SC-007)
+- [X] T027 Verify per-planner independence (FR-015) in `camping/florida-bound-grid.js`: if the page contains multiple planner instances confirm each has its own independent `sequence-area-{id}`, `sequence-text-{id}`, `sequence-copy-btn-{id}`, `route-title-input-{id}`, and `route-titles-{id}` with no cross-planner state bleed
+- [X] T028 [P] Review `camping/florida-bound-planner.css` for duplicate or conflicting rules introduced across Phases 3–6; consolidate without changing behavior
 - [ ] T029 Run the complete quickstart.md manual test checklist (all 12 steps) as a final end-to-end validation pass across all four user stories
 
 ---
@@ -238,15 +238,15 @@ T026 + T027 + T028 (T026 and T028 parallel) → T029
 
 ## Summary
 
-| Phase | Stories | Tasks | Parallel-eligible |
-|-------|---------|-------|-------------------|
-| 1 Setup | — | 1 | — |
-| 2 Foundational | — | 3 | All 3 (T002–T004) |
-| 3 US1 Live Display (P1) | US1 | 4 | T007 ∥ T005–T006 |
-| 4 US2 Copy (P2) | US2 | 4 | T011 ∥ T009–T010 |
-| 5 US3 Restore (P3) | US3 | 6 | T017 ∥ T013–T016 |
-| 6 US4 Named Plans (P4) | US4 | 7 | T021, T024 ∥ JS tasks |
-| 7 Polish | — | 4 | T026, T028 ∥ T027 |
-| **Total** | **4** | **29** | **9 parallel-eligible** |
+| Phase                   | Stories | Tasks  | Parallel-eligible       |
+| ----------------------- | ------- | ------ | ----------------------- |
+| 1 Setup                 | —       | 1      | —                       |
+| 2 Foundational          | —       | 3      | All 3 (T002–T004)       |
+| 3 US1 Live Display (P1) | US1     | 4      | T007 ∥ T005–T006        |
+| 4 US2 Copy (P2)         | US2     | 4      | T011 ∥ T009–T010        |
+| 5 US3 Restore (P3)      | US3     | 6      | T017 ∥ T013–T016        |
+| 6 US4 Named Plans (P4)  | US4     | 7      | T021, T024 ∥ JS tasks   |
+| 7 Polish                | —       | 4      | T026, T028 ∥ T027       |
+| **Total**               | **4**   | **29** | **9 parallel-eligible** |
 
 **MVP scope**: Complete Phases 1–3 (T001–T008, 8 tasks) to deliver User Story 1 independently.

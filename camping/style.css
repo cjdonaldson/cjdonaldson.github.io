@@ -77,3 +77,23 @@ details[open] summary {
 .state-section > details {
     margin: 16px;
 }
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 6em 1fr;
+    gap: 2px 8px;
+    margin-top: 4px;
+    font-size: 0.95em;
+}
+
+.pricing-grid .pricing-header {
+    font-weight: 600;
+    color: #586069;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.pricing-grid .pricing-amount {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}

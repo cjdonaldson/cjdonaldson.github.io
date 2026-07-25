@@ -1,5 +1,6 @@
 // Load location data from JSON file
 let locationData = [];
+let routeData = [];
 
 async function loadLocationData() {
     const response = await fetch('florida-bound-locations.json');
@@ -11,6 +12,7 @@ async function loadLocationData() {
         state.locations.forEach(location => {
             if (location.coords && location.zip) {
                 locationData.push({
+                    id: location.id,
                     name: location.name,
                     zip: location.zip,
                     url: location.url || location.mapUrl,
@@ -26,10 +28,16 @@ async function loadLocationData() {
         });
     });
 
+    routeData = (data.routes || []);
+
     return locationData;
 }
 
 // For synchronous access after loading
 function getLocationData() {
     return locationData;
+}
+
+function getRouteData() {
+    return routeData;
 }

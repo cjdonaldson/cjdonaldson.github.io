@@ -52,6 +52,7 @@ function updateMapForAllPlanners() {
 
     planners.forEach((planner, plannerIndex) => {
         planner.route.forEach((waypoint, index) => {
+            if (waypoint.errorId) return; // skip error sentinels
             const position = { lat: waypoint.coords[0], lng: waypoint.coords[1] };
 
             const marker = new google.maps.Marker({
@@ -135,6 +136,33 @@ function renderPlanner(planner) {
     <div id="route-display-${planner.id}"></div>
 </div>
 
+<div class="sequence-area">
+  <div class="sequence-title-row">
+    <label for="route-title-input-${planner.id}">Route title:</label>
+    <input type="text"
+           id="route-title-input-${planner.id}"
+           list="route-titles-${planner.id}"
+           class="route-title-input"
+           autocomplete="off">
+    <datalist id="route-titles-${planner.id}"></datalist>
+  </div>
+  <div id="sequence-row-${planner.id}" class="sequence-row" style="display:none">
+    <label for="sequence-text-${planner.id}">Route sequence:</label>
+    <textarea id="sequence-text-${planner.id}"
+              class="sequence-textarea"
+              rows="2"
+              spellcheck="false"></textarea>
+    <button id="sequence-copy-btn-${planner.id}"
+            class="sequence-copy-btn"
+            type="button">📋 Copy</button>
+  </div>
+  <div id="sequence-copy-warning-${planner.id}"
+       class="sequence-copy-warning"
+       style="display:none">
+    ⚠ Could not copy to clipboard.
+  </div>
+</div>
+
 <div class="filter-row">
     <label for="filter-type-${planner.id}">Filter by:</label>
     <select id="filter-type-${planner.id}">
@@ -199,6 +227,50 @@ function renderPlanner(planner) {
         checkbox.addEventListener('change', () => updateWaypointOptions(planner.id));
     });
 
+    // Populate route-title datalist from named plans
+    const datalist = document.getElementById(`route-titles-${planner.id}`);
+    getRouteData().forEach(plan => {
+        const option = document.createElement('option');
+        option.value = plan.title;
+        datalist.appendChild(option);
+    });
+
+    // Wire copy button
+    document.getElementById(`sequence-copy-btn-${planner.id}`).addEventListener('click', () => {
+        copySequence(planner.id);
+    });
+
+    // Wire textarea: reconstruct route only on blur to avoid jumping UX.
+    // Also clear the title if the sequence no longer matches the named route that was loaded.
+    const seqTextarea = document.getElementById(`sequence-text-${planner.id}`);
+    seqTextarea.addEventListener('blur', (e) => {
+        const sanitised = sanitiseSequence(e.target.value);
+        restoreRouteFromSequence(planner.id, sanitised);
+
+        const titleInput = document.getElementById(`route-title-input-${planner.id}`);
+        const currentTitle = titleInput.value.trim();
+        if (currentTitle) {
+            const matchedPlan = getRouteData().find(p => p.title === currentTitle);
+            const savedSequence = matchedPlan ? sanitiseSequence(matchedPlan.sequence) : '';
+            if (sanitised !== savedSequence) {
+                titleInput.value = '';
+            }
+        }
+    });
+
+    // Wire title input: load named route when an exact title is selected/committed.
+    // Using 'change' fires after selection from datalist or after typing + blur,
+    // but not on every keystroke, avoiding partial-match noise.
+    const titleInput = document.getElementById(`route-title-input-${planner.id}`);
+    titleInput.addEventListener('change', (e) => {
+        const matchedPlan = getRouteData().find(p => p.title === e.target.value);
+        if (matchedPlan) {
+            const sanitised = sanitiseSequence(matchedPlan.sequence);
+            seqTextarea.value = sanitised;
+            restoreRouteFromSequence(planner.id, sanitised);
+        }
+    });
+
     updateRouteDisplay(planner.id);
     updateWaypointOptions(planner.id);
 }
@@ -215,11 +287,13 @@ function updateWaypointOptions(plannerId) {
     const filterType = document.getElementById(`filter-type-${plannerId}`).value;
     const filterValue = parseFloat(document.getElementById(`filter-value-${plannerId}`).value);
     const selectedDirections = Array.from(document.getElementById(`filter-direction-${plannerId}`).querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
-    const currentLocation = planner.route[planner.route.length - 1];
+    // Use last valid (non-error) stop as the reference for filter calculations
+    const lastValidStop = [...planner.route].reverse().find(r => !r.errorId);
+    const currentLocation = lastValidStop || startLocation;
 
     select.innerHTML = '<option value="">-- Select destination --</option>';
 
-    const usedLocations = new Set(planner.route.map(r => r.name));
+    const usedLocations = new Set(planner.route.filter(r => !r.errorId).map(r => r.name));
     const options = [];
 
     locations.forEach((loc, index) => {
@@ -248,11 +322,10 @@ function updateWaypointOptions(plannerId) {
                 const hours = Math.floor(timeHours);
                 const minutes = Math.floor((timeHours - hours) * 60);
                 const directionLabel = direction.toUpperCase();
-                const cityState = loc.city && loc.state ? ` ${loc.city}, ${loc.state}` : '';
                 options.push({
                     index: index,
                     timeHours: timeHours,
-                    text: `${directionLabel} ${Math.round(distance)}mi ${hours}:${minutes.toString().padStart(2, '0')} ${loc.name}${cityState}`
+                    text: `${directionLabel} ${Math.round(distance)}mi ${hours}:${minutes.toString().padStart(2, '0')} ${loc.name} ${loc.city}, ${loc.state}`
                 });
             }
         }
@@ -343,6 +416,85 @@ function formatDateShort(isoString) {
     return `${month}/${day}`;
 }
 
+// --- Sequence area functions (feature: route-plan-sequence) ---
+
+function updateSequenceArea(planner) {
+    const sequenceRow = document.getElementById(`sequence-row-${planner.id}`);
+    if (!sequenceRow) return;
+
+    if (planner.route.length >= 2) {
+        const sequenceStr = planner.route.map(stop => stop.id || stop.errorId || '').join(':');
+        document.getElementById(`sequence-text-${planner.id}`).value = sequenceStr;
+        sequenceRow.style.display = 'flex';
+    } else {
+        sequenceRow.style.display = 'none';
+        document.getElementById(`sequence-text-${planner.id}`).value = '';
+    }
+}
+
+async function copySequence(plannerId) {
+    const textarea = document.getElementById(`sequence-text-${plannerId}`);
+    const copyBtn = document.getElementById(`sequence-copy-btn-${plannerId}`);
+    if (!textarea || !copyBtn) return;
+
+    const text = textarea.value;
+    const originalLabel = copyBtn.textContent;
+
+    navigator.clipboard.writeText(text).then(() => {
+        copyBtn.textContent = '✅ Copied!';
+        setTimeout(() => {
+            copyBtn.textContent = originalLabel;
+        }, 1500);
+    }).catch(() => {
+        showClipboardWarning(plannerId);
+    });
+}
+
+function showClipboardWarning(plannerId) {
+    const warning = document.getElementById(`sequence-copy-warning-${plannerId}`);
+    if (warning) {
+        warning.style.display = 'block';
+    }
+}
+
+function sanitiseSequence(raw) {
+    if (!raw || !raw.trim()) return '';
+    return raw
+        .trim()
+        .replace(/[^a-zA-Z0-9:\-]/g, '')
+        .replace(/-/g, ':')
+        .replace(/:+/g, ':')
+        .replace(/^:+|:+$/g, '');
+}
+
+function restoreRouteFromSequence(plannerId, sequenceStr) {
+    const sanitised = sanitiseSequence(sequenceStr);
+    if (!sanitised) return;
+
+    const planner = getPlanner(plannerId);
+    if (!planner) return;
+
+    const tokens = sanitised.split(':');
+    const locationData = getLocationData();
+    const newRoute = [];
+
+    tokens.forEach(token => {
+        if (!token) return;
+        const match = locationData.find(loc => loc.id === token);
+        if (match) {
+            newRoute.push(match);
+        } else {
+            newRoute.push({ errorId: token });
+        }
+    });
+
+    if (newRoute.length === 0) return;
+
+    planner.route = newRoute;
+    planner.stays = new Array(newRoute.length).fill(0);
+    updateRouteDisplay(plannerId);
+}
+
 function updateRouteDisplay(plannerId) {
     const planner = getPlanner(plannerId);
     if (!planner) return;
@@ -356,16 +508,29 @@ function updateRouteDisplay(plannerId) {
     const derivedDates = computeDerivedDates(planner);
 
     planner.route.forEach((waypoint, index) => {
+        // Render error sentinel row for unknown IDs
+        if (waypoint.errorId) {
+            const div = document.createElement('div');
+            div.className = 'waypoint-item waypoint-error';
+            div.innerHTML = `
+<div class="waypoint-header">
+  <span class="waypoint-index">${index + 1}.</span>
+  <span class="waypoint-error-id">${waypoint.errorId}</span>
+  <span class="waypoint-error-label">⚠ Unknown ID</span>
+  <button onclick="removeWaypoint(${plannerId}, ${index})">Remove</button>
+</div>
+`;
+            display.appendChild(div);
+            return;
+        }
+
         const div = document.createElement('div');
         div.className = 'waypoint-item';
 
-        const cityState = waypoint.city && waypoint.state
-            ? ` ${waypoint.city}, ${waypoint.state}`
-            : '';
-        const locationText = `${waypoint.name}${cityState}`;
+        const locationText = `${waypoint.name} ${waypoint.city}, ${waypoint.state}`;
 
         let metaSpans = `<span class="waypoint-index">${index + 1}.</span>`;
-        if (index > 0) {
+        if (index > 0 && !planner.route[index - 1].errorId) {
             const distance = haversineDistance(
                 planner.route[index-1].coords[0], planner.route[index-1].coords[1],
                 waypoint.coords[0], waypoint.coords[1]
@@ -440,11 +605,13 @@ function updateRouteDisplay(plannerId) {
 
         const mapLinkDiv = document.createElement('div');
         mapLinkDiv.className = 'route-map-link';
-        const mapsUrl = generateGoogleMapsUrl(planner.route);
+        const validRoute = planner.route.filter(stop => !stop.errorId);
+        const mapsUrl = generateGoogleMapsUrl(validRoute);
         mapLinkDiv.innerHTML = `<a href="${mapsUrl}" target="_blank">🗺️ View Route in Google Maps</a>`;
         display.appendChild(mapLinkDiv);
     }
 
+    updateSequenceArea(planner);
     updateMapForAllPlanners();
 }
 
@@ -452,8 +619,7 @@ function generateGoogleMapsUrl(route) {
     if (route.length < 2) return '#';
 
     const formatLocation = (loc) => {
-        const cityState = loc.city && loc.state ? `${loc.city}, ${loc.state}` : null;
-        const parts = [loc.name, loc.address, cityState, loc.zip]
+        const parts = [loc.address, loc.city, loc.state, loc.zip]
             .filter(part => part && part.trim().length > 0);
         return encodeURIComponent(parts.join(', '));
     };

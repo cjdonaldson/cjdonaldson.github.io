@@ -136,6 +136,40 @@ async function loadAndRenderLocations() {
                 }
             }
 
+            if (location.pricing && location.pricing.length > 0) {
+                const pricingLi = document.createElement('li');
+                pricingLi.textContent = '💲 Prices';
+
+                const pricingGrid = document.createElement('div');
+                pricingGrid.className = 'pricing-grid';
+
+                //const amountHeader = document.createElement('span');
+                //amountHeader.className = 'pricing-header pricing-amount';
+                //amountHeader.textContent = 'Amount';
+                //pricingGrid.appendChild(amountHeader);
+
+                //const typeHeader = document.createElement('span');
+                //typeHeader.className = 'pricing-header';
+                //typeHeader.textContent = 'Type';
+                //pricingGrid.appendChild(typeHeader);
+
+                location.pricing.forEach(priceEntry => {
+                    const [entryType, entryAmount] = Object.entries(priceEntry)[0];
+
+                    const amountCell = document.createElement('span');
+                    amountCell.className = 'pricing-amount';
+                    amountCell.textContent = `${parseFloat(entryAmount).toFixed(2)}`;
+                    pricingGrid.appendChild(amountCell);
+
+                    const typeCell = document.createElement('span');
+                    typeCell.textContent = entryType;
+                    pricingGrid.appendChild(typeCell);
+                });
+
+                pricingLi.appendChild(pricingGrid);
+                detailsList.appendChild(pricingLi);
+            }
+
             locationDetails.appendChild(detailsList);
             stateSection.appendChild(locationDetails);
         });
