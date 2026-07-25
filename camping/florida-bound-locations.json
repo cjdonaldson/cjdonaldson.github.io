@@ -1,4 +1,10 @@
 {
+  "routes": [
+    {
+      "title": "Florida Snowbird Run",
+      "sequence": "5c4ce2cb:0450fbdd:5fd7359d"
+    }
+  ],
   "states": [
     {
       "name": "Florida",
@@ -446,6 +452,21 @@
           "zip": "19526",
           "coords": [ 40.5606, -75.9961 ],
           "features": [ "RV propane fill", "RV Dump Station" ]
+        },
+        {
+          "id": "20cd0b82",
+          "name": "Hemlock Campground",
+          "url": "https://hemlockcampground.com",
+          "siteMap": "./site-map/HemlockCampground.pdf",
+          "mapUrl": "https://maps.app.goo.gl/JR9DavvHRek4sGR16",
+          "phone": "570-894-4388",
+          "address": "559 Hemlock Drive",
+          "city": "Tobyhanna",
+          "state": "PA",
+          "zip": "18466",
+          "coords": [ 41.1582, -75.3767 ],
+          "pricing": [ { "e/w back-in": "168.00" }, { "dumping": "35.00" } ],
+          "notes": [ "cash prices" ]
         }
       ]
     }
