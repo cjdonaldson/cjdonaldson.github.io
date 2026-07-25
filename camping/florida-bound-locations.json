@@ -467,6 +467,74 @@
                     "coords": [ 41.1582, -75.3767 ],
                     "pricing": [ { "e/w back-in": "68.00" }, { "dumping": "35.00" } ],
                     "notes": [ "cash prices" ]
+                },
+                {
+                    "id": "f860e240",
+                    "name": "Four Seasons Campgrounds",
+                    "url": "https://www.fourseasonscampgrounds.com/",
+                    "siteMap": "site-map/FourSeasonCampground.png",
+                    "mapUrl": "https://maps.app.goo.gl/Up9sCTp2ijVWjDeJ7",
+                    "phone": "570-629-2504",
+                    "email": "fsc1@ptd.net",
+                    "address": "249 Babbling Brook Rd.",
+                    "city": "Scotrun",
+                    "state": "PA",
+                    "zip": "18355",
+                    "coords": [ 41.0713, -75.332 ],
+                    "hours": "Sun-Thu 9am - 7pm | Fri-Sat 9am-9pm",
+                    "pricing": [ { "e/w back-in": "63.00" }, { "30 fhu": "69.00" } ],
+                    "notes": [ "Camelback", "Poconos" ]
+                },
+                {
+                    "id": "1018480b",
+                    "name": "Mount Pocono Campground",
+                    "url": "https://www.mtpoconocampground.com/",
+                    "siteMap": "./site-map/MountPocomoCampgorund.png",
+                    "mapUrl": "https://maps.app.goo.gl/ZRk6CPyGyGbNY74k8",
+                    "phone": "570-839-8950",
+                    "address": "30 Edgewood Road",
+                    "city": "Mount Pocono",
+                    "state": "PA",
+                    "zip": "18344",
+                    "coords": [ 41.1427, -75.351 ],
+                    "season": "April 25, 2025 to October 19, 2025",
+                    "pricing": [
+                        { "30 fhu m-r": "65.00" },
+                        { "30 fhu f-s": "70.00" },
+                        { "30 fhu holiday": "75.00" },
+                        { "e/w m-r": "60.00" },
+                        { "e/w f-s": "65.00" },
+                        { "e/w holdiay": "70.00" },
+                        { "e m-r": "55.00" },
+                        { "e f-s": "60.00" },
+                        { "e holdiay": "65.00" }
+                    ],
+                    "notes": [
+                        "Camp Sites: check-in is 2:00 p.m. - 10:00 p.m. Check-out is by noon.",
+                        "FHU: Hemlock Hollow (H) 20 - 26 & 28 - 35.  .",
+                        "E/W: Laurel Lane 1 (L), Spruce Trail (S) 1, 3, 5 - 10, Pine Barrens 10 - 20.",
+                        "E: Pine Barrens (P) 5 - 9."
+                    ]
+                },
+                {
+                    "id": "8961d1eb",
+                    "name": "Scotrun RV Resort",
+                    "url": "https://thousandtrails.com/pennsylvania/scotrun-rv-resort",
+                    "siteMap": "./site-map/ScotRunRvResort.pdf",
+                    "mapUrl": "https://maps.app.goo.gl/gZcL3SRap6cco65o8",
+                    "bookingUrl": "https://thousandtrails.com/pennsylvania/scotrun-rv-resort",
+                    "phone": "570-629-0620",
+                    "address": "2400? PA-611",
+                    "city": "Scotrun",
+                    "state": "PA",
+                    "zip": "18355",
+                    "coords": [ 41.0718, -75.3135 ],
+                    "season": "04/15/2026 — 11/01/2026",
+                    "pricing": [ { "30A e/w back-in": "70.50" }, { "pet fee / night": "10.00" } ],
+                    "notes": [
+                        "Thousand Trails network",
+                        "10 pet fee per night"
+                    ]
                 }
             ]
         }
