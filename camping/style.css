@@ -97,3 +97,31 @@ details[open] summary {
     text-align: right;
     font-variant-numeric: tabular-nums;
 }
+
+/* -- Site-wide top navigation bar ----------------------------------------- */
+.site-nav {
+    background-color: #f6f8fa;
+    border-bottom: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-bottom: 20px;
+    font-size: 0.875em;
+    line-height: 1.8;
+}
+
+.site-nav a {
+    color: #0366d6;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.site-nav a:hover {
+    text-decoration: underline;
+}
+
+.site-nav .nav-sep {
+    color: #bbb;
+    margin: 0 6px;
+    user-select: none;
+}
+/* -------------------------------------------------------------------------- */
