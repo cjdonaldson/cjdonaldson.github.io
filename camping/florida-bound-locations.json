@@ -61,6 +61,45 @@
             ]
         },
         {
+            "name": "Connecticut",
+            "emoji": "🌲",
+            "open": false,
+            "locations": [
+                {
+                    "id": "ca02086a",
+                    "name": "Hammonasset Campground Park",
+                    "url": "https://ctparks.com/parks/hammonasset-beach-state-park",
+                    "mapUrl": "https://maps.app.goo.gl/NCgq9KKFJq7SkpcD9",
+                    "bookingUrl": "https://connecticutstateparks.reserveamerica.com/camping/hammonasset-beach-state-park/r/campgroundDetails.do?contractCode=CT&parkId=100101",
+                    "phone": "877-668-CAMP (2267",
+                        "address": "1288 Boston Post Rd",
+                        "city": "Madison",
+                        "state": "CT",
+                        "zip": "06443",
+                        "coords": [
+                            41.2684,
+                            -72.561
+                        ],
+                        "season": "Friday, May 22 and closes Monday, October 12 at noon",
+                        "notes": [
+                            "$9 processing fee",
+                            "$9 change",
+                            "$3 walk-in",
+                            "No pets allowed",
+                            "Sherwood Island State Park",
+                            "Cockenoe Island",
+                            "Rocky Neck State Park",
+                            "Seaside State Park",
+                            "Shea Island",
+                            "Riverdale Farm Campsites",
+                            "Selden Neck State Park",
+                            "Pequot Ledge Campground",
+                            "https://www.google.com/maps/search/connecticut+shore+camping/@41.5242205,-74.1515245,479708m/data=!3m1!1e3!4m2!2m1!6e1?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D"
+                        ]
+                }
+            ]
+        },
+        {
             "name": "Virginia",
             "emoji": "🏔️",
             "open": false,
