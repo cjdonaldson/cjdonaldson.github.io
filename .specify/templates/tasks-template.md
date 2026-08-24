@@ -6,13 +6,12 @@ description: "Task list template for feature implementation"
 # Tasks: [FEATURE NAME]
 
 **Input**: Design documents from `/specs/[###-feature-name]/`
+
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include validation tasks. Automated tests are OPTIONAL - include them only when requested or when they materially reduce risk. Manual browser review, link checks, and asset verification are valid tests for this repo type.
+**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
-
-<!-- Formatting rule: remove trailing whitespace from every line. Use blank lines instead of space-based Markdown line breaks. -->
 
 ## Format: `[ID] [P?] [Story] Description`
 
@@ -22,10 +21,10 @@ description: "Task list template for feature implementation"
 
 ## Path Conventions
 
-- **Static content area**: `camping/`, `camping/docs/`, `camping/site-map/`
-- **Root-level pages/docs**: `README.md`, `index.html`, `docs/`
-- **Interactive static pages**: `camping/*.html`, `camping/*.js`, `camping/*.css`, `camping/*.json`
-- Paths shown below assume a static-site/content repository - adjust based on plan.md structure
+- **Single project**: `src/`, `tests/` at repository root
+- **Web app**: `backend/src/`, `frontend/src/`
+- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
+- Paths shown below assume single project - adjust based on plan.md structure
 
 <!--
   ============================================================================
@@ -48,28 +47,28 @@ description: "Task list template for feature implementation"
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-**Purpose**: Inventory the affected content and prepare the target structure
+**Purpose**: Project initialization and basic structure
 
-- [ ] T001 Inventory affected files, links, and assets per implementation plan
-- [ ] T002 Confirm target paths and page locations for curated content
-- [ ] T003 [P] Prepare any lightweight HTML/CSS/JS/Markdown scaffolding needed for the change
+- [ ] T001 Create project structure per implementation plan
+- [ ] T002 Initialize [language] project with [framework] dependencies
+- [ ] T003 [P] Configure linting and formatting tools
 
 ---
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-**Purpose**: Shared prerequisites that MUST be complete before user-story work begins
+**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Establish or confirm destination sections in affected index or landing pages
-- [ ] T005 [P] Prepare shared styling, small scripts, or data files used by multiple stories
-- [ ] T006 [P] Create folders for new curated docs or assets when required
-- [ ] T007 Document evaluation status for files not yet ready for full publication
-- [ ] T008 Create a validation checklist for links, asset loads, and page readability
-- [ ] T009 Review any privacy, licensing, or asset-size concerns for imported content
+- [ ] T004 Setup database schema and migrations framework
+- [ ] T005 [P] Implement authentication/authorization framework
+- [ ] T006 [P] Setup API routing and middleware structure
+- [ ] T007 Create base models/entities that all stories depend on
+- [ ] T008 Configure error handling and logging infrastructure
+- [ ] T009 Setup environment configuration management
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -81,21 +80,21 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Validation for User Story 1 (OPTIONAL but recommended) ⚠️
+### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
 
-> **NOTE: Define validation before implementation so success is easy to confirm**
+> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T010 [P] [US1] Add or document manual review steps for [page/journey]
-- [ ] T011 [P] [US1] Add optional automated link or rendering check for [page/asset]
+- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
+- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create or update source content in camping/[file].md
-- [ ] T013 [P] [US1] Add or update supporting asset in camping/[asset]
-- [ ] T014 [US1] Update landing page or section in camping/[page].html
-- [ ] T015 [US1] Add or update lightweight styling or script in camping/[file].css or camping/[file].js
-- [ ] T016 [US1] Add navigation, labels, or status notes for the new content
-- [ ] T017 [US1] Run and record the planned validation for user story 1
+- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
+- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
+- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
+- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T016 [US1] Add validation and error handling
+- [ ] T017 [US1] Add logging for user story 1 operations
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -107,17 +106,17 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Validation for User Story 2 (OPTIONAL but recommended) ⚠️
+### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T018 [P] [US2] Document manual review steps for [page/journey]
-- [ ] T019 [P] [US2] Add optional automated link or asset verification for [page/file]
+- [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
+- [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
 
 ### Implementation for User Story 2
 
-- [ ] T020 [P] [US2] Create or revise curated content in camping/[file].md or camping/[file].html
-- [ ] T021 [US2] Update index, quick links, or supporting docs for discoverability
-- [ ] T022 [US2] Add supporting asset, data file, or page behavior in camping/[file]
-- [ ] T023 [US2] Validate integration with User Story 1 navigation and content flow
+- [ ] T020 [P] [US2] Create [Entity] model in src/models/[entity].py
+- [ ] T021 [US2] Implement [Service] in src/services/[service].py
+- [ ] T022 [US2] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T023 [US2] Integrate with User Story 1 components (if needed)
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -129,16 +128,16 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Validation for User Story 3 (OPTIONAL but recommended) ⚠️
+### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T024 [P] [US3] Document manual review steps for [page/journey]
-- [ ] T025 [P] [US3] Add optional automated link or rendering verification for [page/file]
+- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
+- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
 
 ### Implementation for User Story 3
 
-- [ ] T026 [P] [US3] Add or update content/assets in the target curated location
-- [ ] T027 [US3] Update relevant presentation page, docs, or data file
-- [ ] T028 [US3] Validate that the new content remains lightweight, discoverable, and public-safe
+- [ ] T026 [P] [US3] Create [Entity] model in src/models/[entity].py
+- [ ] T027 [US3] Implement [Service] in src/services/[service].py
+- [ ] T028 [US3] Implement [endpoint/feature] in src/[location]/[file].py
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -152,12 +151,12 @@ Examples of foundational tasks (adjust based on your project):
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] TXXX [P] Documentation updates in README.md, docs/, or camping/docs/
-- [ ] TXXX Clean up unused links, notes, or orphaned draft references
-- [ ] TXXX Review page readability, accessibility, and responsive behavior
-- [ ] TXXX [P] Add optional automated checks or additional manual validation notes
-- [ ] TXXX Review privacy, licensing, and large-asset impacts across the change
-- [ ] TXXX Validate final navigation paths from landing pages to curated content
+- [ ] TXXX [P] Documentation updates in docs/
+- [ ] TXXX Code cleanup and refactoring
+- [ ] TXXX Performance optimization across all stories
+- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
+- [ ] TXXX Security hardening
+- [ ] TXXX Run quickstart.md validation
 
 ---
 
@@ -180,10 +179,10 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Within Each User Story
 
-- Validation steps SHOULD be defined before implementation
-- Content updates before navigation wiring is finalized
-- Navigation updates before final validation
-- Core content before polish and supporting enhancements
+- Tests (if included) MUST be written and FAIL before implementation
+- Models before services
+- Services before endpoints
+- Core implementation before integration
 - Story complete before moving to next priority
 
 ### Parallel Opportunities
@@ -191,8 +190,8 @@ Examples of foundational tasks (adjust based on your project):
 - All Setup tasks marked [P] can run in parallel
 - All Foundational tasks marked [P] can run in parallel (within Phase 2)
 - Once Foundational phase completes, all user stories can start in parallel (if team capacity allows)
-- All validation tasks for a user story marked [P] can run in parallel
-- Content or asset tasks within a story marked [P] can run in parallel
+- All tests for a user story marked [P] can run in parallel
+- Models within a story marked [P] can run in parallel
 - Different user stories can be worked on in parallel by different team members
 
 ---
@@ -200,13 +199,13 @@ Examples of foundational tasks (adjust based on your project):
 ## Parallel Example: User Story 1
 
 ```bash
-# Launch all validation tasks for User Story 1 together:
-Task: "Document manual review for camping/[page].html"
-Task: "Run optional link or asset verification for camping/[file]"
+# Launch all tests for User Story 1 together (if tests requested):
+Task: "Contract test for [endpoint] in tests/contract/test_[name].py"
+Task: "Integration test for [user journey] in tests/integration/test_[name].py"
 
-# Launch all content tasks for User Story 1 together:
-Task: "Update curated content in camping/[file].md"
-Task: "Add supporting asset in camping/[asset]"
+# Launch all models for User Story 1 together:
+Task: "Create [Entity1] model in src/models/[entity1].py"
+Task: "Create [Entity2] model in src/models/[entity2].py"
 ```
 
 ---
@@ -246,8 +245,8 @@ With multiple developers:
 
 - [P] tasks = different files, no dependencies
 - [Story] label maps task to specific user story for traceability
-- Each user story should be independently completable and reviewable
-- Define validation before implementing when practical
+- Each user story should be independently completable and testable
+- Verify tests fail before implementing
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence

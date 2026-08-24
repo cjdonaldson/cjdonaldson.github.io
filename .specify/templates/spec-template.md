@@ -1,10 +1,11 @@
 # Feature Specification: [FEATURE NAME]
 
-<!-- Formatting rule: remove trailing whitespace from every line. Use blank lines, not Markdown hard-break spaces. -->
-
 **Feature Branch**: `[###-feature-name]`
+
 **Created**: [DATE]
+
 **Status**: Draft
+
 **Input**: User description: "$ARGUMENTS"
 
 ## User Scenarios & Testing *(mandatory)*
@@ -13,8 +14,6 @@
   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
   Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
   you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  For this repository, stories may describe either site visitors or maintainers curating
-  content, as long as each story delivers a usable, reviewable improvement on its own.
 
   Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
   Think of each story as a standalone slice of functionality that can be:
@@ -30,7 +29,7 @@
 
 **Why this priority**: [Explain the value and why it has this priority level]
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by opening [page/file], following [link], and confirming [value]"]
+**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
 
 **Acceptance Scenarios**:
 
@@ -88,21 +87,11 @@
 
 ### Functional Requirements
 
-- **FR-001**: Repository content MUST [specific capability, e.g., "present a curated camping itinerary from the site"]
-- **FR-002**: The change MUST identify [affected pages/files and their intended long-term home]
-- **FR-003**: Users or maintainers MUST be able to [key interaction, e.g., "find the referenced file from an index page"]
-- **FR-004**: The site MUST [data or content requirement, e.g., "surface supporting assets such as PDFs, maps, or notes"]
-- **FR-005**: The change MUST [behavior, e.g., "preserve lightweight maintenance and public-safe publication"]
-
-### Content & Curation Requirements
-
-- Specify whether each new or updated asset is:
-  - ready for publication,
-  - retained for evaluation, or
-  - supporting reference material.
-- Identify where users will discover the content (page section, index, quick links, docs,
-  or explicit deferred follow-up).
-- Note any privacy, licensing, or large-asset review needed before publication.
+- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
+- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]
+- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
+- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
+- **FR-005**: System MUST [behavior, e.g., "log all security events"]
 
 *Example of marking unclear requirements:*
 
@@ -123,7 +112,20 @@
 
 ### Measurable Outcomes
 
-- **SC-001**: [Measurable metric, e.g., "Users can reach the new camping content from the relevant landing page in 2 clicks or fewer"]
-- **SC-002**: [Measurable metric, e.g., "All newly referenced assets load successfully in manual browser review"]
-- **SC-003**: [Usability metric, e.g., "Primary page content remains readable on desktop and mobile-width screens"]
-- **SC-004**: [Curation metric, e.g., "No newly added curated file is left without a documented navigation path or status"]
+- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
+- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
+- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
+- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+
+## Assumptions
+
+<!--
+  ACTION REQUIRED: The content in this section represents placeholders.
+  Fill them out with the right assumptions based on reasonable defaults
+  chosen when the feature description did not specify certain details.
+-->
+
+- [Assumption about target users, e.g., "Users have stable internet connectivity"]
+- [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
+- [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
+- [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
